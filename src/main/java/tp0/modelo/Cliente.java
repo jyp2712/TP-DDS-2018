@@ -11,6 +11,8 @@ public class Cliente {
 	@JsonProperty
 	protected String apellido;
 	
+	protected Categoria categoria;
+	
 	@JsonCreator
 	public Cliente(
 			@JsonProperty("nombre") String nombre,
@@ -27,5 +29,16 @@ public class Cliente {
 	public String obtenerApellido() {
 		return apellido;
 	}
+	
+	public double Consumo() {
+		return 100;
+	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 }
