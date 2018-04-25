@@ -1,5 +1,18 @@
 [
-{"nombre": "HOLA1", "apellido": "MUNDO1"},
-{"nombre": "HOLA2", "apellido": "MUNDO2"},
-{"nombre": "HOLA3", "apellido": "MUNDO3"}
+{"nombre": "HOLA1", 
+"apellido": "MUNDO1", 
+"tipo documento": "LE",
+"N documento": 35000000, 
+"telefono": "2061-4493", 
+"domicilio de servicio": "por ahi",
+"fecha de alta en el servicio": "19900109",
+"categoria": {
+	"cargo fijo": 90,
+	"cargo variable": 90,
+	"valor minimo": 400,
+	"valor maximo": 500
+},
+ "dispositivos": 
+ [{"nombre generico": "HOLA1", "KW/H": 1, "esta encendido": true}],
+"consumo de los ultimos tres meses": [10,10,20]}
 ]
