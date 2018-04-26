@@ -20,5 +20,5 @@
 "categoria": "R1",
  "dispositivos": 
  [{"nombre generico": "HOLA2", "KW/H": 2, "estado": false}],
-"consumo de los ultimos tres meses": [0,0,0]}
+}
 ]

@@ -36,9 +36,6 @@ public class Cliente {
 	@JsonProperty
 	protected List<Dispositivo> dispositivos;
 	
-	@JsonProperty
-	protected List<Integer> consumoUltimosTresMeses;
-	
 	@JsonCreator
 	public Cliente(
 			@JsonProperty("nombre") String nombre,
@@ -49,8 +46,7 @@ public class Cliente {
 			@JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String categoria,
-			@JsonProperty("dispositivos") List<Dispositivo> dispositivos,
-			@JsonProperty("consumo de los ultimos tres meses") List<Integer> consumoUltimosTresMeses			
+			@JsonProperty("dispositivos") List<Dispositivo> dispositivos		
 			) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -61,7 +57,6 @@ public class Cliente {
 		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
 		this.categoria = Categorizador.vincularCategoria(categoria);
 		this.dispositivos = dispositivos;
-		this.consumoUltimosTresMeses = consumoUltimosTresMeses;
 	}
 	
 
@@ -104,16 +99,6 @@ public class Cliente {
 		return dispositivos;
 	}
 
-
-	public List<Integer> getConsumoUltimosTresMeses() {
-		return consumoUltimosTresMeses;
-	}
-
-
-	public double Consumo() {
-		return consumoUltimosTresMeses.stream().mapToInt(Integer::intValue).sum();
-	}
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -127,14 +112,14 @@ public class Cliente {
 	}
 	
 	public long cantidadDispositivosEncendidos() {
-		return dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
 	}
 	
 	public long cantidadDispositivosApagados() {
-		return dispositivos.stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
+		return this.getDispositivos().stream().filter(dispositivo -> !dispositivo.estaEncendido()).count();
 	}
 	
 	public long cantidadDispositivosTotal() {
-		return dispositivos.stream().count();
+		return this.getDispositivos().stream().count();
 	}
 }
