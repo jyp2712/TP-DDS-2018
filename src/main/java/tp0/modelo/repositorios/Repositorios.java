@@ -1,5 +1,6 @@
 package tp0.modelo.repositorios;
 
+import tp0.modelo.repositorios.fuentes.FuenteJsonDelAdministrador;
 import tp0.modelo.repositorios.fuentes.FuenteJsonDelCliente;
 import tp0.modelo.repositorios.fuentes.FuenteJsonDelDispositivo;
 
@@ -34,4 +35,19 @@ public class Repositorios {
 	public static void establecerRepositorioDeDispositivos(RepositorioDeDispositivos repositorio) {
 		repositorioDeDispositivos = repositorio;
 	}
-}
+
+	private static RepositorioDeAdministradores repositorioDeAdministradores;
+	
+	public static RepositorioDeAdministradores obtenerRepositorioDeAdministradores() {
+		if(repositorioDeAdministradores == null) {
+			final String ARCHIVO_DE_ADMINISTRADORES = "administradores.json";
+			FuenteJsonDelAdministrador fuenteDeAdministrador = new FuenteJsonDelAdministrador(ARCHIVO_DE_ADMINISTRADORES);
+			repositorioDeAdministradores = new RepositorioDeAdministradores(fuenteDeAdministrador);
+		}
+		return repositorioDeAdministradores;
+	}
+	
+	public static void establecerRepositorioAdministradores(RepositorioDeAdministradores repositorio) {
+		repositorioDeAdministradores = repositorio;
+	}
+	}

@@ -58,7 +58,7 @@ public class Cliente {
 		this.documento = documento;
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
-		this.fechaAltaServicio = DateTime.parse(fechaAltaServicio);
+		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
 		this.categoria = categoria;
 		this.dispositivos = dispositivos;
 		this.consumoUltimosTresMeses = consumoUltimosTresMeses;

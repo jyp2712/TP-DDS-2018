@@ -1,5 +1,5 @@
 [
-{"nombre generico": "HOLA1", "KW/H": 1, "esta encendido": true},
-{"nombre generico": "HOLA2", "KW/H": 2, "esta encendido": true},
-{"nombre generico": "HOLA3", "KW/H": 3, "esta encencido": false}
+{"nombre generico": "HOLA1", "KW/H": 1, "estado": true},
+{"nombre generico": "HOLA2", "KW/H": 2, "estado": true},
+{"nombre generico": "HOLA3", "KW/H": 3, "estado": false}
 ]

@@ -5,7 +5,7 @@
 "N documento": 35000000, 
 "telefono": "2061-4493", 
 "domicilio de servicio": "por ahi",
-"fecha de alta en el servicio": "19900109",
+"fecha de alta en el servicio": "2004-12-13T21:39:45.618-08:00",
 "categoria": {
 	"cargo fijo": 90,
 	"cargo variable": 90,
@@ -13,6 +13,22 @@
 	"valor maximo": 500
 },
  "dispositivos": 
- [{"nombre generico": "HOLA1", "KW/H": 1, "esta encendido": true}],
+ [{"nombre generico": "HOLA1", "KW/H": 1, "estado": true}],
+"consumo de los ultimos tres meses": [10,10,20]},
+{"nombre": "HOLA1", 
+"apellido": "MUNDO1", 
+"tipo documento": "LE",
+"N documento": 35000000, 
+"telefono": "2061-4493", 
+"domicilio de servicio": "por ahi",
+"fecha de alta en el servicio": "2004-12-13T21:39:45.618-08:00",
+"categoria": {
+	"cargo fijo": 90,
+	"cargo variable": 90,
+	"valor minimo": 400,
+	"valor maximo": 500
+},
+ "dispositivos": 
+ [{"nombre generico": "HOLA1", "KW/H": 1, "estado": true}],
 "consumo de los ultimos tres meses": [10,10,20]}
 ]
