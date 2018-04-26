@@ -4,41 +4,42 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Categoria {
-	
+
 	@JsonProperty
-	protected double cargoFijo; 
+	protected double cargoFijo;
 
 	@JsonProperty
 	protected double cargoVariable;
 
 	@JsonProperty
-	protected double valorMinimo;
-	
+	protected double consumoMinimo;
+
 	@JsonProperty
-	protected double valorMaximo;
-	
-	public double getValorMinimo() {
-		return valorMinimo;
+	protected double consumoMaximo;
+
+	public double getConsumoMinimo() {
+		return consumoMinimo;
 	}
-	public double getValorMaximo() {
-		return valorMaximo;
+
+	public double getConsumoMaximo() {
+		return consumoMaximo;
 	}
-	
+
 	/*
-	 * Constructor privado que usa Jackson para deserializar la fórmula.
-	 * Es necesario para que pueda crear el árbol de sintaxis (Expression) a partir de la fórmula,
-	 * ya que como Expression es una interfaz funcional, no se puede guardar directamente en el archivo JSON.
+	 * Constructor privado que usa Jackson para deserializar la formula. Es
+	 * necesario para que pueda crear el arbol de sintaxis (Expression) a partir de
+	 * la formula, ya que como Expression es una interfaz funcional, no se puede
+	 * guardar directamente en el archivo JSON.
 	 */
 	@JsonCreator
-	private Categoria(
-			@JsonProperty("cargo fijo") double cargoFijo,
+	private Categoria(@JsonProperty("cargo fijo") double cargoFijo,
 			@JsonProperty("cargo variable") double cargoVariable,
-			@JsonProperty("valor minimo") double valorMinimo,
-			@JsonProperty("valor maximo") double valorMaximo) {
+			@JsonProperty("consumo minimo") double consumoMinimo,
+			@JsonProperty("consumo maximo") double consumoMaximo) {
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
-		this.valorMinimo = valorMinimo;
-		this.valorMaximo = valorMaximo;
+		this.consumoMinimo = consumoMinimo;
+		this.consumoMaximo = consumoMaximo;
 	}
-	
+
 }
