@@ -5,19 +5,19 @@ import java.util.List;
 public class Categorizador {
 	private List<Categoria> FCategorias;
 	
-	public void AddCategoria(Categoria Categoria) {
+	public void addCategoria(Categoria Categoria) {
 		FCategorias.add(Categoria);	
 	}
 	
-	public void RemoveCategoria(Categoria Categoria) {
+	public void removeCategoria(Categoria Categoria) {
 		FCategorias.remove(Categoria);
 	}
 	
-	public void AsignarCategoria(Cliente Cliente) {
-		Cliente.setCategoria(this.DeterminarCategoria(Cliente.Consumo()));
+	public void asignarCategoria(Cliente Cliente) {
+		Cliente.setCategoria(this.determinarCategoria(Cliente.Consumo()));
 	}
 	
-	public Categoria DeterminarCategoria(double Consumo) {
+	public Categoria determinarCategoria(double Consumo) {
 		return FCategorias.stream().
 					filter(categoria -> isBetween(Consumo, categoria.getValorMinimo(), categoria.getValorMaximo())).
 					findFirst().
@@ -27,5 +27,10 @@ public class Categorizador {
 	public boolean isBetween(Double Numero1, Double Numero2, Double Numero3)
 	{
 		return Numero1 >= Numero2 && Numero1 <= Numero3;
+	}
+
+	public static Categoria vincularCategoria(String categoria) {
+		//Acá hay que buscar la categoria dentro de FCategorias
+		return null;
 	}
 }

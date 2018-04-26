@@ -2,7 +2,6 @@ package tp0.modelo.repositorios;
 
 import tp0.modelo.repositorios.fuentes.FuenteJsonDelAdministrador;
 import tp0.modelo.repositorios.fuentes.FuenteJsonDelCliente;
-import tp0.modelo.repositorios.fuentes.FuenteJsonDelDispositivo;
 
 public class Repositorios {
 	
@@ -19,21 +18,6 @@ public class Repositorios {
 	
 	public static void establecerRepositorioDeClientes(RepositorioDeClientes repositorio) {
 		repositorioDeClientes = repositorio;
-	}
-
-	private static RepositorioDeDispositivos repositorioDeDispositivos;
-	
-	public static RepositorioDeDispositivos obtenerRepositorioDeDispositivos() {
-		if(repositorioDeDispositivos == null) {
-			final String ARCHIVO_DE_DISPOSITIVOS = "dispositivos.json";
-			FuenteJsonDelDispositivo fuenteDeDispositivo = new FuenteJsonDelDispositivo(ARCHIVO_DE_DISPOSITIVOS);
-			repositorioDeDispositivos = new RepositorioDeDispositivos(fuenteDeDispositivo);
-		}
-		return repositorioDeDispositivos;
-	}
-	
-	public static void establecerRepositorioDeDispositivos(RepositorioDeDispositivos repositorio) {
-		repositorioDeDispositivos = repositorio;
 	}
 
 	private static RepositorioDeAdministradores repositorioDeAdministradores;

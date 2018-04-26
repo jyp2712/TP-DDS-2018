@@ -29,7 +29,7 @@ public class Administrador {
 			@JsonProperty("nombre") String nombre,
 			@JsonProperty("apellido") String apellido,
 			@JsonProperty("domicilio") String domicilio,
-			@JsonProperty("fecha") String fechaAltaSistema
+			@JsonProperty("fecha de alta en el sistema") String fechaAltaSistema
 			) {
 		this.id = id;
 		this.nombre = nombre;

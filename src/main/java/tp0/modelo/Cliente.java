@@ -48,7 +48,7 @@ public class Cliente {
 			@JsonProperty("telefono") String tel,
 			@JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			@JsonProperty("categoria") Categoria categoria,
+			@JsonProperty("categoria") String categoria,
 			@JsonProperty("dispositivos") List<Dispositivo> dispositivos,
 			@JsonProperty("consumo de los ultimos tres meses") List<Integer> consumoUltimosTresMeses			
 			) {
@@ -59,7 +59,7 @@ public class Cliente {
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
-		this.categoria = categoria;
+		this.categoria = Categorizador.vincularCategoria(categoria);
 		this.dispositivos = dispositivos;
 		this.consumoUltimosTresMeses = consumoUltimosTresMeses;
 	}
@@ -96,7 +96,7 @@ public class Cliente {
 
 
 	public DateTime getFechaAltaServicio() {
-		return fechaAltaServicio;
+		return new DateTime(fechaAltaServicio);
 	}
 
 
