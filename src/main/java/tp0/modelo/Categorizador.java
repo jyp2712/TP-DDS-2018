@@ -19,7 +19,7 @@ public class Categorizador {
 	
 	public Categoria DeterminarCategoria(double Consumo) {
 		return FCategorias.stream().
-					filter(categoria -> isBetween(Consumo, categoria.getValorMinimo(), categoria.getValorMaximo())).
+					filter(categoria -> isBetween(Consumo, categoria.getConsumoMinimo(), categoria.getConsumoMaximo())).
 					findFirst().
 					orElse(null);
 	}
