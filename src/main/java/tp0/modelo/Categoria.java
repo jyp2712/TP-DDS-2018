@@ -22,6 +22,10 @@ public class Categoria {
 		return consumoMinimo;
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	public double getConsumoMaximo() {
 		return consumoMaximo;
 	}
