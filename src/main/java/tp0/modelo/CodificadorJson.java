@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import tp0.App;
+
 public class CodificadorJson {
 
 	String nombreDeArchivo;

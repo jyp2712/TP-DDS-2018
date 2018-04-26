@@ -1,21 +1,22 @@
 package tp0.modelo;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Categoria {
 
-	@JsonProperty
-	protected double cargoFijo;
-
-	@JsonProperty
-	protected double cargoVariable;
-
-	@JsonProperty
-	protected double consumoMinimo;
-
-	@JsonProperty
-	protected double consumoMaximo;
+	private String id;
+	private double cargoFijo;
+	private double cargoVariable;
+	private double consumoMinimo;
+	private double consumoMaximo;
+	
+	//TODO: Me da la sensacion como que esta al limite de que son muchos parametros. Por ahora queda. Acepto opiniones
+	public Categoria(String id, double cargoFijo, double cargoVariable, double consumoMinimo, double consumoMaximo) {
+		this.id = id;
+		this.cargoFijo = cargoFijo;
+		this.cargoVariable = cargoVariable;
+		this.consumoMaximo = consumoMaximo;
+		this.consumoMinimo = consumoMinimo;
+	}
+	
 
 	public double getConsumoMinimo() {
 		return consumoMinimo;
@@ -24,22 +25,4 @@ public class Categoria {
 	public double getConsumoMaximo() {
 		return consumoMaximo;
 	}
-
-	/*
-	 * Constructor privado que usa Jackson para deserializar la formula. Es
-	 * necesario para que pueda crear el arbol de sintaxis (Expression) a partir de
-	 * la formula, ya que como Expression es una interfaz funcional, no se puede
-	 * guardar directamente en el archivo JSON.
-	 */
-	@JsonCreator
-	private Categoria(@JsonProperty("cargo fijo") double cargoFijo,
-			@JsonProperty("cargo variable") double cargoVariable,
-			@JsonProperty("consumo minimo") double consumoMinimo,
-			@JsonProperty("consumo maximo") double consumoMaximo) {
-		this.cargoFijo = cargoFijo;
-		this.cargoVariable = cargoVariable;
-		this.consumoMinimo = consumoMinimo;
-		this.consumoMaximo = consumoMaximo;
-	}
-
 }

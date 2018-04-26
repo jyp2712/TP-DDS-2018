@@ -12,17 +12,17 @@ public class Dispositivo {
 	protected double KwXHora;
 
 	@JsonProperty
-	protected boolean encendido;
+	protected boolean estado;
 	
 	@JsonCreator
 	public Dispositivo(
 			@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora,
-			@JsonProperty("esta encendido") boolean encendido
+			@JsonProperty("estado") boolean estado
 			) {
 		this.nombreGenerico = nombreGenerico;
 		this.KwXHora = KwXHora;
-		this.encendido = encendido;
+		this.estado = estado;
 	}
 
 	public String getNombreGenerico() {
@@ -41,12 +41,12 @@ public class Dispositivo {
 		KwXHora = kwXHora;
 	}
 
-	public void setEncendido(boolean encendido) {
-		this.encendido = encendido;
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 	public boolean estaEncendido() {
-		return encendido;
+		return estado;
 	}
 	
 }
