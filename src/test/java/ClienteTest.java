@@ -17,7 +17,6 @@ public class ClienteTest{
 	Dispositivo dispositivo3;
 	Dispositivo dispositivo4;
 	Categoria categoriaPrueba;
-	Categorizador categorizador = Categorizador.getCategorizador();
 	
 	@Before
 	public void setUp() throws Exception{
@@ -65,7 +64,7 @@ public class ClienteTest{
 	
 	@Test
 	public void testNicoEsRecategorizadoAR2() {
-		categorizador.asignarCategoria(nico);
+		nico.asignarCategoria();
 		Assert.assertTrue(nico.getCategoria().getNombre() == "R2");
 	}
 }

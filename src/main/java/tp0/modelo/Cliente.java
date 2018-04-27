@@ -131,4 +131,8 @@ public class Cliente {
 	public double consumoEstimadoTotal() {
 		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum();
 	}
+	
+	public void asignarCategoria() {
+		this.setCategoria(Categorizador.getCategorizador().determinarCategoria(this.consumoEstimadoTotal())); 
+	}
 }
