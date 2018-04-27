@@ -16,8 +16,9 @@ public class Cliente {
 	@JsonProperty
 	protected String apellido;
 
+	private enum DTD {LE,DNI,CI,LC}
 	@JsonProperty
-	protected String tipoDoc;
+	protected DTD tipoDoc;
 
 	@JsonProperty
 	protected Integer documento;
@@ -38,14 +39,19 @@ public class Cliente {
 	protected List<Dispositivo> dispositivos;
 
 	@JsonCreator
-	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
-			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
-			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
+	public Cliente(
+			@JsonProperty("nombre") String nombre, 
+			@JsonProperty("apellido") String apellido,
+			@JsonProperty("tipo documento") String tipoDoc, 
+			@JsonProperty("N documento") Integer documento,
+			@JsonProperty("telefono") String tel, 
+			@JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			@JsonProperty("categoria") String categoria, @JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
+			@JsonProperty("categoria") String categoria, 
+			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.tipoDoc = tipoDoc;
+		this.tipoDoc = DTD.valueOf(tipoDoc);
 		this.documento = documento;
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
@@ -62,7 +68,7 @@ public class Cliente {
 		return apellido;
 	}
 
-	public String getTipoDoc() {
+	public DTD getTipoDoc() {
 		return tipoDoc;
 	}
 

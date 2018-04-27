@@ -57,7 +57,7 @@ public class Categorizador {
 	}
 
 	public Categoria getCategoria(String nombre) {
-		return categorias.stream().filter(categoria -> categoria.getId() == nombre).findFirst().orElse(null);
+		return categorias.stream().filter(categoria -> categoria.getNombre() == nombre).findFirst().orElse(null);
 	}
 
 }

@@ -16,16 +16,26 @@ public class Categoria {
 		this.consumoMaximo = consumoMaximo;
 		this.consumoMinimo = consumoMinimo;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public double getCargoFijo() {
+		return cargoFijo;
+	}
+	
+	public double getCargoVariable() {
+		return cargoVariable;
+	}
 	
 	public double getConsumoMinimo() {
 		return consumoMinimo;
 	}
 
-	public String getId() {
-		return nombre;
-	}
-
 	public double getConsumoMaximo() {
 		return consumoMaximo;
 	}
+	
+	
 }
