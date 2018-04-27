@@ -126,4 +126,8 @@ public class Cliente {
 	public long cantidadDispositivosTotal() {
 		return this.getDispositivos().stream().count();
 	}
+	
+	public double consumoEstimadoTotal() {
+		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum();
+	}
 }

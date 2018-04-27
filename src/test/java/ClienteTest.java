@@ -19,10 +19,10 @@ public class ClienteTest{
 	
 	@Before
 	public void setUp() throws Exception{
-		dispositivo1 = new Dispositivo("Heladera", 1234, true);
-		dispositivo2 = new Dispositivo("Lavarropas", 4321, true);
-		dispositivo3 = new Dispositivo("Tostadora", 500, false);
-		dispositivo4 = new Dispositivo("Licuadora", 666, false);
+		dispositivo1 = new Dispositivo("Heladera", 10, true);
+		dispositivo2 = new Dispositivo("Lavarropas", 10, true);
+		dispositivo3 = new Dispositivo("Tostadora", 10, false);
+		dispositivo4 = new Dispositivo("Licuadora", 10, false);
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2", Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4));
 		categoriaPrueba = new Categoria("R1", 18.76, 0.644, 0, 150);
 	}
@@ -54,5 +54,10 @@ public class ClienteTest{
 	public void testNicoTiene2DIspositivosApagados() {
 		Assert.assertTrue(nico.cantidadDispositivosApagados() == 2);
 
+	}
+	
+	@Test
+	public void testNicoConsume20KWPorHora() {
+		Assert.assertTrue(nico.consumoEstimadoTotal() == 20);
 	}
 }
