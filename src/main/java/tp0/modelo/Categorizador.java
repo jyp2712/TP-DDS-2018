@@ -2,7 +2,6 @@ package tp0.modelo;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Categorizador {
 
@@ -41,10 +40,8 @@ public class Categorizador {
 	// se tiene que recategorizar pero no especifica
 	// muchos mas que eso... Por ahora opino de dejarlo y ver como avanzan los
 	// requisistos.
-	/*
-	 * public void asignarCategoria(Cliente Cliente) {
-	 * Cliente.setCategoria(this.determinarCategoria(Cliente.Consumo())); }
-	 */
+
+
 
 	public Categoria determinarCategoria(double Consumo) {
 		return categorias.stream()
