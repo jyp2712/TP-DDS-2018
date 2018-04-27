@@ -6,12 +6,8 @@ import tp0.modelo.Categorizador;
 public class CategorizadorTest {
 
 	//SM: Tests muy simples para probar el funcionamiento basico y entender testing
-	Categorizador categorizador;
+	Categorizador categorizador = Categorizador.getCategorizador();
 
-	@Before
-	public void setUp() throws Exception {
-		categorizador = new Categorizador();
-	}
 
 	@Test
 	public void testDeterminarCategoriaR1() {

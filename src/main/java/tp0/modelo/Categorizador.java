@@ -2,12 +2,26 @@ package tp0.modelo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Categorizador {
+
+	private static final Categorizador categorizador = new Categorizador();
+
+	private Categorizador() {
+
+	}
+
+	public static Categorizador getCategorizador() {
+		return categorizador;
+	}
+	
+	//TODO: Crear un bloque de manera tal que al instanciar si hay error, arroja una excepcion
+
 	// SM: El nombre FCategorias es por algo? Una convencion?
 	// Se que esta inicializacion se ve fea pero es lo mas simple hasta que tengamos
 	// mas informacion.
-	private List<Categoria> FCategorias = Arrays.asList(new Categoria("R1", 18.76, 0.644, 0, 150),
+	private List<Categoria> categorias = Arrays.asList(new Categoria("R1", 18.76, 0.644, 0, 150),
 			new Categoria("R2", 35.32, 0.644, 150, 325), new Categoria("R3", 60.71, 0.681, 325, 400),
 			new Categoria("R4", 71.74, 0.738, 400, 450), new Categoria("R5", 110.38, 0.794, 450, 500),
 			new Categoria("R6", 220.75, 0.832, 500, 600), new Categoria("R7", 443.59, 0.851, 600, 700),
@@ -33,7 +47,7 @@ public class Categorizador {
 	 */
 
 	public Categoria determinarCategoria(double Consumo) {
-		return FCategorias.stream()
+		return categorias.stream()
 				.filter(categoria -> isBetween(Consumo, categoria.getConsumoMinimo(), categoria.getConsumoMaximo()))
 				.findFirst().orElse(null);
 	}
@@ -42,8 +56,8 @@ public class Categorizador {
 		return Numero1 >= Numero2 && Numero1 <= Numero3;
 	}
 
-	public static Categoria vincularCategoria(String categoria) {
-		// Ac� hay que buscar la categoria dentro de FCategorias
-		return null;
+	public Categoria getCategoria(String nombre) {
+		return categorias.stream().filter(categoria -> categoria.getId() == nombre).findFirst().orElse(null);
 	}
+
 }

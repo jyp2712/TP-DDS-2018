@@ -50,7 +50,7 @@ public class Cliente {
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
-		this.categoria = Categorizador.vincularCategoria(categoria);
+		this.categoria = Categorizador.getCategorizador().getCategoria(categoria);
 		this.dispositivos = dispositivos;
 	}
 
@@ -90,16 +90,19 @@ public class Cliente {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+	// SM: Queda pendiente hasta que tengamos especificaciones de como recategorizar
+	/*
+	 * public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+	 */
 
 	private List<Dispositivo> dispositivosEncendidos() {
-		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido()).collect(Collectors.toList());
+		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido())
+				.collect(Collectors.toList());
 	}
-	
+
 	private List<Dispositivo> dispositivosApagados() {
-		return this.getDispositivos().stream().filter(dispositivo -> !dispositivo.estaEncendido()).collect(Collectors.toList());
+		return this.getDispositivos().stream().filter(dispositivo -> !dispositivo.estaEncendido())
+				.collect(Collectors.toList());
 	}
 
 	public boolean tieneAlgunDispositivoEncendido() {
