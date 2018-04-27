@@ -3,7 +3,6 @@ import java.util.Arrays;
 import org.junit.*;
 
 import tp0.modelo.Categoria;
-import tp0.modelo.Categorizador;
 import tp0.modelo.Cliente;
 import tp0.modelo.Dispositivo;
 
