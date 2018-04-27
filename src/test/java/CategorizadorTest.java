@@ -5,6 +5,7 @@ import tp0.modelo.Categorizador;
 
 public class CategorizadorTest {
 
+	//SM: Tests muy simples para probar el funcionamiento basico y entender testing
 	Categorizador categorizador;
 
 	@Before
