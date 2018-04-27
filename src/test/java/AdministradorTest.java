@@ -16,7 +16,7 @@ public class AdministradorTest {
 	public void setUp() throws Exception {
 		fechaActual = DateTime.now();
 		fechaActual.minusMonths(10);
-		administrador = new Administrador(101010, "Juan", "Lopez", "Calle Falsa 123", fechaActual.toString());
+		administrador = new Administrador(101010, "Juan", "Lopez", "Calle Falsa 123", fechaActual.minusMonths(10).toString());
 		diezMesesDeAntiguedad = Months.months(10);
 	}
 	
