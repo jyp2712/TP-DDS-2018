@@ -96,10 +96,11 @@ public class Cliente {
 		return categoria;
 	}
 
-	// SM: Queda pendiente hasta que tengamos especificaciones de como recategorizar
-	/*
-	 * public void setCategoria(Categoria categoria) { this.categoria = categoria; }
-	 */
+	
+	public void setCategoria(Categoria categoria) { 
+		this.categoria = categoria;
+	}
+
 
 	private List<Dispositivo> dispositivosEncendidos() {
 		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido())

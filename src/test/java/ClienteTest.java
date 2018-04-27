@@ -3,6 +3,7 @@ import java.util.Arrays;
 import org.junit.*;
 
 import tp0.modelo.Categoria;
+import tp0.modelo.Categorizador;
 import tp0.modelo.Cliente;
 import tp0.modelo.Dispositivo;
 
@@ -16,24 +17,25 @@ public class ClienteTest{
 	Dispositivo dispositivo3;
 	Dispositivo dispositivo4;
 	Categoria categoriaPrueba;
+	Categorizador categorizador = Categorizador.getCategorizador();
 	
 	@Before
 	public void setUp() throws Exception{
-		dispositivo1 = new Dispositivo("Heladera", 10, true);
-		dispositivo2 = new Dispositivo("Lavarropas", 10, true);
-		dispositivo3 = new Dispositivo("Tostadora", 10, false);
-		dispositivo4 = new Dispositivo("Licuadora", 10, false);
+		dispositivo1 = new Dispositivo("Heladera", 150, true);
+		dispositivo2 = new Dispositivo("Lavarropas", 150, true);
+		dispositivo3 = new Dispositivo("Tostadora", 50, false);
+		dispositivo4 = new Dispositivo("Licuadora", 50, false);
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2", Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4));
 		categoriaPrueba = new Categoria("R1", 18.76, 0.644, 0, 150);
 	}
 	
-	/*Comento el test porque no existe más el método
-	 * 
-	 * @Test
+	
+	 
+	@Test
 	public void testCambiarDispositivoClienteNico() {
 		nico.setCategoria(categoriaPrueba);
-		Assert.assertTrue(nico.getCategoria().getId() == "R1");
-	}*/
+		Assert.assertTrue(nico.getCategoria().getNombre() == "R1");
+	}
 	
 	@Test
 	public void testNicoTieneAlgunDispositivoEncendido() {
@@ -57,7 +59,13 @@ public class ClienteTest{
 	}
 	
 	@Test
-	public void testNicoConsume20KWPorHora() {
-		Assert.assertTrue(nico.consumoEstimadoTotal() == 20);
+	public void testNicoConsume300KWPorHora() {
+		Assert.assertTrue(nico.consumoEstimadoTotal() == 300);
+	}
+	
+	@Test
+	public void testNicoEsRecategorizadoAR2() {
+		categorizador.asignarCategoria(nico);
+		Assert.assertTrue(nico.getCategoria().getNombre() == "R2");
 	}
 }

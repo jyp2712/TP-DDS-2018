@@ -41,10 +41,11 @@ public class Categorizador {
 	// se tiene que recategorizar pero no especifica
 	// muchos mas que eso... Por ahora opino de dejarlo y ver como avanzan los
 	// requisistos.
-	/*
-	 * public void asignarCategoria(Cliente Cliente) {
-	 * Cliente.setCategoria(this.determinarCategoria(Cliente.Consumo())); }
-	 */
+
+	public void asignarCategoria(Cliente cliente) {
+	cliente.setCategoria(this.determinarCategoria(cliente.consumoEstimadoTotal())); 
+	}
+
 
 	public Categoria determinarCategoria(double Consumo) {
 		return categorias.stream()
