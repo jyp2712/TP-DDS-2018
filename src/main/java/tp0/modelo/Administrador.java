@@ -2,7 +2,6 @@ package tp0.modelo;
 
 import org.joda.time.DateTime;
 import org.joda.time.Months;
-import org.joda.time.Years;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +32,26 @@ public class Administrador {
 		this.apellido = apellido;
 		this.domicilio = domicilio;
 		this.fechaAltaSistema = new DateTime(fechaAltaSistema);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public DateTime getFechaAltaSistema() {
+		return fechaAltaSistema;
 	}
 
 	public Months antiguedadAdministrador() {
