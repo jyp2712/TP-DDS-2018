@@ -17,8 +17,7 @@ public class Categorizador {
 	
 	//TODO: Crear un bloque de manera tal que al instanciar si hay error, arroja una excepcion
 
-	// SM: El nombre FCategorias es por algo? Una convencion?
-	// Se que esta inicializacion se ve fea pero es lo mas simple hasta que tengamos
+	// SM: Se que esta inicializacion se ve fea pero es lo mas simple hasta que tengamos
 	// mas informacion.
 	private List<Categoria> categorias = Arrays.asList(new Categoria("R1", 18.76, 0.644, 0, 150),
 			new Categoria("R2", 35.32, 0.644, 150, 325), new Categoria("R3", 60.71, 0.681, 325, 400),
@@ -27,30 +26,11 @@ public class Categorizador {
 			new Categoria("R8", 545.96, 0.851, 700, 1400),
 			new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY));
 
-	/*
-	 * public void addCategoria(Categoria Categoria) { FCategorias.add(Categoria); }
-	 */
-
-	/*
-	 * public void removeCategoria(Categoria Categoria) {
-	 * FCategorias.remove(Categoria); }
-	 */
-
-	// SM: Esta funcion es un toque discutible porque no lo especifica aun. Dice que
-	// se tiene que recategorizar pero no especifica
-	// muchos mas que eso... Por ahora opino de dejarlo y ver como avanzan los
-	// requisistos.
-
-
-
-	public Categoria determinarCategoria(double Consumo) {
+	//SM: Por ahora esta bien hasta que termine de revisar el refactor del repositorio
+	public Categoria determinarCategoria(double consumo) {
 		return categorias.stream()
-				.filter(categoria -> isBetween(Consumo, categoria.getConsumoMinimo(), categoria.getConsumoMaximo()))
+				.filter(categoria -> categoria.enRango(consumo))
 				.findFirst().orElse(null);
-	}
-
-	private boolean isBetween(Double Numero1, Double Numero2, Double Numero3) {
-		return Numero1 >= Numero2 && Numero1 <= Numero3;
 	}
 
 	public Categoria getCategoria(String nombre) {
