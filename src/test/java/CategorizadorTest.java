@@ -1,12 +1,13 @@
 import org.junit.*;
 
 import tp0.modelo.Categoria;
-import tp0.modelo.Categorizador;
+import tp0.modelo.RepositorioDeCategorias;
+import tp0.modelo.repositorios.Repositorios;
 
 public class CategorizadorTest {
 
 	//SM: Tests muy simples para probar el funcionamiento basico y entender testing
-	Categorizador categorizador = Categorizador.getCategorizador();
+	RepositorioDeCategorias categorizador = RepositorioDeCategorias.getCategorizador();
 
 
 	@Test

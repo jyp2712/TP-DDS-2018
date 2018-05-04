@@ -1,45 +1,22 @@
 package tp0.modelo.repositorios;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import tp0.modelo.repositorios.fuentes.FuenteDeAdministrador;
-import tp0.modelo.repositorios.fuentes.FuenteJsonDelAdministrador;
 import tp0.modelo.Administrador;
 
-public class RepositorioDeAdministradores {
-
-	private FuenteDeAdministrador fuente;
-
-	public List<Administrador> administradores;
-
-	public RepositorioDeAdministradores(FuenteDeAdministrador fuente) {
-		this.fuente = fuente;
-		administradores = new ArrayList<>(fuente.cargar());
-	}
-	
-	public RepositorioDeAdministradores(String nombreDelArchivo) {
-		List<Administrador> administradores = new FuenteJsonDelAdministrador(nombreDelArchivo).cargar();
-		this.administradores.addAll(administradores);
-	}
-
-	public List<Administrador> todos() {
-
-		return administradores;
-	}
-
-	public void agregar(Administrador administrador) {
-		administradores.add(administrador);
-		guardar();
-	}
-
-	public void remover(Administrador administrador) {
-		administradores.remove(administrador);
-		guardar();
-	}
-
-	private void guardar() {
-		fuente.guardar(administradores);
-	}
-
+//SM: En este caso no agrego comportamiento simplemente establezco el tipo.
+//La SUPER clase es abstracta asi que debo hacer esto o que deje de ser abstracta...
+//En este caso lo dejo porque me da mas expresividad al momento de instanciar.
+public class RepositorioDeAdministradores extends RepositorioEnMemoria<Administrador> {
+	/*
+	 * private FuenteDeAdministrador fuente;
+	 * 
+	 * public RepositorioDeAdministradores(FuenteDeAdministrador fuente) {
+	 * this.fuente = fuente; administradores = new ArrayList<>(fuente.cargar()); }
+	 * 
+	 * public RepositorioDeAdministradores(String nombreDelArchivo) {
+	 * List<Administrador> administradores = new
+	 * FuenteJsonDelAdministrador(nombreDelArchivo).cargar();
+	 * this.administradores.addAll(administradores); }
+	 * 
+	 * void guardar() { fuente.guardar(administradores); }
+	 */
 }

@@ -6,11 +6,12 @@ import tp0.modelo.Administrador;
 import tp0.modelo.Cliente;
 import tp0.modelo.repositorios.Repositorios;
 
+//TODO: Esto hay que eliminarlo. Hay que hacerlo en todo caso en el tests correspondiente
 public class App {
-	
+
 	List<Cliente> clientes = Repositorios.obtenerRepositorioDeClientes().todos();
 	List<Administrador> administradores = Repositorios.obtenerRepositorioDeAdministradores().todos();
-	
+
 	public static void main(String[] args) {
 		new App().start();
 	}

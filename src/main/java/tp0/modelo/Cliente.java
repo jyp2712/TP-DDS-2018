@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import tp0.modelo.repositorios.Repositorios;
+
 public class Cliente {
 
 	@JsonProperty
@@ -16,7 +18,10 @@ public class Cliente {
 	@JsonProperty
 	protected String apellido;
 
-	private enum DTD {LE,DNI,CI,LC}
+	private enum DTD {
+		LE, DNI, CI, LC
+	}
+
 	@JsonProperty
 	protected DTD tipoDoc;
 
@@ -39,15 +44,12 @@ public class Cliente {
 	protected List<Dispositivo> dispositivos;
 
 	@JsonCreator
-	public Cliente(
-			@JsonProperty("nombre") String nombre, 
-			@JsonProperty("apellido") String apellido,
-			@JsonProperty("tipo documento") String tipoDoc, 
-			@JsonProperty("N documento") Integer documento,
-			@JsonProperty("telefono") String tel, 
-			@JsonProperty("domicilio de servicio") String domicilioServicio,
+	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
+			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
+			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			@JsonProperty("categoria") String categoria, 
+			//SM: Como estan las cosas conviene que no tenga categoria en el json y se le calcula al instanciarlo
+			@JsonProperty("categoria") Categoria categoria,
 			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -56,7 +58,8 @@ public class Cliente {
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
-		this.categoria = Categorizador.getCategorizador().getCategoria(categoria);
+		//SM: Aca puedo calcularla en el caso de que no tenga en el json
+		this.categoria = categoria;
 		this.dispositivos = dispositivos;
 	}
 
@@ -96,11 +99,9 @@ public class Cliente {
 		return categoria;
 	}
 
-	
-	public void setCategoria(Categoria categoria) { 
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
 
 	private List<Dispositivo> dispositivosEncendidos() {
 		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido())
@@ -127,12 +128,16 @@ public class Cliente {
 	public long cantidadDispositivosTotal() {
 		return this.getDispositivos().stream().count();
 	}
-	
+
 	public double consumoEstimadoTotal() {
 		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum();
 	}
-	
+
 	public void asignarCategoria() {
-		this.setCategoria(Categorizador.getCategorizador().determinarCategoria(this.consumoEstimadoTotal())); 
+		this.setCategoria(
+				// SM: Si la lambda resulta poco expresiva se puede hacer un predicado. Para mi,
+				// esta bien...
+				Repositorios.obtenerRepositorioDeCategorias()
+						.encontrar(categoria -> categoria.enRango(this.consumoEstimadoTotal())));
 	}
 }
