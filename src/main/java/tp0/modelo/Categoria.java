@@ -8,7 +8,6 @@ public class Categoria {
 	private double consumoMinimo;
 	private double consumoMaximo;
 	
-	//TODO: Me da la sensacion como que esta al limite de que son muchos parametros. Por ahora queda. Acepto opiniones
 	public Categoria(String id, double cargoFijo, double cargoVariable, double consumoMinimo, double consumoMaximo) {
 		this.nombre = id;
 		this.cargoFijo = cargoFijo;
@@ -37,5 +36,7 @@ public class Categoria {
 		return consumoMaximo;
 	}
 	
-	
+	public boolean enRango(Double consumo) {
+		return consumo >= getConsumoMinimo() && consumo <= getConsumoMaximo();
+	}
 }
