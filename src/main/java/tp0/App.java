@@ -19,7 +19,6 @@ public class App {
 	private void start() {
 		Cliente cliente1 = clientes.get(0);
 		System.out.println(cliente1.getFechaAltaServicio().toString());
-		Repositorios.obtenerRepositorioDeClientes().remover(cliente1);
 		Cliente cliente2 = clientes.get(0);
 		System.out.println(cliente2.getFechaAltaServicio().toString());
 	}

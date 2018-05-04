@@ -1,5 +1,9 @@
 package tp0.modelo.repositorios;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import tp0.modelo.repositorios.fuentes.FuenteDeAdministrador;
 import tp0.modelo.Administrador;
 
 //SM: En este caso no agrego comportamiento simplemente establezco el tipo.
@@ -7,16 +11,9 @@ import tp0.modelo.Administrador;
 //En este caso lo dejo porque me da mas expresividad al momento de instanciar.
 public class RepositorioDeAdministradores extends RepositorioEnMemoria<Administrador> {
 	/*
-	 * private FuenteDeAdministrador fuente;
+	 * public List<Administrador> administradores;
 	 * 
 	 * public RepositorioDeAdministradores(FuenteDeAdministrador fuente) {
-	 * this.fuente = fuente; administradores = new ArrayList<>(fuente.cargar()); }
-	 * 
-	 * public RepositorioDeAdministradores(String nombreDelArchivo) {
-	 * List<Administrador> administradores = new
-	 * FuenteJsonDelAdministrador(nombreDelArchivo).cargar();
-	 * this.administradores.addAll(administradores); }
-	 * 
-	 * void guardar() { fuente.guardar(administradores); }
+	 * administradores = new ArrayList<>(fuente.cargar()); }
 	 */
 }

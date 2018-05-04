@@ -3,8 +3,8 @@ package tp0.modelo.repositorios;
 import java.util.Arrays;
 
 import tp0.modelo.Categoria;
-import tp0.modelo.repositorios.fuentes.FuenteJsonDelAdministrador;
-import tp0.modelo.repositorios.fuentes.FuenteJsonDelCliente;
+import tp0.modelo.repositorios.fuentes.FuenteDeAdministrador;
+import tp0.modelo.repositorios.fuentes.FuenteDeCliente;
 
 //SM: TODO: Mirar un poco esto. Capaz hay otras maneras de hacerlo. Por ahora lo dejo asi para poder seguir implementando lo que necesito en este momento
 //Me parece bastante evidente que una mejora seria aplicar una clase generica, ya que siempre hace lo mismo
@@ -33,9 +33,10 @@ public class Repositorios {
 	public static RepositorioDeClientes obtenerRepositorioDeClientes() {
 		if (repositorioDeClientes == null) {
 			final String ARCHIVO_DE_CLIENTES = "clientes.json";
-			FuenteJsonDelCliente fuenteDeCliente = new FuenteJsonDelCliente(ARCHIVO_DE_CLIENTES);
-			//SM: TODO: Ya se que la manqueo aca pero necesito mas tiempo para ajustar esta parte
-			repositorioDeClientes = new RepositorioDeClientes(/*fuenteDeCliente*/);
+			FuenteDeCliente fuenteDeCliente = new FuenteDeCliente(ARCHIVO_DE_CLIENTES);
+			// SM: TODO: Ya se que la manqueo aca pero necesito mas tiempo para ajustar esta
+			// parte
+			repositorioDeClientes = new RepositorioDeClientes(/* fuenteDeCliente */);
 		}
 		return repositorioDeClientes;
 	}
@@ -46,13 +47,13 @@ public class Repositorios {
 
 	private static RepositorioDeAdministradores repositorioDeAdministradores;
 
-	public static Repositorio obtenerRepositorioDeAdministradores() {
+	public static RepositorioDeAdministradores obtenerRepositorioDeAdministradores() {
 		if (repositorioDeAdministradores == null) {
 			final String ARCHIVO_DE_ADMINISTRADORES = "administradores.json";
-			FuenteJsonDelAdministrador fuenteDeAdministrador = new FuenteJsonDelAdministrador(
-					ARCHIVO_DE_ADMINISTRADORES);
-			//SM: TODO: Ya se que la manqueo aca pero necesito mas tiempo para ajustar esta parte
-			repositorioDeAdministradores = new RepositorioDeAdministradores(/*fuenteDeAdministrador*/);
+			FuenteDeAdministrador fuenteDeAdministrador = new FuenteDeAdministrador(ARCHIVO_DE_ADMINISTRADORES);
+			// SM: TODO: Ya se que la manqueo aca pero necesito mas tiempo para ajustar esta
+			// parte
+			repositorioDeAdministradores = new RepositorioDeAdministradores(/* fuenteDeAdministrador */);
 		}
 		return repositorioDeAdministradores;
 	}
