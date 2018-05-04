@@ -3,10 +3,18 @@ package tp0.modelo.repositorios.fuentes;
 import java.util.List;
 
 import tp0.modelo.Cliente;
+import tp0.modelo.DecodificadorJson;
 
-public interface FuenteDeCliente {
+public class FuenteDeCliente extends Fuente{
 
-	public List<Cliente> cargar();
+	public FuenteDeCliente(String nombreDeArchivo) {
+		super(nombreDeArchivo);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cliente> cargar() {
+		DecodificadorJson decodificador = new DecodificadorJson(archivo, Cliente.class);		
+		return (List<Cliente>) decodificador.leer();
+	}
 	
-	public void guardar(List<Cliente> clientes);
 }
