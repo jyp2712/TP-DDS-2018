@@ -21,7 +21,6 @@ public class AdministradorTest {
 	
 	@Test
 	public void testAntiguedadAdministrador() {
-		Assert.assertTrue(administrador.antiguedadAdministrador() == diezMesesDeAntiguedad);
+		Assert.assertEquals(diezMesesDeAntiguedad, administrador.antiguedadAdministrador());
 	}
-
 }
