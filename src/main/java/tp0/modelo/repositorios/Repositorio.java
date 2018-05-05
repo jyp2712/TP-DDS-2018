@@ -3,9 +3,7 @@ package tp0.modelo.repositorios;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.lang.RuntimeException;
 
 //SM: No se si el tipo List es lo suficientemente generico para este caso
 public interface Repositorio<T> {
