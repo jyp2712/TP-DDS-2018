@@ -3,7 +3,7 @@ package tp0.modelo.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RepositorioEnMemoria<T> implements Repositorio<T> {
+public class RepositorioEnMemoria<T> implements Repositorio<T> {
 	private List<T> objetos = new ArrayList<>();
 
 	public List<T> todos() {
