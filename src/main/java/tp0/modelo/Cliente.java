@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import tp0.modelo.repositorios.Repositorios;
+import tp0.modelo.repositorios.Repositorio;
 
 public class Cliente {
 
@@ -37,6 +37,8 @@ public class Cliente {
 	@JsonProperty
 	protected DateTime fechaAltaServicio;
 
+	protected Repositorio<Categoria> repositorioCategorias;
+
 	@JsonProperty
 	protected Categoria categoria;
 
@@ -48,8 +50,9 @@ public class Cliente {
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			//SM: Como estan las cosas conviene que no tenga categoria en el json y se le calcula al instanciarlo
-			@JsonProperty("categoria") Categoria categoria,
+			Repositorio<Categoria> repositorioCategorias,
+			// SM: Como estan las cosas conviene que no tenga categoria en el json y tenga
+			// por defecto la menor
 			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -58,8 +61,8 @@ public class Cliente {
 		this.tel = tel;
 		this.domicilioServicio = domicilioServicio;
 		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
-		//SM: Aca puedo calcularla en el caso de que no tenga en el json
-		this.categoria = categoria;
+		// SM: Asigno la categoria segun el consumo inicial. Acordarlo con el cliente!
+		this.asignarCategoria();
 		this.dispositivos = dispositivos;
 	}
 
@@ -137,7 +140,6 @@ public class Cliente {
 		this.setCategoria(
 				// SM: Si la lambda resulta poco expresiva se puede hacer un predicado. Para mi,
 				// esta bien...
-				Repositorios.obtenerRepositorioDeCategorias()
-						.encontrar(categoria -> categoria.enRango(this.consumoEstimadoTotal())));
+				this.repositorioCategorias.encontrar(categoria -> categoria.enRango(this.consumoEstimadoTotal())));
 	}
 }
