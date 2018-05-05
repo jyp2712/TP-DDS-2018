@@ -50,52 +50,82 @@ public class Cliente {
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			Repositorio<Categoria> repositorioCategorias,
-			// SM: Como estan las cosas conviene que no tenga categoria en el json y tenga
-			// por defecto la menor
+			Repositorio<Categoria> repositorioCategorias, @JsonProperty("categoria") String nombreCategoria,
 			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.tipoDoc = DTD.valueOf(tipoDoc);
-		this.documento = documento;
-		this.tel = tel;
-		this.domicilioServicio = domicilioServicio;
-		this.fechaAltaServicio = new DateTime(fechaAltaServicio);
-		// SM: Asigno la categoria segun el consumo inicial. Acordarlo con el cliente!
-		this.asignarCategoria();
-		this.dispositivos = dispositivos;
+		setNombre(nombre);
+		setApellido(apellido);
+		setTipoDoc(DTD.valueOf(tipoDoc));
+		setDocumento(documento);
+		setTel(tel);
+		setDomicilioServicio(domicilioServicio);
+		setFechaAltaServicio(new DateTime(fechaAltaServicio));
+		setRepositorioCategorias(repositorioCategorias);
+		setCategoria(repositorioCategorias.encontrar(categoria -> categoria.getNombre() == nombreCategoria));
+		setDispositivos(dispositivos);
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
+	private void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String getApellido() {
 		return apellido;
+	}
+
+	private void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public DTD getTipoDoc() {
 		return tipoDoc;
 	}
 
+	private void setTipoDoc(DTD tipoDoc) {
+		this.tipoDoc = tipoDoc;
+	}
+
 	public Integer getDocumento() {
 		return documento;
+	}
+
+	private void setDocumento(Integer documento) {
+		this.documento = documento;
 	}
 
 	public String getTel() {
 		return tel;
 	}
 
+	private void setTel(String tel) {
+		this.tel = tel;
+	}
+
 	public String getDomicilioServicio() {
 		return domicilioServicio;
+	}
+
+	private void setDomicilioServicio(String domicilioServicio) {
+		this.domicilioServicio = domicilioServicio;
 	}
 
 	public DateTime getFechaAltaServicio() {
 		return new DateTime(fechaAltaServicio);
 	}
 
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
+	private void setFechaAltaServicio(DateTime fechaAltaServicio) {
+		this.fechaAltaServicio = fechaAltaServicio;
+	}
+
+	private Repositorio<Categoria> getRepositorioCategorias() {
+		return repositorioCategorias;
+	}
+
+	private void setRepositorioCategorias(Repositorio<Categoria> repositorioCategorias) {
+		this.repositorioCategorias = repositorioCategorias;
 	}
 
 	public Categoria getCategoria() {
@@ -104,6 +134,14 @@ public class Cliente {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public List<Dispositivo> getDispositivos() {
+		return dispositivos;
+	}
+
+	private void setDispositivos(List<Dispositivo> dispositivos) {
+		this.dispositivos = dispositivos;
 	}
 
 	private List<Dispositivo> dispositivosEncendidos() {
