@@ -25,8 +25,8 @@ public class DecodificadorJson {
 			Object[] arreglo = (Object[]) mapeador.readValue(archivo, arrayType(tipo));
 			return Arrays.asList(arreglo);
 		} catch(IOException e) {
-			throw new RuntimeException(String.format("Error al intentar leer datos del archivo '%s' (%s)"
-					, e.getMessage()));
+			throw new RuntimeException(String.format("Error al intentar leer datos del archivo '%s' (%s)",
+					archivo.getName(), e.getMessage()));
 		}
 	} 
 

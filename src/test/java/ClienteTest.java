@@ -34,7 +34,9 @@ public class ClienteTest {
 		categorias.agregar(Arrays.asList(categoria1, categoria2));
 
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01",
-				categorias, "R1", Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4));
+			  "R1", Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4));
+		nico.setRepositorioCategorias(categorias);
+		nico.obtenerCategoria();
 	}
 
 	@Test

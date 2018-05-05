@@ -41,6 +41,7 @@ public class Cliente {
 
 	@JsonProperty
 	protected Categoria categoria;
+	private String nombreCategoria;
 
 	@JsonProperty
 	protected List<Dispositivo> dispositivos;
@@ -50,7 +51,7 @@ public class Cliente {
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
-			Repositorio<Categoria> repositorioCategorias, @JsonProperty("categoria") String nombreCategoria,
+			@JsonProperty("categoria") String nombreCategoria,
 			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
 		setNombre(nombre);
 		setApellido(apellido);
@@ -58,9 +59,8 @@ public class Cliente {
 		setDocumento(documento);
 		setTel(tel);
 		setDomicilioServicio(domicilioServicio);
+		this.nombreCategoria = nombreCategoria;
 		setFechaAltaServicio(new DateTime(fechaAltaServicio));
-		setRepositorioCategorias(repositorioCategorias);
-		setCategoria(repositorioCategorias.encontrar(categoria -> categoria.getNombre() == nombreCategoria));
 		setDispositivos(dispositivos);
 	}
 
@@ -124,8 +124,12 @@ public class Cliente {
 		return repositorioCategorias;
 	}
 
-	private void setRepositorioCategorias(Repositorio<Categoria> repositorioCategorias) {
+	public void setRepositorioCategorias(Repositorio<Categoria> repositorioCategorias) {
 		this.repositorioCategorias = repositorioCategorias;
+	}
+
+	public void obtenerCategoria() {
+		this.categoria = repositorioCategorias.encontrar(categoria -> categoria.getNombre().equals(this.nombreCategoria));
 	}
 
 	public Categoria getCategoria() {
