@@ -6,14 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import tp0.modelo.repositorios.fuentes.Fuente;
+
 public class DecodificadorJson {
 
 	File archivo;
 	Class<?> tipo;
 	ObjectMapper mapeador;
 
-	public DecodificadorJson (File archivo, Class<?> tipo) {
-		this.archivo = archivo;
+	public DecodificadorJson (Fuente<File> fuenteArchivo, Class<?> tipo) {
+		this.archivo = fuenteArchivo.obtenerRecurso();
 		this.tipo = tipo;
 		this.mapeador = new ObjectMapper();
 	}
