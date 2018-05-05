@@ -17,33 +17,32 @@ public class Dispositivo {
 	@JsonCreator
 	public Dispositivo(@JsonProperty("nombre generico") String nombreGenerico, @JsonProperty("KW/H") double KwXHora,
 			@JsonProperty("estado") boolean estado) {
-		this.nombreGenerico = nombreGenerico;
-		this.KwXHora = KwXHora;
-		this.estado = estado;
+		setNombreGenerico(nombreGenerico);
+		setKwXHora(KwXHora);
+		setEstado(estado);
 	}
 
 	public String getNombreGenerico() {
 		return nombreGenerico;
 	}
 
-/*	public void setNombreGenerico(String nombreGenerico) {
+	private void setNombreGenerico(String nombreGenerico) {
 		this.nombreGenerico = nombreGenerico;
-	}*/
+	}
 
 	public double getKwXHora() {
 		return KwXHora;
 	}
 
-/*	public void setKwXHora(double kwXHora) {
+	private void setKwXHora(double kwXHora) {
 		KwXHora = kwXHora;
-	}*/
+	}
 
 	public boolean getEstado() {
 		return estado;
 	}
 
-	// SM: Por ahora supongo que se puede cambiar el estado. Todavia no sabemos como...
-	public void setEstado(boolean estado) {
+	private void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
