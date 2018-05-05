@@ -1,46 +1,26 @@
 import org.junit.*;
 
-import tp0.modelo.Categoria;
+import tp0.modelo.Dispositivo;
 
 public class DispositivoTest {
 
 	// Tests para probar el comportamiento de la CATEGORIA
-	Categoria categoria1;
-	Categoria categoria2;
+	Dispositivo dispositivo1;
+	Dispositivo dispositivo2;
 
 	@Before
 	public void setUp() throws Exception {
-		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
-		categoria2 = new Categoria("R2", 25.0, 0.85, 100, 200);
+		dispositivo1 = new Dispositivo("Heladera", 150, true);
+		dispositivo2 = new Dispositivo("Lavarropas", 150, false);
 	}
 
 	@Test
-	public void testCosumo0EnRangoCategoria1() {
-		Assert.assertTrue(categoria1.enRango(0.0));
+	public void testDispositivo1Encendido() {
+		Assert.assertTrue(dispositivo1.estaEncendido());
 	}
 
 	@Test
-	public void testCosumo0NoEnRangoCategoria2() {
-		Assert.assertFalse(categoria2.enRango(0.0));
-	}
-
-	@Test
-	public void testCosumo50EnRangoCategoria1() {
-		Assert.assertTrue(categoria1.enRango(50.0));
-	}
-
-	@Test
-	public void testCosumo50NoEnRangoCategoria2() {
-		Assert.assertFalse(categoria2.enRango(50.0));
-	}
-
-	@Test
-	public void testCosumo100NoEnRangoCategoria1() {
-		Assert.assertFalse(categoria1.enRango(100.0));
-	}
-
-	@Test
-	public void testCosumo100EnRangoCategoria2() {
-		Assert.assertTrue(categoria2.enRango(100.0));
+	public void testDispositivo2NoEncendido() {
+		Assert.assertFalse(dispositivo2.estaEncendido());
 	}
 }
