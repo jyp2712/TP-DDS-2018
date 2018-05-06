@@ -21,6 +21,7 @@ public class JsonClienteTest{
 	Cliente nicolas;
 	Cliente nico;
 	Dispositivo dispositivo1, dispositivo2, dispositivo3, dispositivo4;
+	List<Dispositivo> dispositivos;
 	Dispositivo disp1;
 	
 	@SuppressWarnings("unchecked")
@@ -39,7 +40,7 @@ public class JsonClienteTest{
 		dispositivo2 = new Dispositivo("Lavarropas", 10, true);
 		dispositivo3 = new Dispositivo("Tostadora", 10, false);
 		dispositivo4 = new Dispositivo("Licuadora", 10, false);
-		List<Dispositivo> dispositivos = Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4);
+		dispositivos = Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4);
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2", dispositivos);
 		nicolas.setRepositorioCategorias(repositorioDeCategorias);
 		nicolas.obtenerCategoria();
@@ -49,12 +50,12 @@ public class JsonClienteTest{
 	
 	@Test
 	public void testNicoNombre() {
-		Assert.assertTrue(nico.getNombre().equals(nicolas.getNombre()));
+		Assert.assertEquals(nico.getNombre(), nicolas.getNombre());
 	}
 	
 	@Test
 	public void testNicoApellido() {
-		Assert.assertTrue(nico.getApellido().equals(nicolas.getApellido()));
+		Assert.assertEquals(nico.getApellido(), nicolas.getApellido());
 	}
 	
 	@Test
@@ -70,12 +71,12 @@ public class JsonClienteTest{
 	
 	@Test
 	public void testNicoTelefono() {
-		Assert.assertTrue(nico.getTel().equals(nicolas.getTel()));
+		Assert.assertEquals(nico.getTel(), nicolas.getTel());
 	}
 
 	@Test
 	public void testNicoDomicilio() {
-		Assert.assertTrue(nico.getDomicilioServicio().equals(nicolas.getDomicilioServicio()));
+		Assert.assertEquals(nico.getDomicilioServicio(), nicolas.getDomicilioServicio());
 	}
 	
 	@Test
@@ -85,16 +86,16 @@ public class JsonClienteTest{
 	
 	@Test
 	public void testNicoCategoria() {
-		Assert.assertTrue(nico.getCategoria().getNombre().equals(nicolas.getCategoria().getNombre()));
-		Assert.assertTrue(nico.getCategoria().getCargoFijo() == nicolas.getCategoria().getCargoFijo());
-		Assert.assertTrue(nico.getCategoria().getCargoVariable() == nicolas.getCategoria().getCargoVariable());
+		Assert.assertEquals("Nicolas", nico.getCategoria().getNombre(), nicolas.getCategoria().getNombre());
+		Assert.assertEquals(35.32, nico.getCategoria().getCargoFijo(), nicolas.getCategoria().getCargoFijo());
+		Assert.assertEquals(0.644, nico.getCategoria().getCargoVariable(), nicolas.getCategoria().getCargoVariable());
 	}
 	
 	@Test
 	public void testNicoDispositivos() {
-		Assert.assertTrue(nico.getDispositivos().size() == nicolas.getDispositivos().size());
-		Assert.assertTrue(disp1.getNombreGenerico().equals(dispositivo1.getNombreGenerico()));
+		Assert.assertEquals(dispositivos.size(), nico.getDispositivos().size(), nicolas.getDispositivos().size());
+		Assert.assertEquals(disp1.getNombreGenerico(), disp1.getNombreGenerico(), dispositivo1.getNombreGenerico());
 		Assert.assertTrue(disp1.getEstado() == dispositivo1.getEstado());
-		Assert.assertTrue(disp1.getKwXHora() == dispositivo1.getKwXHora());		
+		Assert.assertEquals(10, disp1.getKwXHora(), dispositivo1.getKwXHora());		
 	}
 }
