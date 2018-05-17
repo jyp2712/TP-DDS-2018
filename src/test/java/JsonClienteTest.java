@@ -8,7 +8,7 @@ import org.junit.*;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.DecodificadorJson;
-import tp0.modelo.Dispositivo;
+import tp0.modelo.DispositivoEstandar;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 import tp0.modelo.repositorios.fuentes.FuenteArchivo;
 
@@ -20,9 +20,9 @@ public class JsonClienteTest{
 	List<Cliente> clientes = new ArrayList<>();
 	Cliente nicolas;
 	Cliente nico;
-	Dispositivo dispositivo1, dispositivo2, dispositivo3, dispositivo4;
-	List<Dispositivo> dispositivos;
-	Dispositivo disp1;
+	DispositivoEstandar dispositivo1, dispositivo2, dispositivo3, dispositivo4;
+	List<DispositivoEstandar> dispositivos;
+	DispositivoEstandar disp1;
 	
 	@SuppressWarnings("unchecked")
 	@Before
@@ -36,10 +36,10 @@ public class JsonClienteTest{
 				new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY)));
 		clientes.stream().forEach(cliente -> cliente.setRepositorioCategorias(repositorioDeCategorias));
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
-		dispositivo1 = new Dispositivo("Heladera", 10, true);
-		dispositivo2 = new Dispositivo("Lavarropas", 10, true);
-		dispositivo3 = new Dispositivo("Tostadora", 10, false);
-		dispositivo4 = new Dispositivo("Licuadora", 10, false);
+		dispositivo1 = new DispositivoEstandar("Heladera", 10, true);
+		dispositivo2 = new DispositivoEstandar("Lavarropas", 10, true);
+		dispositivo3 = new DispositivoEstandar("Tostadora", 10, false);
+		dispositivo4 = new DispositivoEstandar("Licuadora", 10, false);
 		dispositivos = Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4);
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2", dispositivos);
 		nicolas.setRepositorioCategorias(repositorioDeCategorias);

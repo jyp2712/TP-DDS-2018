@@ -4,7 +4,7 @@ import org.junit.*;
 
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
-import tp0.modelo.Dispositivo;
+import tp0.modelo.DispositivoEstandar;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
@@ -13,20 +13,20 @@ public class ClienteTest {
 	// Tests para probar el comportamiento del cliente
 
 	Cliente nico;
-	Dispositivo dispositivo1;
-	Dispositivo dispositivo2;
-	Dispositivo dispositivo3;
-	Dispositivo dispositivo4;
+	DispositivoEstandar dispositivo1;
+	DispositivoEstandar dispositivo2;
+	DispositivoEstandar dispositivo3;
+	DispositivoEstandar dispositivo4;
 	Categoria categoria1;
 	Categoria categoria2;
 	Repositorio<Categoria> categorias;
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivo1 = new Dispositivo("Heladera", 150, true);
-		dispositivo2 = new Dispositivo("Lavarropas", 150, false);
-		dispositivo3 = new Dispositivo("Tostadora", 50, false);
-		dispositivo4 = new Dispositivo("Licuadora", 50, false);
+		dispositivo1 = new DispositivoEstandar("Heladera", 150, true);
+		dispositivo2 = new DispositivoEstandar("Lavarropas", 150, false);
+		dispositivo3 = new DispositivoEstandar("Tostadora", 50, false);
+		dispositivo4 = new DispositivoEstandar("Licuadora", 50, false);
 		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
 		categoria2 = new Categoria("R2", 25.0, 0.85, 100, 200);
 		categorias = new RepositorioEnMemoria<Categoria>();

@@ -44,7 +44,7 @@ public class Cliente {
 	private String nombreCategoria;
 
 	@JsonProperty
-	protected List<Dispositivo> dispositivos;
+	protected List<DispositivoEstandar> dispositivos;
 
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
@@ -52,7 +52,7 @@ public class Cliente {
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String nombreCategoria,
-			@JsonProperty("dispositivos") List<Dispositivo> dispositivos) {
+			@JsonProperty("dispositivos") List<DispositivoEstandar> dispositivos) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
@@ -140,20 +140,20 @@ public class Cliente {
 		this.categoria = categoria;
 	}
 
-	public List<Dispositivo> getDispositivos() {
+	public List<DispositivoEstandar> getDispositivos() {
 		return dispositivos;
 	}
 
-	private void setDispositivos(List<Dispositivo> dispositivos) {
+	private void setDispositivos(List<DispositivoEstandar> dispositivos) {
 		this.dispositivos = dispositivos;
 	}
 
-	private List<Dispositivo> dispositivosEncendidos() {
+	private List<DispositivoEstandar> dispositivosEncendidos() {
 		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido())
 				.collect(Collectors.toList());
 	}
 
-	private List<Dispositivo> dispositivosApagados() {
+	private List<DispositivoEstandar> dispositivosApagados() {
 		return this.getDispositivos().stream().filter(dispositivo -> !dispositivo.estaEncendido())
 				.collect(Collectors.toList());
 	}

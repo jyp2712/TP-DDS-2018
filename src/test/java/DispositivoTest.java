@@ -1,17 +1,17 @@
 import org.junit.*;
 
-import tp0.modelo.Dispositivo;
+import tp0.modelo.DispositivoEstandar;
 
 public class DispositivoTest {
 
 	// Tests para probar el comportamiento de la CATEGORIA
-	Dispositivo dispositivo1;
-	Dispositivo dispositivo2;
+	DispositivoEstandar dispositivo1;
+	DispositivoEstandar dispositivo2;
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivo1 = new Dispositivo("Heladera", 150, true);
-		dispositivo2 = new Dispositivo("Lavarropas", 150, false);
+		dispositivo1 = new DispositivoEstandar("Heladera", 150, true);
+		dispositivo2 = new DispositivoEstandar("Lavarropas", 150, false);
 	}
 
 	@Test
