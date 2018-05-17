@@ -1,63 +1,24 @@
 package tp0.modelo;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+public class DispositivoEstandar{
+	private double KwXHora;
+	private double horasDeUso;
 
-public class DispositivoEstandar implements TipoDispositivo {
-
-	@JsonProperty
-	protected String nombreGenerico;
-
-	@JsonProperty
-	protected double KwXHora;
-
-	@JsonCreator
-	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico, @JsonProperty("KW/H") double KwXHora) {
-		setNombreGenerico(nombreGenerico);
-		setKwXHora(KwXHora);
+	public DispositivoEstandar(double kwXHora, double horasDeUso) {
+		this.KwXHora = kwXHora;
+		this.horasDeUso = horasDeUso;
 	}
 
-	public String getNombreGenerico() {
-		return nombreGenerico;
+	public double consumo() {
+		return this.KwXHora * this.horasDeUso;
 	}
 
-	private void setNombreGenerico(String nombreGenerico) {
-		this.nombreGenerico = nombreGenerico;
+	public Boolean esInteligente() {
+		return false;
+	}
+	
+	public DispositivoAdaptado adaptarAInteligente(String nombreGenerico, Boolean estado) {
+		return new DispositivoAdaptado(nombreGenerico, this.KwXHora, estado);
 	}
 
-	public double getKwXHora() {
-		return KwXHora;
-	}
-
-	private void setKwXHora(double kwXHora) {
-		KwXHora = kwXHora;
-	}
-
-	public boolean estaEncendido() {
-		throw new ExceptionNoSoportado();
-	}
-
-	public boolean estaApagado() {
-		throw new ExceptionNoSoportado();
-	}
-
-	public float energiaConsumida() {
-		throw new ExceptionNoSoportado();
-	}
-
-	public float consumoTotal() {
-		throw new ExceptionNoSoportado();
-	}
-
-	public void encenderse() {
-		throw new ExceptionNoSoportado();
-	}
-
-	public void apagarse() {
-		throw new ExceptionNoSoportado();	
-	}
-
-	public void ahorrarEnergia() {
-		throw new ExceptionNoSoportado();
-	}
 }

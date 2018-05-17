@@ -1,5 +1,6 @@
 package tp0.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,15 +45,16 @@ public class Cliente {
 	private String nombreCategoria;
 
 	@JsonProperty
-	protected List<DispositivoEstandar> dispositivos;
-
+	protected List<DispositivoInteligente> dispositivosInteligentes;
+	private List<DispositivoEstandar> dispositivosEstandar = new ArrayList<>();
+	
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String nombreCategoria,
-			@JsonProperty("dispositivos") List<DispositivoEstandar> dispositivos) {
+			@JsonProperty("dispositivos") List<DispositivoInteligente> dispositivos) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
@@ -61,7 +63,8 @@ public class Cliente {
 		setDomicilioServicio(domicilioServicio);
 		this.nombreCategoria = nombreCategoria;
 		setFechaAltaServicio(new DateTime(fechaAltaServicio));
-		setDispositivos(dispositivos);
+		dispositivosInteligentes = dispositivos;
+		setDispositivos(dispositivosInteligentes);
 	}
 
 	public String getNombre() {
@@ -120,10 +123,6 @@ public class Cliente {
 		this.fechaAltaServicio = fechaAltaServicio;
 	}
 
-	private Repositorio<Categoria> getRepositorioCategorias() {
-		return repositorioCategorias;
-	}
-
 	public void setRepositorioCategorias(Repositorio<Categoria> repositorioCategorias) {
 		this.repositorioCategorias = repositorioCategorias;
 	}
@@ -140,21 +139,25 @@ public class Cliente {
 		this.categoria = categoria;
 	}
 
-	public List<DispositivoEstandar> getDispositivos() {
-		return dispositivos;
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
+	}
+	
+	public List<DispositivoEstandar> getDispositivosEstandar() {
+		return dispositivosEstandar;
+	}
+	
+	private void setDispositivos(List<DispositivoInteligente> dispositivosInteligentes) {
+		this.dispositivosInteligentes = dispositivosInteligentes;
 	}
 
-	private void setDispositivos(List<DispositivoEstandar> dispositivos) {
-		this.dispositivos = dispositivos;
-	}
-
-	private List<DispositivoEstandar> dispositivosEncendidos() {
-		return this.getDispositivos().stream().filter(dispositivo -> dispositivo.estaEncendido())
+	private List<DispositivoInteligente> dispositivosEncendidos() {
+		return this.getDispositivosInteligentes().stream().filter(dispositivo -> dispositivo.estaEncendido())
 				.collect(Collectors.toList());
 	}
 
-	private List<DispositivoEstandar> dispositivosApagados() {
-		return this.getDispositivos().stream().filter(dispositivo -> !dispositivo.estaEncendido())
+	private List<DispositivoInteligente> dispositivosApagados() {
+		return this.getDispositivosInteligentes().stream().filter(dispositivo -> !dispositivo.estaEncendido())
 				.collect(Collectors.toList());
 	}
 
@@ -171,11 +174,12 @@ public class Cliente {
 	}
 
 	public long cantidadDispositivosTotal() {
-		return this.getDispositivos().stream().count();
+		return this.getDispositivosInteligentes().stream().count() + this.getDispositivosEstandar().stream().count();
 	}
 
 	public double consumoEstimadoTotal() {
-		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum();
+		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.consumo()).sum() + 
+				this.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.consumo()).sum();
 	}
 
 	public void asignarCategoria() {

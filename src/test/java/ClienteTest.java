@@ -2,9 +2,11 @@ import java.util.Arrays;
 
 import org.junit.*;
 
+import tp0.modelo.Apagado;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
-import tp0.modelo.DispositivoEstandar;
+import tp0.modelo.DispositivoInteligente;
+import tp0.modelo.Encendido;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
@@ -13,20 +15,24 @@ public class ClienteTest {
 	// Tests para probar el comportamiento del cliente
 
 	Cliente nico;
-	DispositivoEstandar dispositivo1;
-	DispositivoEstandar dispositivo2;
-	DispositivoEstandar dispositivo3;
-	DispositivoEstandar dispositivo4;
+	DispositivoInteligente dispositivo1;
+	DispositivoInteligente dispositivo2;
+	DispositivoInteligente dispositivo3;
+	DispositivoInteligente dispositivo4;
 	Categoria categoria1;
 	Categoria categoria2;
 	Repositorio<Categoria> categorias;
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivo1 = new DispositivoEstandar("Heladera", 150, true);
-		dispositivo2 = new DispositivoEstandar("Lavarropas", 150, false);
-		dispositivo3 = new DispositivoEstandar("Tostadora", 50, false);
-		dispositivo4 = new DispositivoEstandar("Licuadora", 50, false);
+		dispositivo1 = new DispositivoInteligente("Heladera", 150);
+		dispositivo1.setEstado(new Encendido());
+		dispositivo2 = new DispositivoInteligente("Lavarropas", 150);
+		dispositivo2.setEstado(new Apagado());
+		dispositivo3 = new DispositivoInteligente("Tostadora", 50);
+		dispositivo3.setEstado(new Apagado());
+		dispositivo4 = new DispositivoInteligente("Licuadora", 50);
+		dispositivo4.setEstado(new Apagado());
 		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
 		categoria2 = new Categoria("R2", 25.0, 0.85, 100, 200);
 		categorias = new RepositorioEnMemoria<Categoria>();

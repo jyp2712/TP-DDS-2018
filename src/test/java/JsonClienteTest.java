@@ -8,7 +8,7 @@ import org.junit.*;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.DecodificadorJson;
-import tp0.modelo.DispositivoEstandar;
+import tp0.modelo.DispositivoInteligente;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 import tp0.modelo.repositorios.fuentes.FuenteArchivo;
 
@@ -20,9 +20,9 @@ public class JsonClienteTest{
 	List<Cliente> clientes = new ArrayList<>();
 	Cliente nicolas;
 	Cliente nico;
-	DispositivoEstandar dispositivo1, dispositivo2, dispositivo3, dispositivo4;
-	List<DispositivoEstandar> dispositivos;
-	DispositivoEstandar disp1;
+	DispositivoInteligente dispositivo1, dispositivo2, dispositivo3, dispositivo4;
+	List<DispositivoInteligente> dispositivos;
+	DispositivoInteligente disp1;
 	
 	@SuppressWarnings("unchecked")
 	@Before
@@ -36,16 +36,16 @@ public class JsonClienteTest{
 				new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY)));
 		clientes.stream().forEach(cliente -> cliente.setRepositorioCategorias(repositorioDeCategorias));
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
-		dispositivo1 = new DispositivoEstandar("Heladera", 10, true);
-		dispositivo2 = new DispositivoEstandar("Lavarropas", 10, true);
-		dispositivo3 = new DispositivoEstandar("Tostadora", 10, false);
-		dispositivo4 = new DispositivoEstandar("Licuadora", 10, false);
+		dispositivo1 = new DispositivoInteligente("Heladera", 10);
+		dispositivo2 = new DispositivoInteligente("Lavarropas", 10);
+		dispositivo3 = new DispositivoInteligente("Tostadora", 10);
+		dispositivo4 = new DispositivoInteligente("Licuadora", 10);
 		dispositivos = Arrays.asList(dispositivo1, dispositivo2, dispositivo3, dispositivo4);
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2", dispositivos);
 		nicolas.setRepositorioCategorias(repositorioDeCategorias);
 		nicolas.obtenerCategoria();
 		nico = clientes.stream().filter(cliente -> cliente.getDocumento().equals(39068888)).findFirst().get();
-		disp1 = nico.getDispositivos().stream().filter(dispositivo -> dispositivo.getNombreGenerico().equals(dispositivo1.getNombreGenerico())).findFirst().get();
+		disp1 = nico.getDispositivosInteligentes().stream().filter(dispositivo -> dispositivo.getNombreGenerico().equals(dispositivo1.getNombreGenerico())).findFirst().get();
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class JsonClienteTest{
 	
 	@Test
 	public void testNicoDispositivos() {
-		Assert.assertEquals(dispositivos.size(), nico.getDispositivos().size(), nicolas.getDispositivos().size());
+		Assert.assertEquals(dispositivos.size(), nico.cantidadDispositivosTotal(), nicolas.cantidadDispositivosTotal());
 		Assert.assertEquals(disp1.getNombreGenerico(), disp1.getNombreGenerico(), dispositivo1.getNombreGenerico());
 		Assert.assertTrue(disp1.getEstado() == dispositivo1.getEstado());
 		Assert.assertEquals(10, disp1.getKwXHora(), dispositivo1.getKwXHora());		

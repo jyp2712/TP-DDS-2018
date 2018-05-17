@@ -1,11 +1,44 @@
 package tp0.modelo;
 
+import org.joda.time.DateTime;
+import org.joda.time.Hours;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DispositivoInteligente implements TipoDispositivo {
+public class DispositivoInteligente{
+
 	@JsonProperty
-	protected Estado estado;
-	
+	protected String nombreGenerico;
+
+	@JsonProperty
+	protected double KwXHora;
+
+	private Estado estado;
+
+	@JsonCreator
+	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico, 
+			@JsonProperty("KW/H") double KwXHora) {
+		setNombreGenerico(nombreGenerico);
+		setKwXHora(KwXHora);
+	}
+
+	public String getNombreGenerico() {
+		return nombreGenerico;
+	}
+
+	private void setNombreGenerico(String nombreGenerico) {
+		this.nombreGenerico = nombreGenerico;
+	}
+
+	public double getKwXHora() {
+		return KwXHora;
+	}
+
+	private void setKwXHora(double kwXHora) {
+		this.KwXHora = kwXHora;
+	}
+
 	public Estado getEstado() {
 		return estado;
 	}
@@ -14,32 +47,45 @@ public class DispositivoInteligente implements TipoDispositivo {
 		this.estado = estado;
 	}
 
-	// SM: Un poco raro el pasamanos pero es para que el cliente se desacople de
-	// como esta implementado el estado en el dispositivo
-	public boolean estaEncendido() {
-		return this.getEstado().estaEncendido();
+	public Boolean estaEncendido() {
+		return this.estado.estaEncendido();
+	}
+
+
+	public Boolean estaApagado() {
+		return !this.estado.estaEncendido();
 	}
 	
-	public boolean estaApagado() {
-		return !this.getEstado().estaEncendido();
-	}
-	
-	public float energiaConsumida() {
-		return 0;
-	}
-	public float consumoTotal() {
-		return 0;
+	public void apagarse() {
+		this.estado.apagarse(this);
 	}
 
 	public void encenderse() {
-		getEstado().encenderse(this);
+		this.estado.encenderse(this);
+	}
+	
+	public void modoAhorroEnergia() {
+		this.estado.modoAhorroEnergia(this);
+	}
+	
+	public double consumo() {
+		return this.KwXHora;
 	}
 
-	public void apagarse() {
-		getEstado().apagarse(this);		
+	public Boolean esInteligente() {
+		return true;
+	}
+	
+	public double energiaConsumida(Hours horas) {
+		return this.KwXHora * horas.getHours();
+	}
+	
+	public double consumoTotal(DateTime periodo) {
+		return this.KwXHora * Hours.hoursBetween(DateTime.now(), periodo).getHours();
+	}
+	
+	public int otorgarPuntos() {
+		return 15;
 	}
 
-	public void ahorrarEnergia() {
-		getEstado().ahorrarEnergia(this);
-	}
 }

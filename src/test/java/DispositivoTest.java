@@ -1,17 +1,21 @@
 import org.junit.*;
 
-import tp0.modelo.DispositivoEstandar;
+import tp0.modelo.Apagado;
+import tp0.modelo.DispositivoInteligente;
+import tp0.modelo.Encendido;
 
 public class DispositivoTest {
 
 	// Tests para probar el comportamiento de la CATEGORIA
-	DispositivoEstandar dispositivo1;
-	DispositivoEstandar dispositivo2;
+	DispositivoInteligente dispositivo1;
+	DispositivoInteligente dispositivo2;
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivo1 = new DispositivoEstandar("Heladera", 150, true);
-		dispositivo2 = new DispositivoEstandar("Lavarropas", 150, false);
+		dispositivo1 = new DispositivoInteligente("Heladera", 150);
+		dispositivo2 = new DispositivoInteligente("Lavarropas", 150);
+		dispositivo1.setEstado(new Encendido());
+		dispositivo2.setEstado(new Apagado());
 	}
 
 	@Test
