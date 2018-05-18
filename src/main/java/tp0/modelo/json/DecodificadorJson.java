@@ -1,4 +1,4 @@
-package tp0.modelo;
+package tp0.modelo.json;
 
 import java.io.File;
 import java.io.IOException;
