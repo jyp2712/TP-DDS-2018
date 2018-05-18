@@ -85,7 +85,7 @@ public class DispositivoInteligente implements Dispositivo {
 	 * public Boolean esInteligente() { return true; }
 	 */
 
-	public double consumo(Hours horas) {
+	public double consumo(int horas) {
 		return this.getDispositivoFisico().consumo(horas);
 	}
 

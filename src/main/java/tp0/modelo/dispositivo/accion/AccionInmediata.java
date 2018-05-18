@@ -1,20 +1,20 @@
 package tp0.modelo.dispositivo.accion;
 
-import tp0.modelo.dispositivo.Dispositivo;
+import tp0.modelo.dispositivo.*;
 
 public abstract class AccionInmediata implements Accion {
 	
-	private Dispositivo dispositivo;
+	private DispositivoInteligente dispositivo;
 	
-	public AccionInmediata(Dispositivo dispositivo) {
+	public AccionInmediata(DispositivoInteligente dispositivo) {
 		this.setDispositivo(dispositivo);
 	}
 
-	public Dispositivo getDispositivo() {
+	public DispositivoInteligente getDispositivo() {
 		return dispositivo;
 	}
 
-	public void setDispositivo(Dispositivo dispositivo) {
+	public void setDispositivo(DispositivoInteligente dispositivo) {
 		this.dispositivo = dispositivo;
 	}
 

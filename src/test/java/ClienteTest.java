@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.junit.*;
-
 
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
@@ -22,6 +23,7 @@ public class ClienteTest {
 	DispositivoInteligente dispositivoInteligente2;
 	DispositivoInteligente dispositivoInteligente3;
 	DispositivoInteligente dispositivoInteligente4;
+	DispositivoInteligente dispositivoInteligente5;
 	DispositivoEstandar dispositivoEstandar1;
 	DispositivoEstandar dispositivoEstandar2;
 	DispositivoEstandar dispositivoEstandar3;
@@ -34,6 +36,8 @@ public class ClienteTest {
 	LavarropasMock lavarropasMock = new LavarropasMock();
 	TostadoraMock tostadoraMock = new TostadoraMock();
 	LicuadoraMock licuadoraMock = new LicuadoraMock();
+	List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
+	List<DispositivoInteligente> dispositivosInteligentes =  new ArrayList<DispositivoInteligente>();
 
 	@Before
 	public void setUp() throws Exception {
@@ -53,6 +57,15 @@ public class ClienteTest {
 		dispositivoInteligente4.setEstado(new Apagado());
 		dispositivoInteligente4.setDispositivoFisico(licuadoraMock);
 		
+		dispositivoInteligente5 = new DispositivoInteligente("LicuadoraPhilips", 75);
+		dispositivoInteligente5.setEstado(new Encendido());
+		dispositivoInteligente5.setDispositivoFisico(licuadoraMock);
+		
+		dispositivosInteligentes.add(dispositivoInteligente1);
+		dispositivosInteligentes.add(dispositivoInteligente2);
+		dispositivosInteligentes.add(dispositivoInteligente3);
+		dispositivosInteligentes.add(dispositivoInteligente4);
+		
 		dispositivoEstandar1 = new DispositivoEstandar("Aire acondicionado", 24, 1);
 		
 		dispositivoEstandar2 = new DispositivoEstandar("Stereo", 24, 2);
@@ -60,6 +73,11 @@ public class ClienteTest {
 		dispositivoEstandar3 = new DispositivoEstandar("Cargador", 24, 3);
 		
 		dispositivoEstandar4 = new DispositivoEstandar("Lavaplatos", 24, 4);
+		
+		dispositivosEstandares.add(dispositivoEstandar1);
+		dispositivosEstandares.add(dispositivoEstandar2);
+		dispositivosEstandares.add(dispositivoEstandar3);
+		dispositivosEstandares.add(dispositivoEstandar4);
 		
 		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
 		
@@ -69,9 +87,8 @@ public class ClienteTest {
 		categorias.agregar(Arrays.asList(categoria1, categoria2));
 
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R1",
-				Arrays.asList(dispositivoEstandar1, dispositivoEstandar2, dispositivoEstandar3, dispositivoEstandar4),
-				Arrays.asList(dispositivoInteligente1, dispositivoInteligente2, dispositivoInteligente3,
-						dispositivoInteligente4));
+				dispositivosEstandares,
+				dispositivosInteligentes, 0);
 		nico.setRepositorioCategorias(categorias);
 		nico.obtenerCategoria();
 	}
@@ -145,13 +162,35 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testNicoTiene2Categorias() {
-		Assert.assertEquals(2, nico.getRepositorioCategorias().stream().count());
-	}
-
-	@Test
 	public void testNicoEsRecategorizadoAR2() {
 		nico.asignarCategoria();
 		Assert.assertEquals(categoria2.getNombre(), nico.getCategoria().getNombre());
 	}
+	
+	@Test
+	public void testNicoConvierteDispositivoEstandar1YSeAgregaALosDispositivosInteligentes() {
+		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
+		Assert.assertEquals(5, nico.getDispositivosInteligentes().stream().count(), 0);
+	}
+	
+	@Test
+	public void testNicoConvierteDispositivoEstandar1YSeQuitaDeLosDispositivosEstandares() {
+		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
+		Assert.assertEquals(3, nico.getDispositivosEstandar().stream().count(), 0);
+	}
+	
+	@Test
+	public void testNicoConvierteDispositivoEstandar1YQuedaCon25Puntos() {
+		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
+		Assert.assertEquals(25, nico.getPuntos(), 0);
+	}
+	
+	@Test
+	public void testNicoRegistrarDispositivoEstandar1YQuedaCon15Puntos() {
+		nico.registrarDispositivoInteligente(dispositivoInteligente5);
+		Assert.assertEquals(15, nico.getPuntos(), 0);
+	}
+	
+	
+	
 }

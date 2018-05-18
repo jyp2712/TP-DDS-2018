@@ -57,7 +57,7 @@ public class JsonClienteTest {
 		dispositivosEstandares = Arrays.asList(dispositivoEstandar1, dispositivoEstandar2, dispositivoEstandar3, dispositivoEstandar4);
 		dispositivosInteligentes = Arrays.asList(dispositivoInteligente1, dispositivoInteligente2, dispositivoInteligente3, dispositivoInteligente4);
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2",
-				dispositivosEstandares, dispositivosInteligentes);
+				dispositivosEstandares, dispositivosInteligentes, 0);
 		nicolas.setRepositorioCategorias(repositorioDeCategorias);
 		nicolas.obtenerCategoria();
 		nico = clientes.stream().filter(cliente -> cliente.getDocumento().equals(39068888)).findFirst().get();

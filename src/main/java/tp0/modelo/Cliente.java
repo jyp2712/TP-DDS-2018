@@ -25,12 +25,10 @@ public class Cliente {
 		LE, DNI, CI, LC
 	}
 
-	// private ArrayList<ObservadorConversionDeDispositivo>
-	// observadoresConversionDeDispositivo;
-	//
-	// private ArrayList<ObservadorRegistroDispositivoInteligente>
-	// observadoresRegistroDispositivoInteligente;
-	//
+	//private ArrayList<ObservadorConversionDeDispositivo> observadoresConversionDeDispositivo;
+	
+	//private ArrayList<ObservadorRegistroDispositivoInteligente> observadoresRegistroDispositivoInteligente;
+	
 	@JsonProperty
 	protected DTD tipoDoc;
 
@@ -67,8 +65,8 @@ public class Cliente {
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String nombreCategoria,
 			@JsonProperty("dispositivos estandar") List<DispositivoEstandar> dispositivosEstandares,
-			@JsonProperty("dispositivos inteligentes") List<DispositivoInteligente> dispositivosInteligentes
-			/*long puntos*/) {
+			@JsonProperty("dispositivos inteligentes") List<DispositivoInteligente> dispositivosInteligentes,
+			long puntos) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
@@ -79,8 +77,9 @@ public class Cliente {
 		setFechaAltaServicio(new DateTime(fechaAltaServicio));
 		setDispositivosEstandares(dispositivosEstandares);
 		setDispositivosInteligentes(dispositivosInteligentes);
-		/*setPuntos(puntos);*/
-		// this.observadores = new ArrayList<ObservadorConversion>();
+		setPuntos(puntos);
+		//this.observadoresConversionDeDispositivo = new ArrayList<ObservadorConversionDeDispositivo>();
+		//this.observadoresRegistroDispositivoInteligente = new ArrayList<ObservadorRegistroDispositivoInteligente>();
 	}
 
 	public String getNombre() {
@@ -176,9 +175,17 @@ public class Cliente {
 		this.dispositivosInteligentes = dispositivos;
 	}
 
-/*	private void setPuntos(long puntos) {
+	private void setPuntos(long puntos) {
 		this.puntos = puntos;
-	}*/
+	}
+	
+	public long getPuntos() {
+		return this.puntos;
+	}
+	
+	private void sumarPuntos(long puntos) {
+		this.puntos += puntos;
+	}
 
 	private void setNombreCategoria(String nombreCategoria) {
 		this.nombreCategoria = nombreCategoria;
@@ -245,7 +252,7 @@ public class Cliente {
 	
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
 		this.dispositivosInteligentes.add(nuevoDispositivo);
-		//TODO: Sumar 15 puntos.
+		this.sumarPuntos(15);
 	}
 	
 	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivo) {
@@ -254,8 +261,18 @@ public class Cliente {
 	
 	public void convertirDispositivoEstandarAInteligente(DispositivoEstandar dispositivoExistente) {
 		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(), dispositivoExistente.getkWXHora());
-		this.dispositivosEstandares.remove(dispositivoExistente);
-		this.dispositivosInteligentes.add(nuevoDispositivo);
-		//TODO: Sumar 10 puntos.
+		this.getDispositivosEstandar().remove(dispositivoExistente);
+		this.registrarDispositivoInteligente(nuevoDispositivo);
+		this.sumarPuntos(10);
 	}
+	//Decidimos no implementar el patrón Observer.
+	
+	
+/*	private void notificarConversionDispositivo() {
+		this.observadoresConversionDeDispositivo.stream().forEach(observadorCambio -> observadorCambio.notificar(this));
+	}
+	
+	private void notificarRegistroDispositivo() {
+		this.observadoresRegistroDeDispositivo.stream().forEach(observadorRegistro -> observadorRegistro.notificar(this));
+	}*/
 }

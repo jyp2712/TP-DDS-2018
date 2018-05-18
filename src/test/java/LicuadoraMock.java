@@ -1,5 +1,4 @@
 import org.joda.time.DateTime;
-import org.joda.time.Hours;
 
 import tp0.modelo.dispositivo.*;
 
@@ -8,7 +7,7 @@ import tp0.modelo.dispositivo.*;
 public class LicuadoraMock implements DispositivoFisicoAdapter {
 
 	@Override
-	public double consumo(Hours horas) {
+	public double consumo(int horas) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

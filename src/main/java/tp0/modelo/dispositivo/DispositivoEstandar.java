@@ -47,11 +47,11 @@ public class DispositivoEstandar implements Dispositivo {
 		return nombreGenerico;
 	}
 
-	public double consumo(Hours horas) {
-		return this.consumoPorHoraAproximada() * horas.getHours();
+	public double consumo(int horas) {
+		return this.consumoPorHoraAproximada() * horas;
 	}
 
-	private double consumoPorHoraAproximada() {
+	public double consumoPorHoraAproximada() {
 		return this.getHorasDeConsumo() * this.getkWXHora() / 24;
 	}
 
