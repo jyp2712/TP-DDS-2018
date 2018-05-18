@@ -4,7 +4,7 @@ public class AhorroEnergia implements Estado {
 
 	@Override
 	public Boolean estaEncendido() {
-		return false;
+		return true;
 	}
 
 	@Override

@@ -39,7 +39,6 @@ public class DispositivoEstandar implements Dispositivo {
 		return nombreGenerico;
 	}
 
-	@Override
 	public double consumo(Hours horas) {
 		return this.consumoPorHoraAproximada() * horas.getHours();
 	}
@@ -48,7 +47,6 @@ public class DispositivoEstandar implements Dispositivo {
 		return this.getHorasDeConsumo() * this.getkWXHora() / 24;
 	}
 	
-	@Override
 	public double consumoTotal(DateTime periodo) {
 		return this.consumoPorHoraAproximada() * Hours.hoursBetween(DateTime.now(), periodo).getHours();
 	}

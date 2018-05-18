@@ -23,6 +23,12 @@ public class Cliente {
 		LE, DNI, CI, LC
 	}
 
+	// private ArrayList<ObservadorConversionDeDispositivo>
+	// observadoresConversionDeDispositivo;
+	//
+	// private ArrayList<ObservadorRegistroDispositivoInteligente>
+	// observadoresRegistroDispositivoInteligente;
+	//
 	@JsonProperty
 	protected DTD tipoDoc;
 
@@ -45,26 +51,33 @@ public class Cliente {
 	private String nombreCategoria;
 
 	@JsonProperty
+	protected List<DispositivoEstandar> dispositivosEstandares;
+
 	protected List<DispositivoInteligente> dispositivosInteligentes;
-	private List<DispositivoEstandar> dispositivosEstandar = new ArrayList<>();
-	
+
+	protected long puntos;
+
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String nombreCategoria,
-			@JsonProperty("dispositivos") List<DispositivoInteligente> dispositivos) {
+			@JsonProperty("dispositivos") List<DispositivoEstandar> dispositivosEstandares,
+			List<DispositivoInteligente> dispositivosInteligentes,
+			long puntos) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
 		setDocumento(documento);
 		setTel(tel);
 		setDomicilioServicio(domicilioServicio);
-		this.nombreCategoria = nombreCategoria;
+		setNombreCategoria(nombreCategoria);
 		setFechaAltaServicio(new DateTime(fechaAltaServicio));
-		dispositivosInteligentes = dispositivos;
-		setDispositivos(dispositivosInteligentes);
+		setDispositivosEstandares(dispositivosEstandares);
+		setDispositivosInteligentes(dispositivosInteligentes);
+		setPuntos(puntos);
+		// this.observadores = new ArrayList<ObservadorConversion>();
 	}
 
 	public String getNombre() {
@@ -128,7 +141,8 @@ public class Cliente {
 	}
 
 	public void obtenerCategoria() {
-		this.categoria = repositorioCategorias.encontrar(categoria -> categoria.getNombre().equals(this.nombreCategoria));
+		this.categoria = repositorioCategorias
+				.encontrar(categoria -> categoria.getNombre().equals(this.nombreCategoria));
 	}
 
 	public Categoria getCategoria() {
@@ -142,50 +156,99 @@ public class Cliente {
 	public List<DispositivoInteligente> getDispositivosInteligentes() {
 		return dispositivosInteligentes;
 	}
-	
+
 	public List<DispositivoEstandar> getDispositivosEstandar() {
-		return dispositivosEstandar;
-	}
-	
-	private void setDispositivos(List<DispositivoInteligente> dispositivosInteligentes) {
-		this.dispositivosInteligentes = dispositivosInteligentes;
+		return dispositivosEstandares;
 	}
 
-	private List<DispositivoInteligente> dispositivosEncendidos() {
+	private void setDispositivosEstandares(List<DispositivoEstandar> dispositivos) {
+		this.dispositivosEstandares = dispositivos;
+	}
+
+	private void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
+		this.dispositivosInteligentes = dispositivos;
+	}
+
+	private void setPuntos(long puntos) {
+		this.puntos = puntos;
+	}
+
+	private void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
+	}
+
+//	private void setDispositivos(List<DispositivoInteligente> dispositivosInteligentes) {
+//		this.dispositivosInteligentes = dispositivosInteligentes;
+//	}
+
+	private List<DispositivoInteligente> dispositivosInteligentesEncendidos() {
 		return this.getDispositivosInteligentes().stream().filter(dispositivo -> dispositivo.estaEncendido())
 				.collect(Collectors.toList());
 	}
 
-	private List<DispositivoInteligente> dispositivosApagados() {
-		return this.getDispositivosInteligentes().stream().filter(dispositivo -> !dispositivo.estaEncendido())
+	private List<DispositivoInteligente> dispositivosInteligentesApagados() {
+		return this.getDispositivosInteligentes().stream().filter(dispositivo -> dispositivo.estaApagado())
 				.collect(Collectors.toList());
 	}
 
 	public boolean tieneAlgunDispositivoEncendido() {
-		return !this.dispositivosEncendidos().isEmpty();
+		return !this.dispositivosInteligentesEncendidos().isEmpty();
 	}
 
 	public long cantidadDispositivosEncendidos() {
-		return this.dispositivosEncendidos().size();
+		return this.dispositivosInteligentesEncendidos().size();
 	}
 
 	public long cantidadDispositivosApagados() {
-		return this.dispositivosApagados().size();
+		return this.dispositivosInteligentesApagados().size();
 	}
 
 	public long cantidadDispositivosTotal() {
-		return this.getDispositivosInteligentes().stream().count() + this.getDispositivosEstandar().stream().count();
+		return this.cantidadDispositivosInteligentes() + this.cantidadDispositivosEstandares();
 	}
 
-	public double consumoEstimadoTotal() {
-		return this.dispositivosEncendidos().stream().mapToDouble(dispositivo -> dispositivo.consumo()).sum() + 
-				this.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.consumo()).sum();
+	public long cantidadDispositivosInteligentes() {
+		return this.getDispositivosInteligentes().stream().count();
+	}
+
+	public long cantidadDispositivosEstandares() {
+		return this.getDispositivosEstandar().stream().count();
+	}
+
+	public double consumoTotal(DateTime periodo) {
+		return this.consumoTotalDispositivosInteligentes(periodo)
+				+ this.consumoTotalEstimadoDispositivosEstandares(periodo);
+	}
+
+	public double consumoTotalDispositivosInteligentes(DateTime periodo) {
+		return this.getDispositivosInteligentes().stream().mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo))
+				.sum();
+	}
+
+	public double consumoTotalEstimadoDispositivosEstandares(DateTime periodo) {
+		return this.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo))
+				.sum();
 	}
 
 	public void asignarCategoria() {
 		this.setCategoria(
-				// SM: Si la lambda resulta poco expresiva se puede hacer un predicado. Para mi,
-				// esta bien...
-				this.repositorioCategorias.encontrar(categoria -> categoria.enRango(this.consumoEstimadoTotal())));
+				this.repositorioCategorias
+						.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3)))));
+	}
+	
+	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
+		this.dispositivosInteligentes.add(nuevoDispositivo);
+		//TODO: Sumar 15 puntos.
+	}
+	
+	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivo) {
+		this.dispositivosEstandares.add(nuevoDispositivo);
+	}
+	
+	public void convertirDispositivoEstandarAInteligente(DispositivoEstandar dispositivoExistente) {
+		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(), dispositivoExistente.getkWXHora());
+		this.dispositivosEstandares.remove(dispositivoExistente);
+		this.dispositivosInteligentes.add(nuevoDispositivo);
+		//TODO: Sumar 10 puntos.
 	}
 }

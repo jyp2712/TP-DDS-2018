@@ -86,7 +86,6 @@ public class DispositivoInteligente implements Dispositivo{
 		return true;
 	}*/
 	
-	@Override
 	public double consumo(Hours horas) {
 		return this.getDispositivoFisico().consumo(horas);
 	}
