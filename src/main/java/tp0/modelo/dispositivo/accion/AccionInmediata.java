@@ -14,7 +14,7 @@ public abstract class AccionInmediata implements Accion {
 		return dispositivo;
 	}
 
-	public void setDispositivo(DispositivoInteligente dispositivo) {
+	private void setDispositivo(DispositivoInteligente dispositivo) {
 		this.dispositivo = dispositivo;
 	}
 

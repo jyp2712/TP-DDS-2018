@@ -3,6 +3,7 @@ package test.dispositivo;
 import org.joda.time.DateTime;
 import org.junit.*;
 
+import test.regla.AccionInmediataMock;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.*;
@@ -135,4 +136,10 @@ public class DispositivoTest {
 		Assert.assertEquals(20, dispositivoEstandar1.consumoTotal(DateTime.now().minusHours(2)), 0);
 	}
 
+	@Test
+	public void testDispositivoInteligente1Ejecuta1Accion() {
+		AccionInmediataMock accionDispositivoInteligente1 = new AccionInmediataMock(dispositivoInteligente1);
+		dispositivoInteligente1.ejecutar(accionDispositivoInteligente1);
+		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
+	}
 }
