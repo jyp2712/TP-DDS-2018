@@ -255,7 +255,7 @@ public class Cliente {
 		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(),
 				dispositivoExistente.getkWXHora());
 		this.getDispositivosEstandar().remove(dispositivoExistente);
-		this.registrarDispositivoInteligente(nuevoDispositivo);
+		this.getDispositivosInteligentes().add(nuevoDispositivo);
 		this.sumarPuntos(10);
 	}
 	// Decidimos no implementar el patrón Observer.

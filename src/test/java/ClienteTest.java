@@ -124,7 +124,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testNicoConsume96KWxHoraDispositivosEstandares() {
-		Assert.assertEquals(96, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 96);
+		Assert.assertEquals(96, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 0);
 	}
 	
 	@Test
@@ -145,19 +145,20 @@ public class ClienteTest {
 	@Test
 	public void testNicoConsume10TotalDispositivosEstandares() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 10);
+		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 0);
 	}
 	
 	@Test
 	public void testNicoConsume125TotalDispositivosInteligentes() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(125, nico.consumoTotalDispositivosInteligentes(fechaActual), 125);
+		Assert.assertEquals(125, nico.consumoTotalDispositivosInteligentes(fechaActual), 0);
 	}
 	
 	@Test
 	public void testNicoConsumeTotalmente125() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(125, nico.consumoTotal(fechaActual.minusHours(1)), 125);
+		Assert.assertEquals(125, nico.consumoTotal(fechaActual.minusHours(1)), 
+				nico.consumoTotalDispositivosInteligentes(fechaActual) + nico.consumoTotalEstimadoDispositivosEstandares(fechaActual));
 	}
 
 	@Test
@@ -186,7 +187,7 @@ public class ClienteTest {
 	@Test
 	public void testNicoConvierteDispositivoEstandar1YQuedaCon25Puntos() {
 		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
-		Assert.assertEquals(25, nico.getPuntos(), 0);
+		Assert.assertEquals(10, nico.getPuntos(), 0);
 	}
 	
 	@Test

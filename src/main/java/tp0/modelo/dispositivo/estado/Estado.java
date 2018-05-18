@@ -1,7 +1,6 @@
 package tp0.modelo.dispositivo.estado;
 
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.accion.AccionInmediata;
 
 public interface Estado {
 

@@ -12,7 +12,7 @@ public class AccionProgramada implements Accion {
 		this.setAccion(accion);
 	}
 
-	private Condicion getCondicion() {
+	public Condicion getCondicion() {
 		return condicion;
 	}
 
