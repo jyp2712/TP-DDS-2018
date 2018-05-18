@@ -112,7 +112,17 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testNicoConsume10TotalDispositivosInteligentes() {
+	public void testNicoTiene4DispositivosEstandares() {
+		Assert.assertEquals(4, nico.getDispositivosEstandar().stream().count(),0);
+	}
+	
+	@Test
+	public void testDispositivoEstandar1Consume24KWXHora() {
+		Assert.assertEquals(24, dispositivoEstandar1.getkWXHora(), 0);
+	}
+	
+	@Test
+	public void testNicoConsume10TotalDispositivosEstandares() {
 		fechaActual = DateTime.now();
 		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 0);
 	}
@@ -132,6 +142,11 @@ public class ClienteTest {
 	@Test
 	public void testNicoEsCategorizadoAR1Inicialmente() {
 		Assert.assertEquals("R1", nico.getCategoria().getNombre());
+	}
+	
+	@Test
+	public void testNicoTiene2Categorias() {
+		Assert.assertEquals(2, nico.getRepositorioCategorias().stream().count());
 	}
 
 	@Test

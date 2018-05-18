@@ -22,7 +22,7 @@ public class DispositivoEstandar implements Dispositivo {
 	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {
 		setNombreGenerico(nombreGenerico);
-		setkWXHora(KwXHora);
+		this.kWXHora = KwXHora;
 		setHorasDeConsumo(horasDeConsumo);
 	}
 
