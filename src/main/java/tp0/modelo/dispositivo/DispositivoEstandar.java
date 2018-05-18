@@ -1,13 +1,10 @@
-package tp0.modelo;
-
+package tp0.modelo.dispositivo;
 
 import org.joda.time.DateTime;
 import org.joda.time.Hours;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import tp0.modelo.dispositivo.Dispositivo;
 
 public class DispositivoEstandar implements Dispositivo {
 
@@ -22,7 +19,7 @@ public class DispositivoEstandar implements Dispositivo {
 	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {
 		setNombreGenerico(nombreGenerico);
-		setkWXHora(KwXHora);
+		setkWXHora(kWXHora);
 		setHorasDeConsumo(horasDeConsumo);
 	}
 
@@ -59,7 +56,7 @@ public class DispositivoEstandar implements Dispositivo {
 	}
 
 	public double consumoTotal(DateTime periodo) {
-		return this.consumoPorHoraAproximada() * Hours.hoursBetween(periodo, DateTime.now()).getHours();
+		return this.consumoPorHoraAproximada() * Hours.hoursBetween(DateTime.now(), periodo).getHours();
 	}
 
 	/*

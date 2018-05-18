@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import tp0.modelo.dispositivo.DispositivoEstandar;
+import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.repositorios.Repositorio;
 
 public class Cliente {

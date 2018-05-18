@@ -1,10 +1,12 @@
-package tp0.modelo;
+package tp0.modelo.dispositivo;
 
 import org.joda.time.DateTime;
 import org.joda.time.Hours;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import tp0.modelo.dispositivo.estado.Estado;
 
 public class DispositivoInteligente implements Dispositivo {
 
@@ -56,15 +58,15 @@ public class DispositivoInteligente implements Dispositivo {
 	}
 
 	public void apagarse() {
-		this.getEstado().apagarse(this);
+		this.getEstado().apagar(this);
 	}
 
 	public void encenderse() {
-		this.getEstado().encenderse(this);
+		this.getEstado().encender(this);
 	}
 
-	public void modoAhorroEnergia() {
-		this.getEstado().modoAhorroEnergia(this);
+	public void ahorrarseEnergia() {
+		this.getEstado().ahorrarEnergia(this);
 	}
 
 	private DispositivoFisicoAdapter getDispositivoFisico() {

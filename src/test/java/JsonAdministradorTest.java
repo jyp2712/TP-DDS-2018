@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.*;
 
 import tp0.modelo.Administrador;
-import tp0.modelo.DecodificadorJson;
+import tp0.modelo.json.DecodificadorJson;
 import tp0.modelo.repositorios.fuentes.FuenteArchivo;
 
 public class JsonAdministradorTest{

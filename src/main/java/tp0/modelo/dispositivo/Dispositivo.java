@@ -1,4 +1,4 @@
-package tp0.modelo;
+package tp0.modelo.dispositivo;
 
 import org.joda.time.DateTime;
 import org.joda.time.Hours;
