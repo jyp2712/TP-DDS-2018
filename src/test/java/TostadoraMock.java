@@ -14,7 +14,7 @@ public class TostadoraMock implements DispositivoFisicoAdapter {
 	@Override
 	public double consumoTotal(DateTime periodo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 50;
 	}
 
 	@Override

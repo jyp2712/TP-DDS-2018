@@ -63,7 +63,7 @@ public class ClienteTest {
 		
 		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
 		
-		categoria2 = new Categoria("R2", 25.0, 0.85, 100, 200);
+		categoria2 = new Categoria("R2", 25.0, 0.85, 100, Double.POSITIVE_INFINITY);
 		
 		categorias = new RepositorioEnMemoria<Categoria>();
 		categorias.agregar(Arrays.asList(categoria1, categoria2));
@@ -103,7 +103,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testNicoConsume96KWxHoraDispositivosEstandares() {
-		Assert.assertEquals(96, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 0);
+		Assert.assertEquals(96, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 96);
 	}
 	
 	@Test
@@ -114,30 +114,29 @@ public class ClienteTest {
 	@Test
 	public void testNicoConsume10TotalDispositivosInteligentes() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 0);
+		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 10);
 	}
 	
 	@Test
-	public void testNicoConsume0TotalDispositivosInteligentes() {
+	public void testNicoConsume125TotalDispositivosInteligentes() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(0, nico.consumoTotalDispositivosInteligentes(fechaActual), 0);
+		Assert.assertEquals(125, nico.consumoTotalDispositivosInteligentes(fechaActual), 125);
 	}
 	
 	@Test
-	public void testNicoConsumeTotalmente10() {
+	public void testNicoConsumeTotalmente125() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(10, nico.consumoTotal(fechaActual.minusHours(1)), 0);
+		Assert.assertEquals(125, nico.consumoTotal(fechaActual.minusHours(1)), 125);
 	}
 
 	@Test
 	public void testNicoEsCategorizadoAR1Inicialmente() {
-		Assert.assertEquals("R1", nico.getCategoria().getNombre());
+		Assert.assertEquals(categoria1.getNombre(), nico.getCategoria().getNombre());
 	}
 
 	@Test
 	public void testNicoEsRecategorizadoAR2() {
-		fechaActual = DateTime.now();
 		nico.asignarCategoria();
-		Assert.assertEquals("R2", nico.getCategoria().getNombre());
+		Assert.assertEquals(categoria2.getNombre(), nico.getCategoria().getNombre());
 	}
 }
