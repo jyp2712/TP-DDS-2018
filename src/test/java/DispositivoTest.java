@@ -2,10 +2,10 @@ import org.joda.time.DateTime;
 import org.joda.time.Hours;
 import org.junit.*;
 
-import tp0.modelo.Apagado;
-import tp0.modelo.DispositivoEstandar;
-import tp0.modelo.DispositivoInteligente;
-import tp0.modelo.Encendido;
+import tp0.modelo.dispositivo.DispositivoEstandar;
+import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.dispositivo.estado.Apagado;
+import tp0.modelo.dispositivo.estado.Encendido;
 
 public class DispositivoTest {
 
