@@ -19,7 +19,6 @@ public abstract class AccionInmediata implements Accion {
 	}
 
 	public void ejecutar() {
-		// TODO Auto-generated method stub
+		this.getDispositivo().getDispositivoFisico().ejecutar(this);
 	}
-
 }

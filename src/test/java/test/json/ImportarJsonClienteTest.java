@@ -1,3 +1,4 @@
+package test.json;
 import org.junit.Before;
 import org.junit.Test;
 

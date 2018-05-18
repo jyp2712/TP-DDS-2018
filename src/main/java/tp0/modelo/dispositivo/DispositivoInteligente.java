@@ -6,6 +6,7 @@ import org.joda.time.Hours;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import tp0.modelo.dispositivo.accion.Accion;
 import tp0.modelo.dispositivo.estado.Estado;
 
 public class DispositivoInteligente implements Dispositivo {
@@ -69,7 +70,7 @@ public class DispositivoInteligente implements Dispositivo {
 		this.getEstado().ahorrarEnergia(this);
 	}
 
-	private DispositivoFisicoAdapter getDispositivoFisico() {
+	public DispositivoFisicoAdapter getDispositivoFisico() {
 		return this.dispositivoFisico;
 	}
 
@@ -92,6 +93,10 @@ public class DispositivoInteligente implements Dispositivo {
 	public double consumoTotal(DateTime periodo) {
 		return this.getDispositivoFisico().consumoTotal(periodo);
 		// * Hours.hoursBetween(DateTime.now(), periodo).getHours()
+	}
+	
+	public void ejecutar(Accion accion) {
+		accion.ejecutar();
 	}
 
 	// public int otorgarPuntos() {

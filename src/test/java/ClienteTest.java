@@ -5,6 +5,10 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.*;
 
+import test.dispositivo.HeladeraMock;
+import test.dispositivo.LavarropasMock;
+import test.dispositivo.LicuadoraMock;
+import test.dispositivo.TostadoraMock;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoEstandar;

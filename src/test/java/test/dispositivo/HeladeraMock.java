@@ -1,8 +1,11 @@
+package test.dispositivo;
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.*;
+import tp0.modelo.dispositivo.accion.AccionInmediata;
 
-public class LavarropasMock implements DispositivoFisicoAdapter {
+
+public class HeladeraMock implements DispositivoFisicoAdapter {
 
 	@Override
 	public double consumo(int horas) {
@@ -30,6 +33,12 @@ public class LavarropasMock implements DispositivoFisicoAdapter {
 
 	@Override
 	public void ahorrarEnergia() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ejecutar(AccionInmediata accionInmediata) {
 		// TODO Auto-generated method stub
 		
 	}
