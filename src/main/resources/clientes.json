@@ -42,7 +42,8 @@
 				"KW/H": 24,
 				"Horas de consumo": 1
 			}
-		]
+		],
+		"puntos": 0
 	},
 	{
 		"nombre": "HOLA1",
@@ -65,7 +66,8 @@
 				"KW/H": 1,
 				"Horas de consumo": 8
 			}
-		]
+		],
+		"puntos": 0
 	},
 	{
 		"nombre": "HOLA2",
@@ -88,6 +90,7 @@
 				"KW/H": 2,
 				"Horas de consumo": 12
 			}
-		]
+		],
+		"puntos": 0
 	}
 ]

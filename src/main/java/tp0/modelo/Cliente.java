@@ -1,6 +1,5 @@
 package tp0.modelo;
 
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,46 +16,37 @@ public class Cliente {
 
 	@JsonProperty
 	protected String nombre;
-
 	@JsonProperty
 	protected String apellido;
 
 	private enum DTD {
 		LE, DNI, CI, LC
 	}
+	// private ArrayList<ObservadorConversionDeDispositivo>
+	// observadoresConversionDeDispositivo;
 
-	//private ArrayList<ObservadorConversionDeDispositivo> observadoresConversionDeDispositivo;
-	
-	//private ArrayList<ObservadorRegistroDispositivoInteligente> observadoresRegistroDispositivoInteligente;
-	
+	// private ArrayList<ObservadorRegistroDispositivoInteligente>
+	// observadoresRegistroDispositivoInteligente;
 	@JsonProperty
 	protected DTD tipoDoc;
-
 	@JsonProperty
 	protected Integer documento;
-
 	@JsonProperty
 	protected String tel;
-
 	@JsonProperty
 	protected String domicilioServicio;
-
 	@JsonProperty
 	protected DateTime fechaAltaServicio;
-
 	protected Repositorio<Categoria> repositorioCategorias;
-
 	@JsonProperty
 	protected Categoria categoria;
 	private String nombreCategoria;
-
 	@JsonProperty
 	protected List<DispositivoEstandar> dispositivosEstandares;
-
 	@JsonProperty
 	protected List<DispositivoInteligente> dispositivosInteligentes;
-
-	protected long puntos;
+	@JsonProperty
+	protected double puntos;
 
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
@@ -66,7 +56,7 @@ public class Cliente {
 			@JsonProperty("categoria") String nombreCategoria,
 			@JsonProperty("dispositivos estandar") List<DispositivoEstandar> dispositivosEstandares,
 			@JsonProperty("dispositivos inteligentes") List<DispositivoInteligente> dispositivosInteligentes,
-			long puntos) {
+			@JsonProperty("puntos") double puntos) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
@@ -78,8 +68,10 @@ public class Cliente {
 		setDispositivosEstandares(dispositivosEstandares);
 		setDispositivosInteligentes(dispositivosInteligentes);
 		setPuntos(puntos);
-		//this.observadoresConversionDeDispositivo = new ArrayList<ObservadorConversionDeDispositivo>();
-		//this.observadoresRegistroDispositivoInteligente = new ArrayList<ObservadorRegistroDispositivoInteligente>();
+		// this.observadoresConversionDeDispositivo = new
+		// ArrayList<ObservadorConversionDeDispositivo>();
+		// this.observadoresRegistroDispositivoInteligente = new
+		// ArrayList<ObservadorRegistroDispositivoInteligente>();
 	}
 
 	public String getNombre() {
@@ -141,8 +133,8 @@ public class Cliente {
 	public void setRepositorioCategorias(Repositorio<Categoria> repositorioCategorias) {
 		this.repositorioCategorias = repositorioCategorias;
 	}
-	
-	public Repositorio<Categoria> getRepositorioCategorias(){
+
+	public Repositorio<Categoria> getRepositorioCategorias() {
 		return repositorioCategorias;
 	}
 
@@ -175,15 +167,15 @@ public class Cliente {
 		this.dispositivosInteligentes = dispositivos;
 	}
 
-	private void setPuntos(long puntos) {
+	private void setPuntos(double puntos) {
 		this.puntos = puntos;
 	}
-	
-	public long getPuntos() {
+
+	public double getPuntos() {
 		return this.puntos;
 	}
-	
-	private void sumarPuntos(long puntos) {
+
+	private void sumarPuntos(double puntos) {
 		this.puntos += puntos;
 	}
 
@@ -191,9 +183,10 @@ public class Cliente {
 		this.nombreCategoria = nombreCategoria;
 	}
 
-//	private void setDispositivos(List<DispositivoInteligente> dispositivosInteligentes) {
-//		this.dispositivosInteligentes = dispositivosInteligentes;
-//	}
+	// private void setDispositivos(List<DispositivoInteligente>
+	// dispositivosInteligentes) {
+	// this.dispositivosInteligentes = dispositivosInteligentes;
+	// }
 
 	private List<DispositivoInteligente> dispositivosInteligentesEncendidos() {
 		return this.getDispositivosInteligentes().stream().filter(dispositivo -> dispositivo.estaEncendido())
@@ -245,34 +238,35 @@ public class Cliente {
 	}
 
 	public void asignarCategoria() {
-		this.setCategoria(
-				this.repositorioCategorias
-						.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3)))));
+		this.setCategoria(this.repositorioCategorias
+				.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3)))));
 	}
-	
+
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
 		this.dispositivosInteligentes.add(nuevoDispositivo);
 		this.sumarPuntos(15);
 	}
-	
+
 	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivo) {
 		this.dispositivosEstandares.add(nuevoDispositivo);
 	}
-	
+
 	public void convertirDispositivoEstandarAInteligente(DispositivoEstandar dispositivoExistente) {
-		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(), dispositivoExistente.getkWXHora());
+		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(),
+				dispositivoExistente.getkWXHora());
 		this.getDispositivosEstandar().remove(dispositivoExistente);
 		this.registrarDispositivoInteligente(nuevoDispositivo);
 		this.sumarPuntos(10);
 	}
-	//Decidimos no implementar el patrón Observer.
-	
-	
-/*	private void notificarConversionDispositivo() {
-		this.observadoresConversionDeDispositivo.stream().forEach(observadorCambio -> observadorCambio.notificar(this));
-	}
-	
-	private void notificarRegistroDispositivo() {
-		this.observadoresRegistroDeDispositivo.stream().forEach(observadorRegistro -> observadorRegistro.notificar(this));
-	}*/
+	// Decidimos no implementar el patrón Observer.
+
+	/*
+	 * private void notificarConversionDispositivo() {
+	 * this.observadoresConversionDeDispositivo.stream().forEach(observadorCambio ->
+	 * observadorCambio.notificar(this)); }
+	 * 
+	 * private void notificarRegistroDispositivo() {
+	 * this.observadoresRegistroDeDispositivo.stream().forEach(observadorRegistro ->
+	 * observadorRegistro.notificar(this)); }
+	 */
 }

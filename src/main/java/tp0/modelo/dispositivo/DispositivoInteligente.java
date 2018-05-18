@@ -1,7 +1,6 @@
 package tp0.modelo.dispositivo;
 
 import org.joda.time.DateTime;
-import org.joda.time.Hours;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
