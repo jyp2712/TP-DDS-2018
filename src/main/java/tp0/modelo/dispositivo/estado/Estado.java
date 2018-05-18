@@ -1,6 +1,7 @@
 package tp0.modelo.dispositivo.estado;
 
 import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.dispositivo.accion.AccionInmediata;
 
 public interface Estado {
 
@@ -9,14 +10,17 @@ public interface Estado {
 	};
 
 	default void cambiarAEncendido(DispositivoInteligente dispositivo) {
+		dispositivo.getDispositivoFisico().encender();
 		dispositivo.setEstado(new Encendido());
 	};
 
 	default void cambiarAAhorroDeEnergia(DispositivoInteligente dispositivo) {
+		dispositivo.getDispositivoFisico().ahorrarEnergia();
 		dispositivo.setEstado(new AhorroEnergia());
 	};
 
 	default void cambiarAApagado(DispositivoInteligente dispositivo) {
+		dispositivo.getDispositivoFisico().apagar();
 		dispositivo.setEstado(new Apagado());
 	};
 
