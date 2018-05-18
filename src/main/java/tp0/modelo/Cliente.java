@@ -232,9 +232,10 @@ public class Cliente {
 	}
 
 	public void asignarCategoria() {
+		DateTime fechaActual = DateTime.now();
 		this.setCategoria(
 				this.repositorioCategorias
-						.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3)))));
+						.encontrar(categoria -> categoria.enRango(this.consumoTotal(fechaActual.minusMonths(3)))));
 	}
 	
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {

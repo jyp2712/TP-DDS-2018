@@ -19,7 +19,7 @@ public class DispositivoEstandar implements Dispositivo {
 	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {
 		setNombreGenerico(nombreGenerico);
-		setkWXHora(kWXHora);
+		setkWXHora(KwXHora);
 		setHorasDeConsumo(horasDeConsumo);
 	}
 
@@ -56,7 +56,7 @@ public class DispositivoEstandar implements Dispositivo {
 	}
 
 	public double consumoTotal(DateTime periodo) {
-		return this.consumoPorHoraAproximada() * Hours.hoursBetween(DateTime.now(), periodo).getHours();
+		return this.consumoPorHoraAproximada() * Hours.hoursBetween(periodo, DateTime.now()).getHours();
 	}
 
 	/*

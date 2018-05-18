@@ -29,25 +29,42 @@ public class ClienteTest {
 	Categoria categoria2;
 	Repositorio<Categoria> categorias;
 	DateTime fechaActual;
+	HeladeraMock heladeraMock = new HeladeraMock();
+	LavarropasMock lavarropasMock = new LavarropasMock();
+	TostadoraMock tostadoraMock = new TostadoraMock();
+	LicuadoraMock licuadoraMock = new LicuadoraMock();
 
 	@Before
 	public void setUp() throws Exception {
 		dispositivoInteligente1 = new DispositivoInteligente("Heladera", 150);
 		dispositivoInteligente1.setEstado(new Encendido());
+		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
+		
 		dispositivoInteligente2 = new DispositivoInteligente("Lavarropas", 150);
 		dispositivoInteligente2.setEstado(new Apagado());
+		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
+		
 		dispositivoInteligente3 = new DispositivoInteligente("Tostadora", 50);
 		dispositivoInteligente3.setEstado(new Apagado());
+		dispositivoInteligente3.setDispositivoFisico(tostadoraMock);
+		
 		dispositivoInteligente4 = new DispositivoInteligente("Licuadora", 50);
 		dispositivoInteligente4.setEstado(new Apagado());
+		dispositivoInteligente4.setDispositivoFisico(licuadoraMock);
+		
 		dispositivoEstandar1 = new DispositivoEstandar("Aire acondicionado", 24, 1);
+		
 		dispositivoEstandar2 = new DispositivoEstandar("Stereo", 24, 2);
+		
 		dispositivoEstandar3 = new DispositivoEstandar("Cargador", 24, 3);
+		
 		dispositivoEstandar4 = new DispositivoEstandar("Lavaplatos", 24, 4);
+		
 		categoria1 = new Categoria("R1", 18.76, 0.644, 0, 100);
+		
 		categoria2 = new Categoria("R2", 25.0, 0.85, 100, 200);
+		
 		categorias = new RepositorioEnMemoria<Categoria>();
-
 		categorias.agregar(Arrays.asList(categoria1, categoria2));
 
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R1",
@@ -79,9 +96,36 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNicoConsume10KWPorHora() {
+	public void testNicoConsume10HorasLosDispositivosEstandares() {
+		Assert.assertEquals(10, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getHorasDeConsumo()).sum(), 0);
+	}
+	
+	@Test
+	public void testNicoConsume96KWxHoraDispositivosEstandares() {
+		Assert.assertEquals(96, nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 0);
+	}
+	
+	@Test
+	public void testNicoConsume400KWxHoraDispositivosInteligentes() {
+		Assert.assertEquals(400, nico.getDispositivosInteligentes().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum(),0);
+	}
+	
+	@Test
+	public void testNicoConsume10TotalDispositivosInteligentes() {
 		fechaActual = DateTime.now();
 		Assert.assertEquals(10, nico.consumoTotalEstimadoDispositivosEstandares(fechaActual.minusHours(1)), 0);
+	}
+	
+	@Test
+	public void testNicoConsume0TotalDispositivosInteligentes() {
+		fechaActual = DateTime.now();
+		Assert.assertEquals(0, nico.consumoTotalDispositivosInteligentes(fechaActual), 0);
+	}
+	
+	@Test
+	public void testNicoConsumeTotalmente10() {
+		fechaActual = DateTime.now();
+		Assert.assertEquals(10, nico.consumoTotal(fechaActual.minusHours(1)), 0);
 	}
 
 	@Test
@@ -91,6 +135,7 @@ public class ClienteTest {
 
 	@Test
 	public void testNicoEsRecategorizadoAR2() {
+		fechaActual = DateTime.now();
 		nico.asignarCategoria();
 		Assert.assertEquals("R2", nico.getCategoria().getNombre());
 	}
