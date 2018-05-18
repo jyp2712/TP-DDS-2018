@@ -1,6 +1,6 @@
 package tp0.modelo;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +53,7 @@ public class Cliente {
 	@JsonProperty
 	protected List<DispositivoEstandar> dispositivosEstandares;
 
+	@JsonProperty
 	protected List<DispositivoInteligente> dispositivosInteligentes;
 
 	protected long puntos;
@@ -63,9 +64,9 @@ public class Cliente {
 			@JsonProperty("telefono") String tel, @JsonProperty("domicilio de servicio") String domicilioServicio,
 			@JsonProperty("fecha de alta en el servicio") String fechaAltaServicio,
 			@JsonProperty("categoria") String nombreCategoria,
-			@JsonProperty("dispositivos") List<DispositivoEstandar> dispositivosEstandares,
-			List<DispositivoInteligente> dispositivosInteligentes,
-			long puntos) {
+			@JsonProperty("dispositivos estandar") List<DispositivoEstandar> dispositivosEstandares,
+			@JsonProperty("dispositivos inteligentes") List<DispositivoInteligente> dispositivosInteligentes
+			/*long puntos*/) {
 		setNombre(nombre);
 		setApellido(apellido);
 		setTipoDoc(DTD.valueOf(tipoDoc));
@@ -76,7 +77,7 @@ public class Cliente {
 		setFechaAltaServicio(new DateTime(fechaAltaServicio));
 		setDispositivosEstandares(dispositivosEstandares);
 		setDispositivosInteligentes(dispositivosInteligentes);
-		setPuntos(puntos);
+		/*setPuntos(puntos);*/
 		// this.observadores = new ArrayList<ObservadorConversion>();
 	}
 
@@ -161,17 +162,17 @@ public class Cliente {
 		return dispositivosEstandares;
 	}
 
-	private void setDispositivosEstandares(List<DispositivoEstandar> dispositivos) {
+	public void setDispositivosEstandares(List<DispositivoEstandar> dispositivos) {
 		this.dispositivosEstandares = dispositivos;
 	}
 
-	private void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
+	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivos) {
 		this.dispositivosInteligentes = dispositivos;
 	}
 
-	private void setPuntos(long puntos) {
+/*	private void setPuntos(long puntos) {
 		this.puntos = puntos;
-	}
+	}*/
 
 	private void setNombreCategoria(String nombreCategoria) {
 		this.nombreCategoria = nombreCategoria;

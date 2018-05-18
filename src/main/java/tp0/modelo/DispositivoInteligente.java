@@ -6,20 +6,18 @@ import org.joda.time.Hours;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DispositivoInteligente implements Dispositivo{
+public class DispositivoInteligente implements Dispositivo {
 
 	@JsonProperty
 	protected String nombreGenerico;
-
 	@JsonProperty
 	protected double KwXHora;
 
 	private Estado estado;
-	
 	private DispositivoFisicoAdapter dispositivoFisico;
 
 	@JsonCreator
-	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico, 
+	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora) {
 		setNombreGenerico(nombreGenerico);
 		setKwXHora(KwXHora);
@@ -53,11 +51,10 @@ public class DispositivoInteligente implements Dispositivo{
 		return this.getEstado().estaEncendido();
 	}
 
-
 	public Boolean estaApagado() {
 		return !this.getEstado().estaEncendido();
 	}
-	
+
 	public void apagarse() {
 		this.getEstado().apagarse(this);
 	}
@@ -65,38 +62,38 @@ public class DispositivoInteligente implements Dispositivo{
 	public void encenderse() {
 		this.getEstado().encenderse(this);
 	}
-	
+
 	public void modoAhorroEnergia() {
 		this.getEstado().modoAhorroEnergia(this);
 	}
-	
+
 	private DispositivoFisicoAdapter getDispositivoFisico() {
 		return this.dispositivoFisico;
 	}
-	
+
 	public void setDispositivoFisico(DispositivoFisicoAdapter dispositivoFisico) {
 		this.dispositivoFisico = dispositivoFisico;
 	}
-	
-/*	public double consumo() {
-		return this.KwXHora;
-	}*/
 
-	/*public Boolean esInteligente() {
-		return true;
-	}*/
-	
+	/*
+	 * public double consumo() { return this.KwXHora; }
+	 */
+
+	/*
+	 * public Boolean esInteligente() { return true; }
+	 */
+
 	public double consumo(Hours horas) {
 		return this.getDispositivoFisico().consumo(horas);
 	}
-	
+
 	public double consumoTotal(DateTime periodo) {
 		return this.getDispositivoFisico().consumoTotal(periodo);
 		// * Hours.hoursBetween(DateTime.now(), periodo).getHours()
 	}
-	
-//	public int otorgarPuntos() {
-//		return 15;
-//	}
+
+	// public int otorgarPuntos() {
+	// return 15;
+	// }
 
 }
