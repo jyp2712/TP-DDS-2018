@@ -6,7 +6,7 @@ import org.joda.time.Hours;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DispositivoInteligente{
+public class DispositivoInteligente implements Dispositivo{
 
 	@JsonProperty
 	protected String nombreGenerico;
@@ -15,6 +15,8 @@ public class DispositivoInteligente{
 	protected double KwXHora;
 
 	private Estado estado;
+	
+	private DispositivoFisicoAdapter dispositivoFisico;
 
 	@JsonCreator
 	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico, 
@@ -48,44 +50,54 @@ public class DispositivoInteligente{
 	}
 
 	public Boolean estaEncendido() {
-		return this.estado.estaEncendido();
+		return this.getEstado().estaEncendido();
 	}
 
 
 	public Boolean estaApagado() {
-		return !this.estado.estaEncendido();
+		return !this.getEstado().estaEncendido();
 	}
 	
 	public void apagarse() {
-		this.estado.apagarse(this);
+		this.getEstado().apagarse(this);
 	}
 
 	public void encenderse() {
-		this.estado.encenderse(this);
+		this.getEstado().encenderse(this);
 	}
 	
 	public void modoAhorroEnergia() {
-		this.estado.modoAhorroEnergia(this);
+		this.getEstado().modoAhorroEnergia(this);
 	}
 	
-	public double consumo() {
+	private DispositivoFisicoAdapter getDispositivoFisico() {
+		return this.dispositivoFisico;
+	}
+	
+	public void setDispositivoFisico(DispositivoFisicoAdapter dispositivoFisico) {
+		this.dispositivoFisico = dispositivoFisico;
+	}
+	
+/*	public double consumo() {
 		return this.KwXHora;
-	}
+	}*/
 
-	public Boolean esInteligente() {
+	/*public Boolean esInteligente() {
 		return true;
-	}
+	}*/
 	
-	public double energiaConsumida(Hours horas) {
-		return this.KwXHora * horas.getHours();
+	@Override
+	public double consumo(Hours horas) {
+		return this.getDispositivoFisico().consumo(horas);
 	}
 	
 	public double consumoTotal(DateTime periodo) {
-		return this.KwXHora * Hours.hoursBetween(DateTime.now(), periodo).getHours();
+		return this.getDispositivoFisico().consumoTotal(periodo);
+		// * Hours.hoursBetween(DateTime.now(), periodo).getHours()
 	}
 	
-	public int otorgarPuntos() {
-		return 15;
-	}
+//	public int otorgarPuntos() {
+//		return 15;
+//	}
 
 }

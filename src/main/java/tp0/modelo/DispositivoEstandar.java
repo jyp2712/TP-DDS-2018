@@ -1,24 +1,66 @@
 package tp0.modelo;
 
-public class DispositivoEstandar{
-	private double KwXHora;
-	private double horasDeUso;
+import org.joda.time.DateTime;
+import org.joda.time.Hours;
 
-	public DispositivoEstandar(double kwXHora, double horasDeUso) {
-		this.KwXHora = kwXHora;
-		this.horasDeUso = horasDeUso;
+public class DispositivoEstandar implements Dispositivo {
+
+	protected String nombreGenerico;
+	protected double kWXHora;
+	protected double horasDeConsumo;
+
+	public DispositivoEstandar(String nombreGenerico, double kWXHora, double horasDeConsumo) {
+		setNombreGenerico(nombreGenerico);
+		setkWXHora(kWXHora);
+		setHorasDeConsumo(horasDeConsumo);
 	}
 
-	public double consumo() {
-		return this.KwXHora * this.horasDeUso;
+	private void setNombreGenerico(String nombreGenerico) {
+		this.nombreGenerico = nombreGenerico;
 	}
 
-	public Boolean esInteligente() {
-		return false;
+	private void setkWXHora(double kWXHora) {
+		this.kWXHora = kWXHora;
+	}
+
+	private void setHorasDeConsumo(double horasDeConsumo) {
+		this.horasDeConsumo = horasDeConsumo;
+	}
+
+	public double getHorasDeConsumo() {
+		return horasDeConsumo;
+	}
+
+	public double getkWXHora() {
+		return kWXHora;
+	}
+
+	public String getNombreGenerico() {
+		return nombreGenerico;
+	}
+
+	@Override
+	public double consumo(Hours horas) {
+		return this.consumoPorHoraAproximada() * horas.getHours();
+	}
+
+	private double consumoPorHoraAproximada() {
+		return this.getHorasDeConsumo() * this.getkWXHora() / 24;
 	}
 	
-	public DispositivoAdaptado adaptarAInteligente(String nombreGenerico, Boolean estado) {
-		return new DispositivoAdaptado(nombreGenerico, this.KwXHora, estado);
+	@Override
+	public double consumoTotal(DateTime periodo) {
+		return this.consumoPorHoraAproximada() * Hours.hoursBetween(DateTime.now(), periodo).getHours();
 	}
+
+	/*
+	 * public double consumo() { return this.KwXHora * this.horasDeUso; }
+	 * 
+	 * public Boolean esInteligente() { return false; }
+	 * 
+	 * public DispositivoAdaptado adaptarAInteligente(String nombreGenerico, Boolean
+	 * estado) { return new DispositivoAdaptado(nombreGenerico, this.KwXHora,
+	 * estado); }
+	 */
 
 }
