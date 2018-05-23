@@ -11,6 +11,6 @@ public class CondicionMock extends Condicion {
 
 	@Override
 	public Boolean cumplida() {
-		return false;
+		return true;
 	}
 }

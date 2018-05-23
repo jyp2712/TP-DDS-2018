@@ -2,7 +2,7 @@ package test.dispositivo;
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.*;
-import tp0.modelo.dispositivo.regla.AccionInmediata;
+import tp0.modelo.dispositivo.regla.Accion;
 
 
 public class HeladeraMock implements DispositivoFisicoAdapter {
@@ -38,7 +38,7 @@ public class HeladeraMock implements DispositivoFisicoAdapter {
 	}
 
 	@Override
-	public void ejecutar(AccionInmediata accionInmediata) {
+	public void ejecutar(Accion accionInmediata) {
 		// TODO Auto-generated method stub
 		
 	}

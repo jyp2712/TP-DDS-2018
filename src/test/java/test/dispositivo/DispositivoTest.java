@@ -3,13 +3,13 @@ package test.dispositivo;
 import org.joda.time.DateTime;
 import org.junit.*;
 
-import test.regla.AccionInmediataMock;
+import test.regla.AccionMock;
 import test.regla.CondicionMock;
 import test.regla.SensorMock;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.*;
-import tp0.modelo.dispositivo.regla.AccionProgramada;
+import tp0.modelo.dispositivo.regla.Regla;
 
 public class DispositivoTest {
 
@@ -141,17 +141,17 @@ public class DispositivoTest {
 
 	@Test
 	public void testDispositivoInteligente1Ejecuta1Accion() {
-		AccionInmediataMock accionDispositivoInteligente1 = new AccionInmediataMock(dispositivoInteligente1);
+		AccionMock accionDispositivoInteligente1 = new AccionMock(dispositivoInteligente1);
 		dispositivoInteligente1.ejecutar(accionDispositivoInteligente1);
 		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
 	}
-	
+
 	@Test
-	public void testAccionProgramada() {
+	public void testRegla() {
 		SensorMock sensorMock = new SensorMock();
 		CondicionMock condicionMock = new CondicionMock(sensorMock);
-		AccionInmediataMock accionDispositivoInteligente1 = new AccionInmediataMock(dispositivoInteligente1);
-		AccionProgramada accionProgramada = new AccionProgramada(condicionMock, accionDispositivoInteligente1);
+		AccionMock accionDispositivoInteligente1 = new AccionMock(dispositivoInteligente1);
+		Regla accionProgramada = new Regla(condicionMock, accionDispositivoInteligente1);
 		accionProgramada.ejecutar();
 		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
 	}

@@ -1,9 +1,9 @@
 package tp0.modelo.dispositivo.regla;
 
 public abstract class Condicion {
-	
+
 	private SensorAdapter sensor;
-	
+
 	public Condicion(SensorAdapter sensor) {
 		this.setSensor(sensor);
 	}
@@ -15,12 +15,10 @@ public abstract class Condicion {
 	private void setSensor(SensorAdapter sensor) {
 		this.sensor = sensor;
 	}
-	
+
 	public double medicion() {
 		return this.getSensor().medicion();
 	}
-	
-	public Boolean cumplida() {
-		return false;
-	}
+
+	public abstract Boolean cumplida();
 }

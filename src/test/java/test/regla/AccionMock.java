@@ -1,13 +1,13 @@
 package test.regla;
 
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.regla.AccionInmediata;
+import tp0.modelo.dispositivo.regla.Accion;
 
-public class AccionInmediataMock extends AccionInmediata {
+public class AccionMock extends Accion {
 	
 	private int ejecuciones = 0;
 	
-	public AccionInmediataMock(DispositivoInteligente dispositivo) {
+	public AccionMock(DispositivoInteligente dispositivo) {
 		super(dispositivo);
 		// TODO Auto-generated constructor stub
 	}

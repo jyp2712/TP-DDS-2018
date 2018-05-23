@@ -1,11 +1,11 @@
 package tp0.modelo.dispositivo.regla;
 
-public class AccionProgramada implements Accion {
-	
+public class Regla {
+
 	private Condicion condicion;
 	private Accion accion;
-	
-	public AccionProgramada(Condicion condicion, Accion accion) {
+
+	public Regla(Condicion condicion, Accion accion) {
 		this.setCondicion(condicion);
 		this.setAccion(accion);
 	}
@@ -26,9 +26,9 @@ public class AccionProgramada implements Accion {
 		this.accion = accion;
 	}
 
-	@Override
 	public void ejecutar() {
-		this.getAccion().ejecutar();
+		if (this.getCondicion().cumplida()) {
+			this.getAccion().ejecutar();
+		}
 	}
-
 }
