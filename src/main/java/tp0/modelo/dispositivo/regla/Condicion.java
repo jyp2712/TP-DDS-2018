@@ -1,4 +1,4 @@
-package tp0.modelo.dispositivo.condicion;
+package tp0.modelo.dispositivo.regla;
 
 public abstract class Condicion {
 	

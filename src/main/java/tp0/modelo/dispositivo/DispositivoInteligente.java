@@ -5,8 +5,8 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import tp0.modelo.dispositivo.accion.Accion;
 import tp0.modelo.dispositivo.estado.Estado;
+import tp0.modelo.dispositivo.regla.Accion;
 
 public class DispositivoInteligente implements Dispositivo {
 

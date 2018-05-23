@@ -1,4 +1,4 @@
-package tp0.modelo.dispositivo.accion;
+package tp0.modelo.dispositivo.regla;
 
 import tp0.modelo.dispositivo.*;
 

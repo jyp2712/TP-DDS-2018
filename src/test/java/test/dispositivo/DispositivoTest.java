@@ -8,8 +8,8 @@ import test.regla.CondicionMock;
 import test.regla.SensorMock;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.accion.AccionProgramada;
 import tp0.modelo.dispositivo.estado.*;
+import tp0.modelo.dispositivo.regla.AccionProgramada;
 
 public class DispositivoTest {
 

@@ -1,7 +1,7 @@
 package test.regla;
 
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.accion.AccionInmediata;
+import tp0.modelo.dispositivo.regla.AccionInmediata;
 
 public class AccionInmediataMock extends AccionInmediata {
 	

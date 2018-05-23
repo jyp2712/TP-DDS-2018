@@ -1,6 +1,4 @@
-package tp0.modelo.dispositivo.accion;
-
-import tp0.modelo.dispositivo.condicion.Condicion;
+package tp0.modelo.dispositivo.regla;
 
 public class AccionProgramada implements Accion {
 	

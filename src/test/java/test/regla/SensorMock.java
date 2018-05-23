@@ -1,6 +1,6 @@
 package test.regla;
 
-import tp0.modelo.dispositivo.condicion.SensorAdapter;
+import tp0.modelo.dispositivo.regla.SensorAdapter;
 
 public class SensorMock implements SensorAdapter {
 	@Override

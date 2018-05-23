@@ -1,7 +1,7 @@
 package test.regla;
 
-import tp0.modelo.dispositivo.condicion.Condicion;
-import tp0.modelo.dispositivo.condicion.SensorAdapter;
+import tp0.modelo.dispositivo.regla.Condicion;
+import tp0.modelo.dispositivo.regla.SensorAdapter;
 
 public class CondicionMock extends Condicion {
 

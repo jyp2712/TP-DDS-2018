@@ -2,20 +2,14 @@ package tp0.modelo.dispositivo.estado;
 
 import tp0.modelo.dispositivo.DispositivoInteligente;
 
-public class AhorroEnergia implements Estado {
+public class AhorroEnergia extends Estado {
 
+	// TODO: Consultar al dispositivo su estado en vez de guardarlo internamente
 	public Boolean estaEncendido() {
 		return true;
 	}
 
-	public void encender(DispositivoInteligente dispositivo) {
-		this.cambiarAEncendido(dispositivo);
-	}
-
+	@Override
 	public void ahorrarEnergia(DispositivoInteligente dispositivo) {
-	}
-
-	public void apagar(DispositivoInteligente dispositivo) {
-		this.cambiarAApagado(dispositivo);
 	}
 }

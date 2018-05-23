@@ -3,7 +3,7 @@ package test.dispositivo;
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.*;
-import tp0.modelo.dispositivo.accion.AccionInmediata;
+import tp0.modelo.dispositivo.regla.AccionInmediata;
 
 
 public class TostadoraMock implements DispositivoFisicoAdapter {
