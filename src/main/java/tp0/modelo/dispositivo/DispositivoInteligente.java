@@ -77,29 +77,15 @@ public class DispositivoInteligente implements Dispositivo {
 		this.dispositivoFisico = dispositivoFisico;
 	}
 
-	/*
-	 * public double consumo() { return this.KwXHora; }
-	 */
-
-	/*
-	 * public Boolean esInteligente() { return true; }
-	 */
-
-	public double consumo(int horas) {
-		return this.getDispositivoFisico().consumo(horas);
+	public double consumoUltimas(int horas) {
+		return this.getDispositivoFisico().consumoUltimas(horas);
 	}
 
-	public double consumoTotal(DateTime periodo) {
-		return this.getDispositivoFisico().consumoTotal(periodo);
-		// * Hours.hoursBetween(DateTime.now(), periodo).getHours()
+	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
+		return this.getDispositivoFisico().consumoTotal(fechaInicial, fechaFinal);
 	}
 	
 	public void ejecutar(Accion accion) {
 		accion.ejecutar();
 	}
-
-	// public int otorgarPuntos() {
-	// return 15;
-	// }
-
 }

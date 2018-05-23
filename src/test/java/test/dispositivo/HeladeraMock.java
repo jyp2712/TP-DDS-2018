@@ -8,13 +8,13 @@ import tp0.modelo.dispositivo.accion.AccionInmediata;
 public class HeladeraMock implements DispositivoFisicoAdapter {
 
 	@Override
-	public double consumo(int horas) {
+	public double consumoUltimas(int horas) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double consumoTotal(DateTime periodo) {
+	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
 		// TODO Auto-generated method stub
 		return 25;
 	}

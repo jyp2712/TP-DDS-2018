@@ -47,7 +47,7 @@ public class DispositivoEstandar implements Dispositivo {
 		return nombreGenerico;
 	}
 
-	public double consumo(int horas) {
+	public double consumoUltimas(int horas) {
 		return this.consumoPorHoraAproximada() * horas;
 	}
 
@@ -55,8 +55,8 @@ public class DispositivoEstandar implements Dispositivo {
 		return this.getHorasDeConsumo() * this.getkWXHora() / 24;
 	}
 
-	public double consumoTotal(DateTime periodo) {
-		return this.consumoPorHoraAproximada() * Hours.hoursBetween(periodo, DateTime.now()).getHours();
+	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
+		return this.consumoPorHoraAproximada() * Hours.hoursBetween(fechaInicial, fechaFinal).getHours();
 	}
 
 	/*

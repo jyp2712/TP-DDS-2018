@@ -5,9 +5,9 @@ import org.joda.time.DateTime;
 import tp0.modelo.dispositivo.accion.AccionInmediata;
 
 public interface DispositivoFisicoAdapter {
-	public double consumo(int horas);
+	public double consumoUltimas(int horas);
 	
-	public double consumoTotal(DateTime periodo);
+	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal);
 	
 	public void apagar();
 	

@@ -114,12 +114,12 @@ public class DispositivoTest {
 
 	@Test
 	public void testDispositivoInteligente1ConsumoTotal() {
-		Assert.assertEquals(25, dispositivoInteligente1.consumoTotal(hoy), 0);
+		Assert.assertEquals(25, dispositivoInteligente1.consumoTotal(DateTime.now().minusHours(2), hoy), 0);
 	}
 
 	@Test
 	public void testDispositivoInteligente2Consumo() {
-		Assert.assertEquals(0, dispositivoInteligente2.consumo(hoy.getHourOfDay()), 0);
+		Assert.assertEquals(0, dispositivoInteligente2.consumoUltimas(hoy.getHourOfDay()), 0);
 	}
 
 	// Dispositivos Estandares
@@ -131,12 +131,12 @@ public class DispositivoTest {
 
 	@Test
 	public void testDispositivoEstandar1Consume100Durante10Horas() {
-		Assert.assertEquals(100, dispositivoEstandar1.consumo(10), 0);
+		Assert.assertEquals(100, dispositivoEstandar1.consumoUltimas(10), 0);
 	}
 
 	@Test
 	public void testDispositivoEstandar1ConsumeTotalmente20Durante2Horas() {
-		Assert.assertEquals(20, dispositivoEstandar1.consumoTotal(DateTime.now().minusHours(2)), 0);
+		Assert.assertEquals(20, dispositivoEstandar1.consumoTotal(DateTime.now().minusHours(2), hoy), 0);
 	}
 
 	@Test

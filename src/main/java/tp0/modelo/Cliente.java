@@ -223,14 +223,14 @@ public class Cliente {
 		return this.getDispositivosEstandar().stream().count();
 	}
 
-	public double consumoTotal(DateTime periodo) {
+	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
 		return Stream.concat(this.getDispositivosInteligentes().stream(), this.getDispositivosEstandar().stream())
-				.mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo)).sum();
+				.mapToDouble(dispositivo -> dispositivo.consumoTotal(fechaInicial, fechaFinal)).sum();
 	}
 
 	public void asignarCategoria() {
 		this.setCategoria(this.repositorioCategorias
-				.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3)))));
+				.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3), DateTime.now()))));
 	}
 
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
