@@ -28,14 +28,17 @@ public class DispositivoTest {
 	public void setUp() throws Exception {
 		dispositivoInteligente1 = new DispositivoInteligente("Heladera", 150);
 		dispositivoInteligente1.setEstado(new Encendido());
+		dispositivoInteligente1.setEstadoEnum(EstadoEnum.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 
 		dispositivoInteligente2 = new DispositivoInteligente("Lavarropas", 150);
 		dispositivoInteligente2.setEstado(new Apagado());
+		dispositivoInteligente2.setEstadoEnum(EstadoEnum.APAGADO);
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 
 		dispositivoInteligente3 = new DispositivoInteligente("Tostadora", 50);
 		dispositivoInteligente3.setEstado(new AhorroEnergia());
+		dispositivoInteligente3.setEstadoEnum(EstadoEnum.AHORROENERGIA);
 		dispositivoInteligente3.setDispositivoFisico(tostadoraMock);
 
 		dispositivoEstandar1 = new DispositivoEstandar("Televisor", 24, 10);
@@ -136,7 +139,7 @@ public class DispositivoTest {
 
 	@Test
 	public void testDispositivoEstandar1ConsumeTotalmente20Durante2Horas() {
-		Assert.assertEquals(20, dispositivoEstandar1.consumoTotal(DateTime.now().minusHours(2), hoy), 0);
+		Assert.assertEquals(20, dispositivoEstandar1.consumoTotal(DateTime.now().minusHours(2), DateTime.now()), 0);
 	}
 
 	@Test
@@ -155,4 +158,11 @@ public class DispositivoTest {
 		accionProgramada.ejecutar();
 		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
 	}
+	
+	@Test
+	public void testDispositivoInteligenteApagarEnum() {
+		dispositivoInteligente1.getEstadoEnum().apagar(dispositivoInteligente1);
+		Assert.assertEquals(EstadoEnum.APAGADO, dispositivoInteligente1.getEstadoEnum());		
+	}
+	
 }

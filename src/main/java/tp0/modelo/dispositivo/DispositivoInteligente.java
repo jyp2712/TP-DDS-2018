@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp0.modelo.dispositivo.estado.Estado;
+import tp0.modelo.dispositivo.estado.EstadoEnum;
 import tp0.modelo.dispositivo.regla.Accion;
 
 public class DispositivoInteligente implements Dispositivo {
@@ -16,6 +17,7 @@ public class DispositivoInteligente implements Dispositivo {
 	protected double KwXHora;
 
 	private Estado estado;
+	private EstadoEnum estadoEnum;
 	private DispositivoFisicoAdapter dispositivoFisico;
 
 	@JsonCreator
@@ -87,5 +89,13 @@ public class DispositivoInteligente implements Dispositivo {
 	
 	public void ejecutar(Accion accion) {
 		accion.ejecutar();
+	}
+
+	public void setEstadoEnum(EstadoEnum estado) {
+		this.estadoEnum = estado;
+	}
+	
+	public EstadoEnum getEstadoEnum() {
+		return estadoEnum;
 	}
 }
