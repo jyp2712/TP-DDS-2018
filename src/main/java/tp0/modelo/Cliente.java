@@ -2,6 +2,7 @@ package tp0.modelo;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.joda.time.DateTime;
 
@@ -223,18 +224,8 @@ public class Cliente {
 	}
 
 	public double consumoTotal(DateTime periodo) {
-		return this.consumoTotalDispositivosInteligentes(periodo)
-				+ this.consumoTotalEstimadoDispositivosEstandares(periodo);
-	}
-
-	public double consumoTotalDispositivosInteligentes(DateTime periodo) {
-		return this.getDispositivosInteligentes().stream().mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo))
-				.sum();
-	}
-
-	public double consumoTotalEstimadoDispositivosEstandares(DateTime periodo) {
-		return this.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo))
-				.sum();
+		return Stream.concat(this.getDispositivosInteligentes().stream(), this.getDispositivosEstandar().stream())
+				.mapToDouble(dispositivo -> dispositivo.consumoTotal(periodo)).sum();
 	}
 
 	public void asignarCategoria() {
