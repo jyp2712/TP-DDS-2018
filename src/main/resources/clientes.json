@@ -10,29 +10,23 @@
 		"categoria": "R2",
 		"dispositivos inteligentes": [
 			{
-				"nombre generico": "HELADERA_CON_FREEZER"
+				"nombre generico": "HELADERA_CONFREEZER",
+				"KW/H": 150
 			},
 			{
-				"nombre generico": "LAVARROPAS_AUTOMATICO_5_KG"
-			},
-			{
-				"nombre generico": "TELEVISOR_LED_32"
-			},
-			{
-				"nombre generico": "VENTILADOR_TECHO"
+				"nombre generico": "LAVARROPAS_AUTO_5KG",
+				"KW/H": 150
 			}
 		],
 		"dispositivos estandar": [
 			{
-				"nombre generico": "PLANCHA_VAPOR",
-				"Horas de consumo": 1
-			},
-			{
-				"nombre generico": "MICROONDAS_CONVENCIONAL",
+				"nombre generico": "TELEVISOR_TUBO_21",
+				"KW/H": 24,
 				"Horas de consumo": 1
 			},
 			{
 				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 24,
 				"Horas de consumo": 1
 			}
 		],
@@ -49,12 +43,14 @@
 		"categoria": "R2",
 		"dispositivos inteligentes": [
 			{
-				"nombre generico": "CHAU1"
+				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 150
 			}
 		],
 		"dispositivos estandar": [
 			{
-				"nombre generico": "HOLA1",
+				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 1,
 				"Horas de consumo": 8
 			}
 		],
@@ -71,12 +67,14 @@
 		"categoria": "R1",
 		"dispositivos inteligentes": [
 			{
-				"nombre generico": "CHAU1"
+				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 150
 			}
 		],
 		"dispositivos estandar": [
 			{
-				"nombre generico": "HOLA2",
+				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 2,
 				"Horas de consumo": 12
 			}
 		],

@@ -1,5 +1,7 @@
 package tp0.modelo.dispositivo.regla;
 
+import org.joda.time.DateTime;
+
 public interface SensorAdapter {
-	public double medicion();
+	public abstract double medicion(DateTime fechaInicial, DateTime fechaFinal);
 }

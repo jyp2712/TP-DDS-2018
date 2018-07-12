@@ -6,22 +6,17 @@ import org.joda.time.Hours;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DispositivoEstandar implements Dispositivo {
-	private double usoOptimo;
-	@JsonProperty
-	protected TipoDispositivoEnum tipoDispositivo;
+public class DispositivoEstandar extends Dispositivo {
+
 	@JsonProperty
 	protected double horasDeConsumo;
 
 	@JsonCreator
-	public DispositivoEstandar(@JsonProperty("nombre generico") TipoDispositivoEnum tipoDispositivo,
-			@JsonProperty("Horas de consumo") double horasDeConsumo) {
-		setTipoDispositivoEnum(tipoDispositivo);
+	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
+			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {
+		this.nombreGenerico = nombreGenerico;
+		setKwXHora(KwXHora);
 		setHorasDeConsumo(horasDeConsumo);
-	}
-
-	private void setTipoDispositivoEnum(TipoDispositivoEnum nombreGenerico) {
-		this.tipoDispositivo = nombreGenerico;
 	}
 
 	private void setHorasDeConsumo(double horasDeConsumo) {
@@ -32,31 +27,18 @@ public class DispositivoEstandar implements Dispositivo {
 		return horasDeConsumo;
 	}
 
-	public double getkWXHora() {
-		return tipoDispositivo.kwPorHora();
-	}
-
-	public TipoDispositivoEnum getTipoDispositivoEnum() {
-		return tipoDispositivo;
-	}
-
 	public double consumoUltimas(int horas) {
 		return this.consumoPorHoraAproximada() * horas;
 	}
 
 	public double consumoPorHoraAproximada() {
-		return this.getHorasDeConsumo() * this.getkWXHora() / 24;
+		return this.getHorasDeConsumo() * this.getKwXHora() / 24;
 	}
 
 	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
 		return this.consumoPorHoraAproximada() * Hours.hoursBetween(fechaInicial, fechaFinal).getHours();
 	}
-	public void setUsoOptimo(double horas) {
-		usoOptimo=horas;
-	}
-	public double getUsoOptimo() {
-		return usoOptimo;
-	}
+
 
 	/*
 	 * public double consumo() { return this.KwXHora * this.horasDeUso; }

@@ -18,7 +18,7 @@ public class Regla {
 		this.condicion = condicion;
 	}
 
-	private Accion getAccion() {
+	public Accion getAccion() {
 		return accion;
 	}
 
@@ -26,8 +26,8 @@ public class Regla {
 		this.accion = accion;
 	}
 
-	public void ejecutar() {
-		if (this.getCondicion().cumplida()) {
+	public void ejecutar(double resultadoConsumo) {
+		if (this.getCondicion().cumplida(resultadoConsumo)) {
 			this.getAccion().ejecutar();
 		}
 	}

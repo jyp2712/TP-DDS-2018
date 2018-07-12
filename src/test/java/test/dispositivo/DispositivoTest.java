@@ -1,49 +1,51 @@
 package test.dispositivo;
 
+import java.util.Arrays;
+
 import org.joda.time.DateTime;
 import org.junit.*;
 
 import test.regla.AccionMock;
-import test.regla.CondicionMock;
-import test.regla.SensorMock;
+import tp0.modelo.dispositivo.DispositivoConcreto;
+import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.TipoDispositivoEnum;
 import tp0.modelo.dispositivo.estado.*;
-import tp0.modelo.dispositivo.regla.Regla;
+import tp0.modelo.repositorios.RepositorioEnMemoria;
 
 public class DispositivoTest {
 
 	// Tests para probar el comportamiento de la CATEGORIA
+	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
 	DispositivoInteligente dispositivoInteligente1;
 	DispositivoInteligente dispositivoInteligente2;
 	DispositivoInteligente dispositivoInteligente3;
 	HeladeraMock heladeraMock = new HeladeraMock();
 	LavarropasMock lavarropasMock = new LavarropasMock();
-	TostadoraMock tostadoraMock = new TostadoraMock();
 	DispositivoEstandar dispositivoEstandar1;
 	DateTime hoy = DateTime.now();
 	DateTime ayer = hoy.minusDays(1);
 
 	@Before
 	public void setUp() throws Exception {
-		//TODO FALTAN CAMBIAR LOS MOCKS
-		dispositivoInteligente1 = new DispositivoInteligente(TipoDispositivoEnum.HELADERA_CON_FREEZER);
+		repositorioDeDispositivos.agregar(
+				Arrays.asList(new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.09, 0, 0),
+						new DispositivoConcreto(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG, 0.175, 6, 30),
+				new DispositivoConcreto(DispositivoConcretoEnum.TELEVISOR_TUBO_21, 0.075, 90, 360),
+				new DispositivoConcreto(DispositivoConcretoEnum.VENTILADOR_PIE, 0.09, 120, 360)));
+		
+		dispositivoInteligente1 = new DispositivoInteligente(DispositivoConcretoEnum.HELADERA_CONFREEZER.toString(), 150);
 		dispositivoInteligente1.setEstado(new Encendido());
-		dispositivoInteligente1.setEstadoEnum(EstadoEnum.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
+		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 
-		dispositivoInteligente2 = new DispositivoInteligente(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG);
+		dispositivoInteligente2 = new DispositivoInteligente(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG.toString(), 150);
 		dispositivoInteligente2.setEstado(new Apagado());
-		dispositivoInteligente2.setEstadoEnum(EstadoEnum.APAGADO);
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
-
-		dispositivoInteligente3 = new DispositivoInteligente(TipoDispositivoEnum.TELEVISOR_LED_40);
-		dispositivoInteligente3.setEstado(new AhorroEnergia());
-		dispositivoInteligente3.setEstadoEnum(EstadoEnum.AHORROENERGIA);
-		dispositivoInteligente3.setDispositivoFisico(tostadoraMock);
-
-		dispositivoEstandar1 = new DispositivoEstandar(TipoDispositivoEnum.TELEVISOR_COLOR_TUBO_29_A_34, 10);
+		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
+		
+		dispositivoEstandar1 = new DispositivoEstandar(DispositivoConcretoEnum.TELEVISOR_TUBO_21.toString(), 24, 10);
+		dispositivoEstandar1.setDispositivoGenerico(repositorioDeDispositivos);
 	}
 
 	// Dispositivos Inteligentes
@@ -95,29 +97,6 @@ public class DispositivoTest {
 	}
 
 	@Test
-	public void testDispositivoInteligente3AhorroEnergia() {
-		Assert.assertTrue(dispositivoInteligente3.estaEncendido());
-	}
-
-	@Test
-	public void testDispositivoInteligente3SeLoAhorraEnergiaYNoHaceNada() {
-		dispositivoInteligente3.ahorrarseEnergia();
-		Assert.assertEquals(new AhorroEnergia().getClass(), dispositivoInteligente3.getEstado().getClass());
-	}
-
-	@Test
-	public void testDispositivoInteligente3SeLoEnciendeCorrectamente() {
-		dispositivoInteligente3.encenderse();
-		Assert.assertEquals(new Encendido().getClass(), dispositivoInteligente3.getEstado().getClass());
-	}
-
-	@Test
-	public void testDispositivoInteligente3SeLoApagaCorrectamente() {
-		dispositivoInteligente3.apagarse();
-		Assert.assertEquals(new Apagado().getClass(), dispositivoInteligente3.getEstado().getClass());
-	}
-
-	@Test
 	public void testDispositivoInteligente1ConsumoTotal() {
 		Assert.assertEquals(25, dispositivoInteligente1.consumoTotal(DateTime.now().minusHours(2), hoy), 0);
 	}
@@ -151,20 +130,4 @@ public class DispositivoTest {
 		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
 	}
 
-	@Test
-	public void testRegla() {
-		SensorMock sensorMock = new SensorMock();
-		CondicionMock condicionMock = new CondicionMock(sensorMock);
-		AccionMock accionDispositivoInteligente1 = new AccionMock(dispositivoInteligente1);
-		Regla accionProgramada = new Regla(condicionMock, accionDispositivoInteligente1);
-		accionProgramada.ejecutar();
-		Assert.assertEquals(1, accionDispositivoInteligente1.getEjecuciones());
-	}
-	
-	@Test
-	public void testDispositivoInteligenteApagarEnum() {
-		dispositivoInteligente1.getEstadoEnum().apagar(dispositivoInteligente1);
-		Assert.assertEquals(EstadoEnum.APAGADO, dispositivoInteligente1.getEstadoEnum());		
-	}
-	
 }

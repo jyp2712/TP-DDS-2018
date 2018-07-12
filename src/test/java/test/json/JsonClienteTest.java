@@ -8,9 +8,10 @@ import org.junit.*;
 
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
+import tp0.modelo.dispositivo.DispositivoConcreto;
+import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.TipoDispositivoEnum;
 import tp0.modelo.dispositivo.estado.Apagado;
 import tp0.modelo.dispositivo.estado.Encendido;
 import tp0.modelo.json.DecodificadorJson;
@@ -21,13 +22,14 @@ public class JsonClienteTest {
 
 	// Tests para probar la carga de datos desde cliente.json
 	RepositorioEnMemoria<Categoria> repositorioDeCategorias = new RepositorioEnMemoria<Categoria>();
+	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
+	
 	DecodificadorJson decodificador = new DecodificadorJson(new FuenteArchivo("clientes.json"), Cliente.class);
 	List<Cliente> clientes = new ArrayList<>();
 	Cliente nicolas;
 	Cliente nico;
-	DispositivoInteligente dispositivoInteligente1, dispositivoInteligente2, dispositivoInteligente3,
-			dispositivoInteligente4;
-	DispositivoEstandar dispositivoEstandar1, dispositivoEstandar2, dispositivoEstandar3, dispositivoEstandar4;
+	DispositivoInteligente dispositivoInteligente1, dispositivoInteligente2;
+	DispositivoEstandar dispositivoEstandar1, dispositivoEstandar2;
 	List<DispositivoInteligente> dispositivosInteligentes;
 	List<DispositivoEstandar> dispositivosEstandares;
 	DispositivoInteligente disp1;
@@ -42,27 +44,39 @@ public class JsonClienteTest {
 						new Categoria("R5", 110.38, 0.794, 450, 500), new Categoria("R6", 220.75, 0.832, 500, 600),
 						new Categoria("R7", 443.59, 0.851, 600, 700), new Categoria("R8", 545.96, 0.851, 700, 1400),
 						new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY)));
+		repositorioDeDispositivos.agregar(
+				Arrays.asList(new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.09, 0, 0),
+						new DispositivoConcreto(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG, 0.175, 6, 30),
+				new DispositivoConcreto(DispositivoConcretoEnum.TELEVISOR_TUBO_21, 0.075, 90, 360),
+				new DispositivoConcreto(DispositivoConcretoEnum.VENTILADOR_PIE, 0.09, 120, 360)));
+		
 		clientes.stream().forEach(cliente -> cliente.setRepositorioCategorias(repositorioDeCategorias));
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
-		dispositivoInteligente1 = new DispositivoInteligente(TipoDispositivoEnum.HELADERA_CON_FREEZER);
+		
+		dispositivoInteligente1 = new DispositivoInteligente(DispositivoConcretoEnum.HELADERA_CONFREEZER.toString(), 150);
 		dispositivoInteligente1.setEstado(new Encendido());
-		dispositivoInteligente2 = new DispositivoInteligente(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG);
+		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
+		
+		dispositivoInteligente2 = new DispositivoInteligente(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG.toString(), 150);
 		dispositivoInteligente2.setEstado(new Apagado());
-		dispositivoInteligente3 = new DispositivoInteligente(TipoDispositivoEnum.TELEVISOR_LED_32);
-		dispositivoInteligente3.setEstado(new Apagado());
-		dispositivoInteligente4 = new DispositivoInteligente(TipoDispositivoEnum.VENTILADOR_TECHO);
-		dispositivoInteligente4.setEstado(new Apagado());
-		dispositivoEstandar1 = new DispositivoEstandar(TipoDispositivoEnum.PLANCHA_VAPOR, 1);
-		dispositivoEstandar2 = new DispositivoEstandar(TipoDispositivoEnum.MICROONDAS_CONVENCIONAL, 2);
-		dispositivoEstandar3 = new DispositivoEstandar(TipoDispositivoEnum.VENTILADOR_PIE, 3);
-		dispositivoEstandar4 = new DispositivoEstandar(TipoDispositivoEnum.LAVARROPAS_SEMI_AUTOMATICO_5_KG, 4);
-		dispositivosEstandares = Arrays.asList(dispositivoEstandar1, dispositivoEstandar2, dispositivoEstandar3, dispositivoEstandar4);
-		dispositivosInteligentes = Arrays.asList(dispositivoInteligente1, dispositivoInteligente2, dispositivoInteligente3, dispositivoInteligente4);
+		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
+
+		dispositivoEstandar1 = new DispositivoEstandar(DispositivoConcretoEnum.TELEVISOR_TUBO_21.toString(), 24, 1);
+		dispositivoEstandar1.setDispositivoGenerico(repositorioDeDispositivos);
+
+		dispositivoEstandar2 = new DispositivoEstandar(DispositivoConcretoEnum.VENTILADOR_PIE.toString(), 24, 2);
+		dispositivoEstandar2.setDispositivoGenerico(repositorioDeDispositivos);
+
+		dispositivosEstandares = Arrays.asList(dispositivoEstandar1, dispositivoEstandar2);
+		dispositivosInteligentes = Arrays.asList(dispositivoInteligente1, dispositivoInteligente2);
+
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2",
 				dispositivosEstandares, dispositivosInteligentes, 0);
 		nicolas.setRepositorioCategorias(repositorioDeCategorias);
 		nicolas.obtenerCategoria();
+	
 		nico = clientes.stream().filter(cliente -> cliente.getDocumento().equals(39068888)).findFirst().get();
+
 		disp1 = nico.getDispositivosInteligentes().stream()
 				.filter(dispositivo -> dispositivo.getNombreGenerico().equals(dispositivoInteligente1.getNombreGenerico()))
 				.findFirst().get();
@@ -97,7 +111,7 @@ public class JsonClienteTest {
 
 	@Test
 	public void testNicoDomicilio() {
-		Assert.assertEquals(nico.getDomicilioServicio(), nicolas.getDomicilioServicio());
+		Assert.assertEquals(nico.getDomicilioServicio().getDireccion(), nicolas.getDomicilioServicio().getDireccion());
 	}
 
 	@Test
@@ -115,7 +129,7 @@ public class JsonClienteTest {
 	@Test
 	public void testNicoDispositivos() {
 		Assert.assertEquals(8, nico.cantidadDispositivosTotal(), nicolas.cantidadDispositivosTotal());
-		Assert.assertEquals(disp1.getNombreGenerico().toString(), disp1.getNombreGenerico(),
+		Assert.assertEquals(disp1.getNombreGenerico(), disp1.getNombreGenerico(),
 				dispositivoInteligente1.getNombreGenerico());
 		Assert.assertEquals(10, disp1.getKwXHora(), dispositivoInteligente1.getKwXHora());
 	}

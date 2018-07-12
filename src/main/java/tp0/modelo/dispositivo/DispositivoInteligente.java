@@ -6,40 +6,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tp0.modelo.dispositivo.estado.Estado;
-import tp0.modelo.dispositivo.estado.EstadoEnum;
 import tp0.modelo.dispositivo.regla.Accion;
+import tp0.modelo.dispositivo.regla.SensorAdapter;
 
-public class DispositivoInteligente implements Dispositivo {
-	private double usoOptimo;
-
-	@JsonProperty
-	protected TipoDispositivoEnum tipoDispositivo;
+public class DispositivoInteligente extends Dispositivo {
 
 	private Estado estado;
-	private EstadoEnum estadoEnum;
 	private DispositivoFisicoAdapter dispositivoFisico;
+	protected SensorAdapter sensor;
 
 	@JsonCreator
-	public DispositivoInteligente(@JsonProperty("nombre generico") TipoDispositivoEnum tipoDispositivo) {
-		setTipoDispositivoEnum(tipoDispositivo);
+	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico,
+			@JsonProperty("KW/H") double KwXHora) {
+		this.nombreGenerico = nombreGenerico;
+		setKwXHora(KwXHora);
 	}
-
-	public TipoDispositivoEnum getNombreGenerico() {
-		return tipoDispositivo;
-	}
-	public TipoDispositivoEnum getTipoDispositivoEnum() {
-		return tipoDispositivo;
-	}
-
-
-	private void setTipoDispositivoEnum(TipoDispositivoEnum nombreGenerico) {
-		this.tipoDispositivo = nombreGenerico;
-	}
-
-	public double getKwXHora() {
-		return tipoDispositivo.kwPorHora();
-	}
-
+	
 	public Estado getEstado() {
 		return estado;
 	}
@@ -87,18 +69,13 @@ public class DispositivoInteligente implements Dispositivo {
 	public void ejecutar(Accion accion) {
 		accion.ejecutar();
 	}
-
-	public void setEstadoEnum(EstadoEnum estado) {
-		this.estadoEnum = estado;
+	
+	public void setSensorAdapter(SensorAdapter sensor) {
+		this.sensor = sensor;
 	}
 	
-	public EstadoEnum getEstadoEnum() {
-		return estadoEnum;
+	public SensorAdapter getSensor() {
+		return this.sensor;
 	}
-	public void setUsoOptimo(double horas) {
-		usoOptimo=horas;
-	}
-	public double getUsoOptimo() {
-		return usoOptimo;
-	}
+	
 }

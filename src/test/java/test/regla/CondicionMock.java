@@ -10,7 +10,7 @@ public class CondicionMock extends Condicion {
 	}
 
 	@Override
-	public Boolean cumplida() {
+	public boolean cumplida(double resultado) {
 		return true;
 	}
 }
