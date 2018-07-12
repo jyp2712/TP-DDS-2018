@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DispositivoEstandar implements Dispositivo {
-
+	private double usoOptimo;
 	@JsonProperty
 	protected TipoDispositivoEnum tipoDispositivo;
 	@JsonProperty
@@ -50,6 +50,12 @@ public class DispositivoEstandar implements Dispositivo {
 
 	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
 		return this.consumoPorHoraAproximada() * Hours.hoursBetween(fechaInicial, fechaFinal).getHours();
+	}
+	public void setUsoOptimo(double horas) {
+		usoOptimo=horas;
+	}
+	public double getUsoOptimo() {
+		return usoOptimo;
 	}
 
 	/*
