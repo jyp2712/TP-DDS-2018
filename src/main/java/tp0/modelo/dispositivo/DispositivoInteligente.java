@@ -10,6 +10,7 @@ import tp0.modelo.dispositivo.estado.EstadoEnum;
 import tp0.modelo.dispositivo.regla.Accion;
 
 public class DispositivoInteligente implements Dispositivo {
+	private double usoOptimo;
 
 	@JsonProperty
 	protected TipoDispositivoEnum tipoDispositivo;
@@ -89,5 +90,11 @@ public class DispositivoInteligente implements Dispositivo {
 	
 	public EstadoEnum getEstadoEnum() {
 		return estadoEnum;
+	}
+	public void setUsoOptimo(double horas) {
+		usoOptimo=horas;
+	}
+	public double getUsoOptimo() {
+		return usoOptimo;
 	}
 }
