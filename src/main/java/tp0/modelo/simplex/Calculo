@@ -66,9 +66,10 @@ public class Calculo {
 		  double [][] identidad=new double [dispositivos.size()][dispositivos.size()];
 		  identidad =this.crearMatrizIdentidad(dispositivos.size());
 		  		for(int i=0;i<dispositivos.size();i++ ) {
-				restriccions.add(new LinearConstraint(identidad[i], Relationship.LEQ, tipoDispositivos.get(i).maximoConsumoHoras()));
-				restriccions.add(new LinearConstraint(identidad[i], Relationship.GEQ, tipoDispositivos.get(i).minimoConsumoHoras()));
-			   }
+	
+		restriccions.add(new LinearConstraint(identidad[i], Relationship.LEQ, tipoDispositivos.get(i).getRestricciones().getMaximo()));
+		restriccions.add(new LinearConstraint(identidad[i], Relationship.GEQ, tipoDispositivos.get(i).getRestricciones().getMinimo()));
+		}
 		
 		  restriccions.add(new LinearConstraint(obtenerConsumokWh(),Relationship.LEQ,MAXIMO));
 		  return restriccions;
