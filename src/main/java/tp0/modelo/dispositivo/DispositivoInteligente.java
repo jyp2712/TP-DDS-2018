@@ -27,6 +27,10 @@ public class DispositivoInteligente implements Dispositivo {
 	public TipoDispositivoEnum getNombreGenerico() {
 		return tipoDispositivo;
 	}
+	public TipoDispositivoEnum getTipoDispositivoEnum() {
+		return tipoDispositivo;
+	}
+
 
 	private void setTipoDispositivoEnum(TipoDispositivoEnum nombreGenerico) {
 		this.tipoDispositivo = nombreGenerico;
