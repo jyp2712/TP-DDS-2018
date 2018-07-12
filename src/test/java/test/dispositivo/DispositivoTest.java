@@ -8,6 +8,7 @@ import test.regla.CondicionMock;
 import test.regla.SensorMock;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.dispositivo.TipoDispositivoEnum;
 import tp0.modelo.dispositivo.estado.*;
 import tp0.modelo.dispositivo.regla.Regla;
 
@@ -26,22 +27,23 @@ public class DispositivoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivoInteligente1 = new DispositivoInteligente("Heladera", 150);
+		//TODO FALTAN CAMBIAR LOS MOCKS
+		dispositivoInteligente1 = new DispositivoInteligente(TipoDispositivoEnum.HELADERA_CON_FREEZER);
 		dispositivoInteligente1.setEstado(new Encendido());
 		dispositivoInteligente1.setEstadoEnum(EstadoEnum.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 
-		dispositivoInteligente2 = new DispositivoInteligente("Lavarropas", 150);
+		dispositivoInteligente2 = new DispositivoInteligente(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG);
 		dispositivoInteligente2.setEstado(new Apagado());
 		dispositivoInteligente2.setEstadoEnum(EstadoEnum.APAGADO);
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 
-		dispositivoInteligente3 = new DispositivoInteligente("Tostadora", 50);
+		dispositivoInteligente3 = new DispositivoInteligente(TipoDispositivoEnum.TELEVISOR_LED_40);
 		dispositivoInteligente3.setEstado(new AhorroEnergia());
 		dispositivoInteligente3.setEstadoEnum(EstadoEnum.AHORROENERGIA);
 		dispositivoInteligente3.setDispositivoFisico(tostadoraMock);
 
-		dispositivoEstandar1 = new DispositivoEstandar("Televisor", 24, 10);
+		dispositivoEstandar1 = new DispositivoEstandar(TipoDispositivoEnum.TELEVISOR_COLOR_TUBO_29_A_34, 10);
 	}
 
 	// Dispositivos Inteligentes

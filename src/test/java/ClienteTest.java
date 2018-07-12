@@ -13,6 +13,7 @@ import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.dispositivo.TipoDispositivoEnum;
 import tp0.modelo.dispositivo.estado.Apagado;
 import tp0.modelo.dispositivo.estado.Encendido;
 import tp0.modelo.repositorios.Repositorio;
@@ -45,23 +46,24 @@ public class ClienteTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dispositivoInteligente1 = new DispositivoInteligente("Heladera", 150);
+		//TODO FALTA MODIFICAR LOS MOCKS
+		dispositivoInteligente1 = new DispositivoInteligente(TipoDispositivoEnum.HELADERA_CON_FREEZER);
 		dispositivoInteligente1.setEstado(new Encendido());
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 
-		dispositivoInteligente2 = new DispositivoInteligente("Lavarropas", 150);
+		dispositivoInteligente2 = new DispositivoInteligente(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG);
 		dispositivoInteligente2.setEstado(new Apagado());
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 
-		dispositivoInteligente3 = new DispositivoInteligente("Tostadora", 50);
+		dispositivoInteligente3 = new DispositivoInteligente(TipoDispositivoEnum.TELEVISOR_LED_24);
 		dispositivoInteligente3.setEstado(new Apagado());
 		dispositivoInteligente3.setDispositivoFisico(tostadoraMock);
 
-		dispositivoInteligente4 = new DispositivoInteligente("Licuadora", 50);
+		dispositivoInteligente4 = new DispositivoInteligente(TipoDispositivoEnum.AIRE_ACONDICIONADO_2200_FRIGORIAS);
 		dispositivoInteligente4.setEstado(new Apagado());
 		dispositivoInteligente4.setDispositivoFisico(licuadoraMock);
 
-		dispositivoInteligente5 = new DispositivoInteligente("LicuadoraPhilips", 75);
+		dispositivoInteligente5 = new DispositivoInteligente(TipoDispositivoEnum.LAMPARA_11_W);
 		dispositivoInteligente5.setEstado(new Encendido());
 		dispositivoInteligente5.setDispositivoFisico(licuadoraMock);
 
@@ -70,13 +72,13 @@ public class ClienteTest {
 		dispositivosInteligentes.add(dispositivoInteligente3);
 		dispositivosInteligentes.add(dispositivoInteligente4);
 
-		dispositivoEstandar1 = new DispositivoEstandar("Aire acondicionado", 24, 1);
+		dispositivoEstandar1 = new DispositivoEstandar(TipoDispositivoEnum.TELEVISOR_COLOR_TUBO_21, 1);
 
-		dispositivoEstandar2 = new DispositivoEstandar("Stereo", 24, 2);
+		dispositivoEstandar2 = new DispositivoEstandar(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG_CALENTAMIENTO_AGUA, 2);
 
-		dispositivoEstandar3 = new DispositivoEstandar("Cargador", 24, 3);
+		dispositivoEstandar3 = new DispositivoEstandar(TipoDispositivoEnum.VENTILADOR_PIE, 3);
 
-		dispositivoEstandar4 = new DispositivoEstandar("Lavaplatos", 24, 4);
+		dispositivoEstandar4 = new DispositivoEstandar(TipoDispositivoEnum.MICROONDAS_CONVENCIONAL, 4);
 
 		dispositivosEstandares.add(dispositivoEstandar1);
 		dispositivosEstandares.add(dispositivoEstandar2);
@@ -123,14 +125,16 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNicoConsume96KWxHoraDispositivosEstandares() {
-		Assert.assertEquals(96,
+	public void testNicoConsume1Con68KWxHoraDispositivosEstandares() {
+		Assert.assertEquals(1.68,
 				nico.getDispositivosEstandar().stream().mapToDouble(dispositivo -> dispositivo.getkWXHora()).sum(), 0);
 	}
 
 	@Test
-	public void testNicoConsume400KWxHoraDispositivosInteligentes() {
-		Assert.assertEquals(400,
+	public void testNicoConsume1Con329KWxHoraDispositivosInteligentes() {
+		//TODO testNicoConsume1Con329KWxHoraDispositivosInteligentes
+		//ESTE TEST NO SE POR QUE FALLA
+		Assert.assertEquals(1.329,
 				nico.getDispositivosInteligentes().stream().mapToDouble(dispositivo -> dispositivo.getKwXHora()).sum(),
 				0);
 	}
@@ -142,11 +146,13 @@ public class ClienteTest {
 
 	@Test
 	public void testDispositivoEstandar1Consume24KWXHora() {
-		Assert.assertEquals(24, dispositivoEstandar1.getkWXHora(), 0);
+		Assert.assertEquals(0.075, dispositivoEstandar1.getkWXHora(), 0);
 	}
 
 	@Test
 	public void testNicoConsumeTotalmente135() {
+		//TODO testNicoConsumeTotalmente135
+		//CORREGIR EL TEST SEGUN LOS MOCKS DE DISPOSITIVO FISICO QUE VAN A CAMBIAR
 		fechaActual = DateTime.now();
 		Assert.assertEquals(135, nico.consumoTotal(fechaActual.minusHours(1), fechaActual), 0);
 	}

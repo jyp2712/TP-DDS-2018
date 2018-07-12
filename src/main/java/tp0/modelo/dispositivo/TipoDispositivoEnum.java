@@ -5,127 +5,106 @@ public enum TipoDispositivoEnum {
 	AIRE_ACONDICIONADO_3500_FRIGORIAS {
 		@Override
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return false; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 1.613;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.AIRE_ACONDICIONADO;
 		}  
 	},
 	AIRE_ACONDICIONADO_2200_FRIGORIAS {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return true; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 1.013;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.AIRE_ACONDICIONADO;
 		}
 	},
 	TELEVISOR_COLOR_TUBO_21 {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return false; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.075;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
 	TELEVISOR_COLOR_TUBO_29_A_34 {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return false; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.175;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
 	TELEVISOR_LCD_40 {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return false; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.18;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
 	TELEVISOR_LED_24 {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return true; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.04;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
 	TELEVISOR_LED_32 {
 		public boolean esBajoConsumo() { 
-			// TODO Auto-generated method stub
 			return true; 
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.055;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
@@ -133,14 +112,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.08;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.TELEVISOR;
 		}
 	},
@@ -148,14 +125,13 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.09;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
+			// TODO DEFINIR QUE HACEMOS CON LA RESTRICCION DE LAS HELADERAS
 			// tendriamos un par de opciones acá
 			// devolver null, igual las heladeras no forman parte del calculo del simplex
 			// crear un tipo de restriccion que devuelva max integer para maximo horas y 0 para minimo horas
@@ -168,14 +144,13 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.075;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
+			// TODO DEFINIR QUE HACEMOS CON LA RESTRICCION DE LAS HELADERAS
 			// tendriamos un par de opciones acá
 			// devolver null, igual las heladeras no forman parte del calculo del simplex
 			// crear un tipo de restriccion que devuelva max integer para maximo horas y 0 para minimo horas
@@ -188,14 +163,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return false; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.875;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAVARROPAS;
 		}
 	},
@@ -203,14 +176,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 		
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.175;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAVARROPAS;
 		}
 	},
@@ -218,14 +189,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 		
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.1275;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAVARROPAS;
 		}
 	},
@@ -233,14 +202,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.09;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.VENTILADOR;
 		}
 	},
@@ -248,14 +215,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.06;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.VENTILADOR;
 		}
 	},
@@ -263,14 +228,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return false; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.04;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -278,14 +241,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return false; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.06;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -293,14 +254,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return false; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.015;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -308,14 +267,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.011;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -323,14 +280,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.015;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -338,14 +293,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.02;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.LAMPARA;
 		}
 	},
@@ -353,14 +306,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.4;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.COMPUTADORA;
 		}
 	},
@@ -368,14 +319,12 @@ public enum TipoDispositivoEnum {
 		public boolean esBajoConsumo() { return true; }
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.64;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.MICROONDAS;
 		}
 	},
@@ -385,19 +334,17 @@ public enum TipoDispositivoEnum {
 		}
 
 		@Override
-		public double consumo() {
-			// TODO Auto-generated method stub
+		public double kwPorHora() {
 			return 0.75;
 		}
 
 		@Override
 		public RestriccionEnum restricciones() {
-			// TODO Auto-generated method stub
 			return RestriccionEnum.PLANCHA;
 		}
 	};
 	public abstract boolean esBajoConsumo();
-	public abstract double consumo();
+	public abstract double kwPorHora();
 	public abstract RestriccionEnum restricciones();
 	
 }

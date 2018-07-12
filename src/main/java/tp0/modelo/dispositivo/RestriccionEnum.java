@@ -6,13 +6,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 90;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 360;
 		}
 		
@@ -21,13 +19,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 90;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 360;
 		}
 		
@@ -36,13 +32,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 90;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 360;
 		}
 		
@@ -51,13 +45,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 6;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 30;
 		}
 		
@@ -66,13 +58,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 60;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 360;
 		}
 		
@@ -81,13 +71,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 3;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 15;
 		}
 		
@@ -96,13 +84,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 3;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 30;
 		}
 		
@@ -111,13 +97,11 @@ public enum RestriccionEnum {
 
 		@Override
 		public int usoMensualMinimo() {
-			// TODO Auto-generated method stub
 			return 120;
 		}
 
 		@Override
 		public int usoMensualMaximo() {
-			// TODO Auto-generated method stub
 			return 360;
 		}
 		

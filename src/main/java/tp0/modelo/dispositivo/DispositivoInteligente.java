@@ -12,35 +12,27 @@ import tp0.modelo.dispositivo.regla.Accion;
 public class DispositivoInteligente implements Dispositivo {
 
 	@JsonProperty
-	protected String nombreGenerico;
-	@JsonProperty
-	protected double KwXHora;
+	protected TipoDispositivoEnum tipoDispositivo;
 
 	private Estado estado;
 	private EstadoEnum estadoEnum;
 	private DispositivoFisicoAdapter dispositivoFisico;
 
 	@JsonCreator
-	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico,
-			@JsonProperty("KW/H") double KwXHora) {
-		setNombreGenerico(nombreGenerico);
-		setKwXHora(KwXHora);
+	public DispositivoInteligente(@JsonProperty("nombre generico") TipoDispositivoEnum tipoDispositivo) {
+		setTipoDispositivoEnum(tipoDispositivo);
 	}
 
-	public String getNombreGenerico() {
-		return nombreGenerico;
+	public TipoDispositivoEnum getNombreGenerico() {
+		return tipoDispositivo;
 	}
 
-	private void setNombreGenerico(String nombreGenerico) {
-		this.nombreGenerico = nombreGenerico;
+	private void setTipoDispositivoEnum(TipoDispositivoEnum nombreGenerico) {
+		this.tipoDispositivo = nombreGenerico;
 	}
 
 	public double getKwXHora() {
-		return KwXHora;
-	}
-
-	private void setKwXHora(double kwXHora) {
-		this.KwXHora = kwXHora;
+		return tipoDispositivo.kwPorHora();
 	}
 
 	public Estado getEstado() {

@@ -243,8 +243,7 @@ public class Cliente {
 	}
 
 	public void convertirDispositivoEstandarAInteligente(DispositivoEstandar dispositivoExistente) {
-		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getNombreGenerico(),
-				dispositivoExistente.getkWXHora());
+		DispositivoInteligente nuevoDispositivo = new DispositivoInteligente(dispositivoExistente.getTipoDispositivoEnum());
 		this.getDispositivosEstandar().remove(dispositivoExistente);
 		this.getDispositivosInteligentes().add(nuevoDispositivo);
 		this.sumarPuntos(10);

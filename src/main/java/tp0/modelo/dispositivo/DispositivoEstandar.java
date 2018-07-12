@@ -9,26 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DispositivoEstandar implements Dispositivo {
 
 	@JsonProperty
-	protected String nombreGenerico;
-	@JsonProperty
-	protected double kWXHora;
+	protected TipoDispositivoEnum tipoDispositivo;
 	@JsonProperty
 	protected double horasDeConsumo;
 
 	@JsonCreator
-	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
-			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {
-		setNombreGenerico(nombreGenerico);
-		setkWXHora(KwXHora);
+	public DispositivoEstandar(@JsonProperty("nombre generico") TipoDispositivoEnum tipoDispositivo,
+			@JsonProperty("Horas de consumo") double horasDeConsumo) {
+		setTipoDispositivoEnum(tipoDispositivo);
 		setHorasDeConsumo(horasDeConsumo);
 	}
 
-	private void setNombreGenerico(String nombreGenerico) {
-		this.nombreGenerico = nombreGenerico;
-	}
-
-	private void setkWXHora(double kWXHora) {
-		this.kWXHora = kWXHora;
+	private void setTipoDispositivoEnum(TipoDispositivoEnum nombreGenerico) {
+		this.tipoDispositivo = nombreGenerico;
 	}
 
 	private void setHorasDeConsumo(double horasDeConsumo) {
@@ -40,11 +33,11 @@ public class DispositivoEstandar implements Dispositivo {
 	}
 
 	public double getkWXHora() {
-		return kWXHora;
+		return tipoDispositivo.kwPorHora();
 	}
 
-	public String getNombreGenerico() {
-		return nombreGenerico;
+	public TipoDispositivoEnum getTipoDispositivoEnum() {
+		return tipoDispositivo;
 	}
 
 	public double consumoUltimas(int horas) {

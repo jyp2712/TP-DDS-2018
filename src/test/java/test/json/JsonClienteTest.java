@@ -10,6 +10,7 @@ import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.dispositivo.TipoDispositivoEnum;
 import tp0.modelo.dispositivo.estado.Apagado;
 import tp0.modelo.dispositivo.estado.Encendido;
 import tp0.modelo.json.DecodificadorJson;
@@ -43,18 +44,18 @@ public class JsonClienteTest {
 						new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY)));
 		clientes.stream().forEach(cliente -> cliente.setRepositorioCategorias(repositorioDeCategorias));
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
-		dispositivoInteligente1 = new DispositivoInteligente("Heladera", 150);
+		dispositivoInteligente1 = new DispositivoInteligente(TipoDispositivoEnum.HELADERA_CON_FREEZER);
 		dispositivoInteligente1.setEstado(new Encendido());
-		dispositivoInteligente2 = new DispositivoInteligente("Lavarropas", 150);
+		dispositivoInteligente2 = new DispositivoInteligente(TipoDispositivoEnum.LAVARROPAS_AUTOMATICO_5_KG);
 		dispositivoInteligente2.setEstado(new Apagado());
-		dispositivoInteligente3 = new DispositivoInteligente("Tostadora", 50);
+		dispositivoInteligente3 = new DispositivoInteligente(TipoDispositivoEnum.TELEVISOR_LED_32);
 		dispositivoInteligente3.setEstado(new Apagado());
-		dispositivoInteligente4 = new DispositivoInteligente("Licuadora", 50);
+		dispositivoInteligente4 = new DispositivoInteligente(TipoDispositivoEnum.VENTILADOR_TECHO);
 		dispositivoInteligente4.setEstado(new Apagado());
-		dispositivoEstandar1 = new DispositivoEstandar("Aire acondicionado", 24, 1);
-		dispositivoEstandar2 = new DispositivoEstandar("Stereo", 24, 2);
-		dispositivoEstandar3 = new DispositivoEstandar("Cargador", 24, 3);
-		dispositivoEstandar4 = new DispositivoEstandar("Lavaplatos", 24, 4);
+		dispositivoEstandar1 = new DispositivoEstandar(TipoDispositivoEnum.PLANCHA_VAPOR, 1);
+		dispositivoEstandar2 = new DispositivoEstandar(TipoDispositivoEnum.MICROONDAS_CONVENCIONAL, 2);
+		dispositivoEstandar3 = new DispositivoEstandar(TipoDispositivoEnum.VENTILADOR_PIE, 3);
+		dispositivoEstandar4 = new DispositivoEstandar(TipoDispositivoEnum.LAVARROPAS_SEMI_AUTOMATICO_5_KG, 4);
 		dispositivosEstandares = Arrays.asList(dispositivoEstandar1, dispositivoEstandar2, dispositivoEstandar3, dispositivoEstandar4);
 		dispositivosInteligentes = Arrays.asList(dispositivoInteligente1, dispositivoInteligente2, dispositivoInteligente3, dispositivoInteligente4);
 		nicolas = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R2",
@@ -114,7 +115,7 @@ public class JsonClienteTest {
 	@Test
 	public void testNicoDispositivos() {
 		Assert.assertEquals(8, nico.cantidadDispositivosTotal(), nicolas.cantidadDispositivosTotal());
-		Assert.assertEquals(disp1.getNombreGenerico(), disp1.getNombreGenerico(),
+		Assert.assertEquals(disp1.getNombreGenerico().toString(), disp1.getNombreGenerico(),
 				dispositivoInteligente1.getNombreGenerico());
 		Assert.assertEquals(10, disp1.getKwXHora(), dispositivoInteligente1.getKwXHora());
 	}
