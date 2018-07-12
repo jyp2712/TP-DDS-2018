@@ -67,8 +67,8 @@ public class Calculo {
 		  identidad =this.crearMatrizIdentidad(dispositivos.size());
 		  		for(int i=0;i<dispositivos.size();i++ ) {
 	
-		restriccions.add(new LinearConstraint(identidad[i], Relationship.LEQ, tipoDispositivos.get(i).getRestricciones().getMaximo()));
-		restriccions.add(new LinearConstraint(identidad[i], Relationship.GEQ, tipoDispositivos.get(i).getRestricciones().getMinimo()));
+		restriccions.add(new LinearConstraint(identidad[i], Relationship.LEQ, tipoDispositivos.get(i).restricciones().usoMensualMaximo()));
+		restriccions.add(new LinearConstraint(identidad[i], Relationship.GEQ, tipoDispositivos.get(i).restricciones().usoMensualMinimo()));
 		}
 		
 		  restriccions.add(new LinearConstraint(obtenerConsumokWh(),Relationship.LEQ,MAXIMO));
