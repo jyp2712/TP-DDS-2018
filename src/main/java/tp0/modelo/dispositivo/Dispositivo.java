@@ -50,4 +50,7 @@ public abstract class Dispositivo {
 		return this.nombreGenerico;
 	}
 	
+	public boolean soyHeladera() {
+		return this.getDispositivoConcreto().soyHeladera();
+	}
 }

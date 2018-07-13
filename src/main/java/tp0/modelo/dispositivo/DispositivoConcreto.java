@@ -31,4 +31,8 @@ public class DispositivoConcreto {
 		return this.usoMaximo;
 	}
 
+	public boolean soyHeladera() {
+		return this.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_CONFREEZER)
+				|| this.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_SINFREEZER);
+	}
 }

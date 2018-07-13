@@ -42,7 +42,7 @@ public class OptimizadorSimplex implements Optimizador {
 	}
 
 	private void setArrays(Dispositivo disp) {
-		if(!esHeladera(disp)) {
+		if(!disp.soyHeladera()) {
 			coeficientes.setEntry(disp.getNombreGenericoPosicion(), disp.getCoeficiente());
 			indices.setEntry(disp.getNombreGenericoPosicion(), 1);
 			restricciones.add(new LinearConstraint(indices.copy(), Relationship.GEQ, disp.getUsoMinimo()));
@@ -50,11 +50,6 @@ public class OptimizadorSimplex implements Optimizador {
 			indices.set(0);
 			cantDispositivos.addToEntry(disp.getNombreGenericoPosicion(), 1);
 		}
-	}
-	
-	private boolean esHeladera(Dispositivo disp) {
-		return disp.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_CONFREEZER.toString())
-				|| disp.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_SINFREEZER.toString());
 	}
 
 	public double[] optimizar() {		

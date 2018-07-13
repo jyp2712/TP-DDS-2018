@@ -105,7 +105,17 @@ public class DispositivoTest {
 	public void testDispositivoInteligente2Consumo() {
 		Assert.assertEquals(0, dispositivoInteligente2.consumoUltimas(hoy.getHourOfDay()), 0);
 	}
+	
+	@Test
+	public void testDispositivoInteligenteSoyHeladera() {
+		Assert.assertTrue(dispositivoInteligente1.soyHeladera());
+	}
 
+	@Test
+	public void testDispositivoInteligenteNoSoyHeladera() {
+		Assert.assertFalse(dispositivoInteligente2.soyHeladera());
+	}
+	
 	// Dispositivos Estandares
 
 	@Test
