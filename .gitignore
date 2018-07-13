@@ -87,3 +87,6 @@ hs_err_pid*
 target
 
 # End of https://www.gitignore.io/api/java,eclipse
+/Presentación.pdf
+/2018-vn-group-04.iml
+/.DS_Store
