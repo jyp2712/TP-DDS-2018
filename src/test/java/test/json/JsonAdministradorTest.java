@@ -46,6 +46,6 @@ public class JsonAdministradorTest{
 	
 	@Test
 	public void testJuanAntiguedad() {
-		Assert.assertTrue(juan.antiguedadAdministrador() == administrador.antiguedadAdministrador());
+		Assert.assertEquals(administrador.antiguedadAdministrador(), juan.antiguedadAdministrador());
 	}
 }

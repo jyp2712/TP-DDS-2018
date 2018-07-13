@@ -46,21 +46,21 @@ public class OptimizadorTest {
 
 	@Test
 	public void testDimensionRealVectors() {
-		Assert.assertTrue(optimizador.getCoeficientes().getDimension() == DispositivoConcretoEnum.values().length);
-		Assert.assertTrue(optimizador.getCantDispositivos().getDimension() == DispositivoConcretoEnum.values().length);
-		Assert.assertTrue(optimizador.getIndices().getDimension() == DispositivoConcretoEnum.values().length);
+		Assert.assertEquals(DispositivoConcretoEnum.values().length, optimizador.getCoeficientes().getDimension(), 0);
+		Assert.assertEquals(DispositivoConcretoEnum.values().length, optimizador.getCantDispositivos().getDimension(), 0);
+		Assert.assertEquals(DispositivoConcretoEnum.values().length, optimizador.getIndices().getDimension(), 0);
 	}
 	
 	@Test
 	public void testCoeficientes() {
-		Assert.assertTrue(optimizador.getCoeficientes().getMaxValue() == lavarropas.getCoeficiente());
-		Assert.assertTrue(optimizador.getCoeficientes().getMinValue() == 0);
+		Assert.assertEquals(lavarropas.getCoeficiente(), optimizador.getCoeficientes().getMaxValue(), 0);
+		Assert.assertEquals(0, optimizador.getCoeficientes().getMinValue(), 0);
 	}
 
 	@Test
 	public void testResultado() {
-		Assert.assertTrue(resultado[lavarropas.getNombreGenericoPosicion()] == lavarropas.getUsoMaximo());
-		Assert.assertTrue(resultado[televisor.getNombreGenericoPosicion()] == televisor.getUsoMaximo());
+		Assert.assertEquals(lavarropas.getUsoMaximo(), resultado[lavarropas.getNombreGenericoPosicion()], 0);
+		Assert.assertEquals(televisor.getUsoMaximo(), resultado[televisor.getNombreGenericoPosicion()], 0);
 	}
 
 	

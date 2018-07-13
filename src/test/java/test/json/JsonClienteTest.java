@@ -94,13 +94,13 @@ public class JsonClienteTest {
 
 	@Test
 	public void testNicoTipoDocumento() {
-		Assert.assertTrue(nico.getTipoDoc() == nicolas.getTipoDoc());
+		Assert.assertEquals(nico.getTipoDoc(), nicolas.getTipoDoc());
 
 	}
 
 	@Test
 	public void testNicoNumeroDeDocumento() {
-		Assert.assertTrue(nico.getDocumento() == 39068888);
+		Assert.assertEquals(39068888, nico.getDocumento(), 0);
 
 	}
 

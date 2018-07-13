@@ -22,22 +22,22 @@ public class DispositivoConcretoTest {
 
 	@Test
 	public void testDispositivoConcretoNombre() {
-		Assert.assertTrue(aireAcondicionado.getNombreGenerico() == DispositivoConcretoEnum.AIREACONDICIONADO_3500);
+		Assert.assertEquals(DispositivoConcretoEnum.AIREACONDICIONADO_3500, aireAcondicionado.getNombreGenerico());
 	}
 	
 	@Test
 	public void testDispositivoConcretoCoeficiente() {
-		Assert.assertTrue(aireAcondicionado.getCoeficiente() == 0.9);
+		Assert.assertEquals(0.9, aireAcondicionado.getCoeficiente(), 0);
 	}
 	
 	@Test
 	public void testDispositivoConcretoUsoMinimo() {
-		Assert.assertTrue(aireAcondicionado.getUsoMinimo() == 360);
+		Assert.assertEquals(360, aireAcondicionado.getUsoMinimo(), 0);
 	}
 	
 	@Test
 	public void testDispositivoConcretoUsoMaximo() {
-		Assert.assertTrue(aireAcondicionado.getUsoMaximo() == 2000);
+		Assert.assertEquals(2000, aireAcondicionado.getUsoMaximo(), 0);
 	}
 	
 	@Test

@@ -21,11 +21,10 @@ public class ReglaTest {
 		regla = new Regla(condicionMock, accionMock);
 	}
 
-
 	@Test
 	public void testEjecutarRegla() {
 		regla.ejecutar(0);
-		Assert.assertTrue(accionMock.getEjecuciones() == 1);
+		Assert.assertEquals(1, accionMock.getEjecuciones(), 0);
 	}
 
 }

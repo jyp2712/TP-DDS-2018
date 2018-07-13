@@ -70,8 +70,8 @@ public class HogarTest {
 	@Test
 	public void testOptimizacion() {
 		double[] resultado = hogar.optimizar();
-		Assert.assertTrue(resultado[televisor.getNombreGenericoPosicion()] == televisor.getUsoMaximo());
-		Assert.assertTrue(resultado[lavarropas.getNombreGenericoPosicion()] == lavarropas.getUsoMaximo());
+		Assert.assertEquals(televisor.getUsoMaximo(), resultado[televisor.getNombreGenericoPosicion()], 0);
+		Assert.assertEquals(lavarropas.getUsoMaximo(), resultado[lavarropas.getNombreGenericoPosicion()], 0);
 	}
 	
 	@Test
