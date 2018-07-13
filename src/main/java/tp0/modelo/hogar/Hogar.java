@@ -57,8 +57,7 @@ public class Hogar {
 			
 			@Override
 			public boolean cumplida(double resultado) {
-				return this.getSensor().medicion(DateTime.now(), 
-						new DateTime().dayOfMonth().withMinimumValue()) > resultado;
+				return accion.getDispositivo().consumoTotal(new DateTime().dayOfMonth().withMinimumValue(), DateTime.now()) > resultado;
 			}
 		};
 		

@@ -131,9 +131,9 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNicoConsumeTotalmente53() {
+	public void testNicoConsumeTotalmente1028() {
 		fechaActual = DateTime.now();
-		Assert.assertEquals(53, nico.consumoTotal(fechaActual.minusHours(1), fechaActual), 0);
+		Assert.assertEquals(1028, nico.consumoTotal(fechaActual.minusHours(1), fechaActual), 0);
 	}
 
 	@Test

@@ -15,7 +15,7 @@ public class LavarropasMock implements DispositivoFisicoAdapter {
 	@Override
 	public double consumoTotal(DateTime fechaInicial, DateTime fechaFinal) {
 		// TODO Auto-generated method stub
-		return 25;
+		return 1000;
 	}
 
 	@Override

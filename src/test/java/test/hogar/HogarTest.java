@@ -79,7 +79,7 @@ public class HogarTest {
 		hogar.actualizarDispositivos(disp);
 		hogar.configurarAccionesAutomaticas(acciones);
 		hogar.optimizar();
-		Assert.assertTrue(accion.getEjecuciones() == 1);
+		Assert.assertEquals(1, accion.getEjecuciones());
 	}
 	
 }
