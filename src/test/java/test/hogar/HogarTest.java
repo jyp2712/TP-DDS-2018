@@ -77,7 +77,8 @@ public class HogarTest {
 	@Test
 	public void testOptimizacionConAccion() {
 		hogar.actualizarDispositivos(disp);
-		hogar.configurarAccionesAutomaticas(acciones);
+		hogar.configurarReglas(acciones);
+		hogar.activarAccionesAuto();
 		hogar.optimizar();
 		Assert.assertEquals(1, accion.getEjecuciones());
 	}

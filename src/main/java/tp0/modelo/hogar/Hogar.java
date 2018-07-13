@@ -46,9 +46,8 @@ public class Hogar {
 		regla.ejecutar(resultadoConsumo);
 	}
 
-	public void configurarAccionesAutomaticas(List<Accion> acciones) {
+	public void configurarReglas(List<Accion> acciones) {
 		acciones.stream().forEach(accion -> reglas.add(crearRegla(accion)));
-		this.accionAutomatica = true;
 	}
 
 	private Regla crearRegla(Accion accion) {
@@ -64,9 +63,19 @@ public class Hogar {
 		return new Regla(condicion, accion);
 	}
 	
+	public void activarAccionesAuto() {
+		this.accionAutomatica = true;
+	}
+	
+	public void desactivarAccionesAuto() {
+		this.accionAutomatica = false;
+	}
+	
 	public void actualizarDispositivos(List<Dispositivo> dispositivos) {
 		this.optimizador.setCondiciones(dispositivos);
 	}
+	
+	
 
 	public String getDireccion() {
 		return this.direccion;

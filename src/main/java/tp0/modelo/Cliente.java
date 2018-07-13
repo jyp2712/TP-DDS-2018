@@ -232,6 +232,7 @@ public class Cliente {
 		this.getDispositivosEstandar().remove(dispositivoExistente);
 		this.getDispositivosInteligentes().add(nuevoDispositivo);
 		this.sumarPuntos(10);
+		this.observer.update();
 	}
 
 	public List<Dispositivo> getDispositivos() {

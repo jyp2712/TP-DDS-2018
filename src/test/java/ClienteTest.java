@@ -148,24 +148,6 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testNicoConvierteDispositivoEstandar1YSeAgregaALosDispositivosInteligentes() {
-		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
-		Assert.assertEquals(3, nico.getDispositivosInteligentes().stream().count(), 0);
-	}
-
-	@Test
-	public void testNicoConvierteDispositivoEstandar1YSeQuitaDeLosDispositivosEstandares() {
-		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
-		Assert.assertEquals(1, nico.getDispositivosEstandar().stream().count(), 0);
-	}
-
-	@Test
-	public void testNicoConvierteDispositivoEstandar1YQuedaCon25Puntos() {
-		nico.convertirDispositivoEstandarAInteligente(dispositivoEstandar1);
-		Assert.assertEquals(10, nico.getPuntos(), 0);
-	}
-
-	@Test
 	public void testNicoRegistrarDispositivoEstandar1YQuedaCon15Puntos() {
 		nico.registrarDispositivoInteligente(dispositivoInteligente1);
 		Assert.assertEquals(15, nico.getPuntos(), 0);
