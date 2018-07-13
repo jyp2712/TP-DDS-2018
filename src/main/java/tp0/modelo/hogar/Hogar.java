@@ -3,6 +3,8 @@ package tp0.modelo.hogar;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.Dispositivo;
@@ -27,6 +29,8 @@ public class Hogar {
 	}
 	
 	public double[] optimizar() {
+		if (this.optimizador.equals(null)) 
+			throw new RuntimeErrorException(null, "Se debe setear un optimizador");
 		double[] resultado = optimizador.optimizar();
 		
 		if(this.accionAutomatica) {
