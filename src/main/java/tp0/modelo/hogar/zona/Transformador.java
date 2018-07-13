@@ -10,8 +10,8 @@ public class Transformador {
 	
 	protected List<Cliente> clientes;
 	
-	public double energiaSuministrada() {
-		return clientes.stream().mapToDouble(cliente -> cliente.consumoTotal(DateTime.now(), DateTime.now())).sum();
+	public double energiaSuministrada(DateTime fechaInicial, DateTime fechaFinal) {
+		return clientes.stream().mapToDouble(cliente -> cliente.consumoTotal(fechaInicial, fechaFinal)).sum();
 	}
 
 }
