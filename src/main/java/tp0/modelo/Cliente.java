@@ -33,7 +33,6 @@ public class Cliente {
 	protected List<DispositivoEstandar> dispositivosEstandares;
 	protected List<DispositivoInteligente> dispositivosInteligentes;
 	protected double puntos;	
-	protected ClienteObserver observer;
 
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
@@ -55,10 +54,6 @@ public class Cliente {
 		setDispositivosInteligentes(dispositivosInteligentes);
 		setDomicilioServicio(domicilioServicio);
 		setPuntos(puntos);
-	}
-
-	public void setObserver(ClienteObserver observer) {
-		this.observer = observer;
 	}
 
 	private void setDomicilioServicio(String domicilioServicio) {
@@ -218,12 +213,10 @@ public class Cliente {
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
 		this.dispositivosInteligentes.add(nuevoDispositivo);
 		this.sumarPuntos(15);
-		this.observer.update();
 	}
 
 	public void registrarDispositivoEstandar(DispositivoEstandar nuevoDispositivo) {
 		this.dispositivosEstandares.add(nuevoDispositivo);
-		this.observer.update();
 	}
 
 	public void convertirDispositivoEstandarAInteligente(DispositivoEstandar dispositivoExistente) {
@@ -232,7 +225,6 @@ public class Cliente {
 		this.getDispositivosEstandar().remove(dispositivoExistente);
 		this.getDispositivosInteligentes().add(nuevoDispositivo);
 		this.sumarPuntos(10);
-		this.observer.update();
 	}
 
 	public List<Dispositivo> getDispositivos() {

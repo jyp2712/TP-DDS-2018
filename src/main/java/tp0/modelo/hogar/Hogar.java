@@ -2,8 +2,7 @@ package tp0.modelo.hogar;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.RuntimeErrorException;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 
@@ -18,31 +17,29 @@ public class Hogar {
 	protected String direccion;
 	protected List<Regla> reglas = new ArrayList<>();
 	protected boolean accionAutomatica = false;
-	protected Optimizador optimizador;
 	
 	public Hogar(String direccion) {
 		this.direccion = direccion;
 	}
 	
-	public void setOptimizador(Optimizador optimizador) {
-		this.optimizador = optimizador;
-	}
-	
-	public double[] optimizar() {
-		if (this.optimizador.equals(null)) 
-			throw new RuntimeErrorException(null, "Se debe setear un optimizador");
-		double[] resultado = optimizador.optimizar();
+	public double[] optimizar(List<Dispositivo> dispositivos) {
+		Optimizador optimizador = new OptimizadorSimplex();
+		List<Dispositivo> disp = dispositivos.stream()
+				.filter(d -> d.optimizable()).collect(Collectors.toList());
+		
+		double[] resultado = optimizador.optimizar(disp);
 		
 		if(this.accionAutomatica) {
 			this.reglas.stream().forEach(regla -> 
-			accionar(regla.getAccion().getDispositivo(), resultado, regla));
+			accionar(regla.getAccion().getDispositivo(), resultado, regla, disp));
 		}
 		return resultado;
 	}
 
 	private void accionar(DispositivoInteligente dispositivoInteligente, double[] resultado,
-			Regla regla) {
-		double resultadoConsumo = resultado[dispositivoInteligente.getNombreGenericoPosicion()];
+			Regla regla, List<Dispositivo> disp) {
+		int posicion = disp.indexOf(dispositivoInteligente);
+		double resultadoConsumo = resultado[posicion];
 		regla.ejecutar(resultadoConsumo);
 	}
 
@@ -70,12 +67,6 @@ public class Hogar {
 	public void desactivarAccionesAuto() {
 		this.accionAutomatica = false;
 	}
-	
-	public void actualizarDispositivos(List<Dispositivo> dispositivos) {
-		this.optimizador.setCondiciones(dispositivos);
-	}
-	
-	
 
 	public String getDireccion() {
 		return this.direccion;

@@ -3,7 +3,6 @@ package test.dispositivo;
 import org.junit.*;
 
 import tp0.modelo.dispositivo.DispositivoConcreto;
-import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 
 public class DispositivoConcretoTest {
 
@@ -13,16 +12,16 @@ public class DispositivoConcretoTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		aireAcondicionado = new DispositivoConcreto(DispositivoConcretoEnum.AIREACONDICIONADO_3500, 
-				0.9, 360, 2000);
-		heladera = new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.25, 100, 99);
+		aireAcondicionado = new DispositivoConcreto("AIREACONDICIONADO_3500", 
+				0.9, 360, 2000, true);
+		heladera = new DispositivoConcreto("HELADERA_CONFREEZER", 0.25, 100, 99, false);
 	}
 
 	// Dispositivos Inteligentes
 
 	@Test
 	public void testDispositivoConcretoNombre() {
-		Assert.assertEquals(DispositivoConcretoEnum.AIREACONDICIONADO_3500, aireAcondicionado.getNombreGenerico());
+		Assert.assertEquals("AIREACONDICIONADO_3500", aireAcondicionado.getNombreGenerico());
 	}
 	
 	@Test
@@ -41,13 +40,13 @@ public class DispositivoConcretoTest {
 	}
 	
 	@Test
-	public void testAireAcondicionadoSoyHeladera() {
-		Assert.assertFalse(aireAcondicionado.soyHeladera());
+	public void testAireAcondicionadoSoyOptimizable() {
+		Assert.assertTrue(aireAcondicionado.optimizable());
 	}
 	
 	@Test
-	public void testHeladeraSoyHeladera() {
-		Assert.assertTrue(heladera.soyHeladera());
+	public void testHeladeraSoyOptimizable() {
+		Assert.assertFalse(heladera.optimizable());
 	}
 	
 }

@@ -30,10 +30,6 @@ public abstract class Dispositivo {
 		this.kWXHora = kwXHora;
 	}
 	
-	public int getNombreGenericoPosicion() {
-		return this.getDispositivoConcreto().getNombreGenerico().ordinal();
-	}
-
 	public double getCoeficiente() {
 		return this.getDispositivoConcreto().getCoeficiente();
 	}
@@ -50,7 +46,7 @@ public abstract class Dispositivo {
 		return this.nombreGenerico;
 	}
 	
-	public boolean soyHeladera() {
-		return this.getDispositivoConcreto().soyHeladera();
+	public boolean optimizable() {
+		return this.getDispositivoConcreto().optimizable;
 	}
 }

@@ -1,4 +1,5 @@
 package test.json;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,7 +10,6 @@ import org.junit.*;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoConcreto;
-import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.Apagado;
@@ -45,26 +45,26 @@ public class JsonClienteTest {
 						new Categoria("R7", 443.59, 0.851, 600, 700), new Categoria("R8", 545.96, 0.851, 700, 1400),
 						new Categoria("R9", 887.19, 0.851, 1400, Double.POSITIVE_INFINITY)));
 		repositorioDeDispositivos.agregar(
-				Arrays.asList(new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.09, 0, 0),
-						new DispositivoConcreto(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG, 0.175, 6, 30),
-				new DispositivoConcreto(DispositivoConcretoEnum.TELEVISOR_TUBO_21, 0.075, 90, 360),
-				new DispositivoConcreto(DispositivoConcretoEnum.VENTILADOR_PIE, 0.09, 120, 360)));
+				Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),
+						new DispositivoConcreto("LAVARROPAS_AUTO_5KG", 0.175, 6, 30, true),
+				new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true),
+				new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
 		clientes.stream().forEach(cliente -> cliente.setRepositorioCategorias(repositorioDeCategorias));
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
 		
-		dispositivoInteligente1 = new DispositivoInteligente(DispositivoConcretoEnum.HELADERA_CONFREEZER.toString(), 150);
+		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
 		dispositivoInteligente1.setEstado(new Encendido());
 		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 		
-		dispositivoInteligente2 = new DispositivoInteligente(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG.toString(), 150);
+		dispositivoInteligente2 = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
 		dispositivoInteligente2.setEstado(new Apagado());
 		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
 
-		dispositivoEstandar1 = new DispositivoEstandar(DispositivoConcretoEnum.TELEVISOR_TUBO_21.toString(), 24, 1);
+		dispositivoEstandar1 = new DispositivoEstandar("TELEVISOR_TUBO_21", 24, 1);
 		dispositivoEstandar1.setDispositivoGenerico(repositorioDeDispositivos);
 
-		dispositivoEstandar2 = new DispositivoEstandar(DispositivoConcretoEnum.VENTILADOR_PIE.toString(), 24, 2);
+		dispositivoEstandar2 = new DispositivoEstandar("VENTILADOR_PIE", 24, 2);
 		dispositivoEstandar2.setDispositivoGenerico(repositorioDeDispositivos);
 
 		dispositivosEstandares = Arrays.asList(dispositivoEstandar1, dispositivoEstandar2);

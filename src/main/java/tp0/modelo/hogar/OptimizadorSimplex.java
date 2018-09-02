@@ -18,23 +18,23 @@ import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 
 import tp0.modelo.dispositivo.Dispositivo;
-import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 
 public class OptimizadorSimplex implements Optimizador {
 
-	SimplexSolver simplex = new SimplexSolver();
-	LinearObjectiveFunction funcion;
-	List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();
-	RealVector coeficientes;
-	RealVector indices;
-	RealVector cantDispositivos;
+	protected SimplexSolver simplex = new SimplexSolver();
+	protected LinearObjectiveFunction funcion;
+	protected List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();
+	protected RealVector coeficientes;
+	protected RealVector indices;
+	protected RealVector cantDispositivos;
+	protected int posicion = 0;
 	
 	public OptimizadorSimplex() {}
 
-	public void setCondiciones(List<Dispositivo> dispositivos) {
-		coeficientes = new ArrayRealVector(DispositivoConcretoEnum.values().length);
-		indices = new ArrayRealVector(DispositivoConcretoEnum.values().length);
-		cantDispositivos = new ArrayRealVector(DispositivoConcretoEnum.values().length);
+	private void setCondiciones(List<Dispositivo> dispositivos) {
+		coeficientes = new ArrayRealVector(dispositivos.size());
+		indices = new ArrayRealVector(dispositivos.size());
+		cantDispositivos = new ArrayRealVector(dispositivos.size());
 		
 		dispositivos.stream().forEach(disp -> this.setArrays(disp));
 		restricciones.add(new LinearConstraint(cantDispositivos, Relationship.LEQ, 612));
@@ -42,17 +42,17 @@ public class OptimizadorSimplex implements Optimizador {
 	}
 
 	private void setArrays(Dispositivo disp) {
-		if(!disp.soyHeladera()) {
-			coeficientes.setEntry(disp.getNombreGenericoPosicion(), disp.getCoeficiente());
-			indices.setEntry(disp.getNombreGenericoPosicion(), 1);
-			restricciones.add(new LinearConstraint(indices.copy(), Relationship.GEQ, disp.getUsoMinimo()));
-			restricciones.add(new LinearConstraint(indices.copy(), Relationship.LEQ, disp.getUsoMaximo()));
-			indices.set(0);
-			cantDispositivos.addToEntry(disp.getNombreGenericoPosicion(), 1);
-		}
+		coeficientes.setEntry(posicion, disp.getCoeficiente());
+		indices.setEntry(posicion, 1);
+		restricciones.add(new LinearConstraint(indices.copy(), Relationship.GEQ, disp.getUsoMinimo()));
+		restricciones.add(new LinearConstraint(indices.copy(), Relationship.LEQ, disp.getUsoMaximo()));
+		indices.set(0);
+		cantDispositivos.setEntry(posicion, 1);
+		posicion++;
 	}
 
-	public double[] optimizar() {		
+	public double[] optimizar(List<Dispositivo> dispositivos) {
+		setCondiciones(dispositivos);
 		try {
 			PointValuePair resultado = simplex.optimize(
 					new MaxIter(100), funcion, new LinearConstraintSet(restricciones),

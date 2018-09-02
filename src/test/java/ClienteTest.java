@@ -9,14 +9,11 @@ import test.dispositivo.HeladeraMock;
 import test.dispositivo.LavarropasMock;
 import tp0.modelo.Categoria;
 import tp0.modelo.Cliente;
-import tp0.modelo.ClienteObserver;
 import tp0.modelo.dispositivo.DispositivoConcreto;
-import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.Apagado;
 import tp0.modelo.dispositivo.estado.Encendido;
-import tp0.modelo.hogar.OptimizadorSimplex;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
@@ -42,24 +39,24 @@ public class ClienteTest {
 	@Before
 	public void setUp() throws Exception {
 		repositorioDeDispositivos.agregar(
-				Arrays.asList(new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.09, 0, 0),
-						new DispositivoConcreto(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG, 0.175, 6, 30),
-				new DispositivoConcreto(DispositivoConcretoEnum.TELEVISOR_TUBO_21, 0.075, 90, 360),
-				new DispositivoConcreto(DispositivoConcretoEnum.VENTILADOR_PIE, 0.09, 120, 360)));
+				Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),
+						new DispositivoConcreto("LAVARROPAS_AUTO_5KG", 0.175, 6, 30, true),
+				new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true),
+				new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
-		dispositivoInteligente1 = new DispositivoInteligente(DispositivoConcretoEnum.HELADERA_CONFREEZER.toString(), 150);
+		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
 		dispositivoInteligente1.setEstado(new Encendido());
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 		
-		dispositivoInteligente2 = new DispositivoInteligente(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG.toString(), 150);
+		dispositivoInteligente2 = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
 		dispositivoInteligente2.setEstado(new Apagado());
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
 
-		dispositivoEstandar1 = new DispositivoEstandar(DispositivoConcretoEnum.TELEVISOR_TUBO_21.toString(), 24, 1);
+		dispositivoEstandar1 = new DispositivoEstandar("TELEVISOR_TUBO_21", 24, 1);
 		dispositivoEstandar1.setDispositivoGenerico(repositorioDeDispositivos);
-		dispositivoEstandar2 = new DispositivoEstandar(DispositivoConcretoEnum.VENTILADOR_PIE.toString(), 24, 2);
+		dispositivoEstandar2 = new DispositivoEstandar("VENTILADOR_PIE", 24, 2);
 		dispositivoEstandar2.setDispositivoGenerico(repositorioDeDispositivos);
 		
 		dispositivosEstandares.addAll(Arrays.asList(dispositivoEstandar1, dispositivoEstandar2));
@@ -76,8 +73,6 @@ public class ClienteTest {
 		nico = new Cliente("Nicolás", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R1",
 				dispositivosEstandares, dispositivosInteligentes, 0);
 		nico.setRepositorioCategorias(categorias);
-		nico.setObserver(new ClienteObserver(nico));
-		nico.getDomicilioServicio().setOptimizador(new OptimizadorSimplex());
 		nico.obtenerCategoria();
 	}
 

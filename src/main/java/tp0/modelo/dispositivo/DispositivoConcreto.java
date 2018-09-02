@@ -2,20 +2,22 @@ package tp0.modelo.dispositivo;
 
 public class DispositivoConcreto {
 	
-	protected DispositivoConcretoEnum nombreGenerico;
+	protected String nombreGenerico;
 	protected double coeficiente;
 	protected double usoMinimo;
 	protected double usoMaximo;
+	protected boolean optimizable;
 	
-	public DispositivoConcreto(DispositivoConcretoEnum nombreGenerico, double coeficiente, double usoMinimo,
-			double usoMaximo) {
+	public DispositivoConcreto(String nombreGenerico, double coeficiente, double usoMinimo,
+			double usoMaximo, boolean optimizable) {
 		this.nombreGenerico = nombreGenerico;
 		this.coeficiente = coeficiente;
 		this.usoMinimo = usoMinimo;
 		this.usoMaximo = usoMaximo;
+		this.optimizable = optimizable;
 	}
 	
-	public DispositivoConcretoEnum getNombreGenerico(){
+	public String getNombreGenerico(){
 		return this.nombreGenerico;
 	}
 
@@ -31,8 +33,7 @@ public class DispositivoConcreto {
 		return this.usoMaximo;
 	}
 
-	public boolean soyHeladera() {
-		return this.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_CONFREEZER)
-				|| this.getNombreGenerico().equals(DispositivoConcretoEnum.HELADERA_SINFREEZER);
+	public boolean optimizable() {
+		return this.optimizable;
 	}
 }

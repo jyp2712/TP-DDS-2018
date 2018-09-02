@@ -10,7 +10,6 @@ import test.dispositivo.LavarropasMock;
 import test.regla.AccionMock;
 import tp0.modelo.dispositivo.Dispositivo;
 import tp0.modelo.dispositivo.DispositivoConcreto;
-import tp0.modelo.dispositivo.DispositivoConcretoEnum;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.regla.Accion;
@@ -37,17 +36,17 @@ public class HogarTest {
 	public void setUp() throws Exception {
 	
 		repositorioDeDispositivos.agregar(
-				Arrays.asList(new DispositivoConcreto(DispositivoConcretoEnum.HELADERA_CONFREEZER, 0.09, 0, 0),
-						new DispositivoConcreto(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG, 0.175, 6, 30),
-				new DispositivoConcreto(DispositivoConcretoEnum.TELEVISOR_TUBO_21, 0.075, 90, 360),
-				new DispositivoConcreto(DispositivoConcretoEnum.VENTILADOR_PIE, 0.09, 120, 360)));
+				Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),
+						new DispositivoConcreto("LAVARROPAS_AUTO_5KG", 0.175, 6, 30, true),
+				new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true),
+				new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
-		lavarropas = new DispositivoInteligente(DispositivoConcretoEnum.LAVARROPAS_AUTO_5KG.toString(), 150);
+		lavarropas = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
 		lavarropas.setDispositivoGenerico(repositorioDeDispositivos);
 		lavarropas.setDispositivoFisico(lavarropasMock);
 		lavarropas.setSensorAdapter(sensorMock);
 		
-		televisor = new DispositivoEstandar(DispositivoConcretoEnum.TELEVISOR_TUBO_21.toString(), 100, 10);
+		televisor = new DispositivoEstandar("TELEVISOR_TUBO_21", 100, 10);
 		televisor.setDispositivoGenerico(repositorioDeDispositivos);
 		
 		dispositivos.addAll(Arrays.asList(lavarropas, televisor));
@@ -55,8 +54,6 @@ public class HogarTest {
 		accion = new AccionMock(lavarropas);
 		
 		hogar = new Hogar("hola");
-		hogar.setOptimizador(optimizador);
-		hogar.actualizarDispositivos(dispositivos);
 		
 		disp.addAll(Arrays.asList(lavarropas));
 		acciones.addAll(Arrays.asList(accion));
@@ -69,17 +66,18 @@ public class HogarTest {
 	
 	@Test
 	public void testOptimizacion() {
-		double[] resultado = hogar.optimizar();
-		Assert.assertEquals(televisor.getUsoMaximo(), resultado[televisor.getNombreGenericoPosicion()], 0);
-		Assert.assertEquals(lavarropas.getUsoMaximo(), resultado[lavarropas.getNombreGenericoPosicion()], 0);
+		double[] resultado = hogar.optimizar(dispositivos);
+		int posTele = dispositivos.indexOf(televisor);
+		int posLavarropas = dispositivos.indexOf(lavarropas);
+		Assert.assertEquals(televisor.getUsoMaximo(), resultado[posTele], 0);
+		Assert.assertEquals(lavarropas.getUsoMaximo(), resultado[posLavarropas], 0);
 	}
 	
 	@Test
 	public void testOptimizacionConAccion() {
-		hogar.actualizarDispositivos(disp);
 		hogar.configurarReglas(acciones);
 		hogar.activarAccionesAuto();
-		hogar.optimizar();
+		hogar.optimizar(dispositivos);
 		Assert.assertEquals(1, accion.getEjecuciones());
 	}
 	

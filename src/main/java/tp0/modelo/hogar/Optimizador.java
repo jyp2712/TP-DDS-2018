@@ -6,6 +6,5 @@ import tp0.modelo.dispositivo.Dispositivo;
 
 public interface Optimizador {
 	
-	public void setCondiciones(List<Dispositivo> dispositivos);
-	public double[] optimizar(); 
+	public double[] optimizar(List<Dispositivo> dispositivos); 
 }
