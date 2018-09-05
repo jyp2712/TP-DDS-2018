@@ -14,13 +14,10 @@ import tp0.modelo.dispositivo.regla.Regla;
 
 public class Hogar {
 	
-	protected String direccion;
 	protected List<Regla> reglas = new ArrayList<>();
 	protected boolean accionAutomatica = false;
 	
-	public Hogar(String direccion) {
-		this.direccion = direccion;
-	}
+	public Hogar() {}
 	
 	public double[] optimizar(List<Dispositivo> dispositivos) {
 		Optimizador optimizador = new OptimizadorSimplex();
@@ -68,8 +65,4 @@ public class Hogar {
 		this.accionAutomatica = false;
 	}
 
-	public String getDireccion() {
-		return this.direccion;
-	}
-	
 }

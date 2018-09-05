@@ -111,7 +111,7 @@ public class JsonClienteTest {
 
 	@Test
 	public void testNicoDomicilio() {
-		Assert.assertEquals(nico.getDomicilioServicio().getDireccion(), nicolas.getDomicilioServicio().getDireccion());
+		Assert.assertEquals(nico.getDomicilioServicio(), nicolas.getDomicilioServicio());
 	}
 
 	@Test

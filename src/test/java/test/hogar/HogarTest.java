@@ -53,16 +53,12 @@ public class HogarTest {
 		optimizador = new OptimizadorSimplex();
 		accion = new AccionMock(lavarropas);
 		
-		hogar = new Hogar("hola");
+		hogar = new Hogar();
 		
 		disp.addAll(Arrays.asList(lavarropas));
 		acciones.addAll(Arrays.asList(accion));
 	}
 
-	@Test
-	public void testDireccion() {
-		Assert.assertTrue(hogar.getDireccion().equals("hola"));
-	}
 	
 	@Test
 	public void testOptimizacion() {

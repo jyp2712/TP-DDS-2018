@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tp0.modelo.dispositivo.Dispositivo;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.hogar.Hogar;
 import tp0.modelo.repositorios.Repositorio;
 
 public class Cliente {
@@ -25,7 +24,7 @@ public class Cliente {
 	protected DTD tipoDoc;
 	protected Integer documento;
 	protected String tel;
-	protected Hogar hogarServicio;
+	protected String domicilioServicio;
 	protected DateTime fechaAltaServicio;
 	protected Repositorio<Categoria> repositorioCategorias;
 	protected Categoria categoria;
@@ -57,8 +56,7 @@ public class Cliente {
 	}
 
 	private void setDomicilioServicio(String domicilioServicio) {
-		this.hogarServicio = new Hogar(domicilioServicio);
-		
+		this.domicilioServicio = domicilioServicio;
 	}
 
 	public String getNombre() {
@@ -101,8 +99,8 @@ public class Cliente {
 		this.tel = tel;
 	}
 
-	public Hogar getDomicilioServicio() {
-		return this.hogarServicio;
+	public String getDomicilioServicio() {
+		return this.domicilioServicio;
 	}
 
 	public DateTime getFechaAltaServicio() {
