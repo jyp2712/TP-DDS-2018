@@ -122,6 +122,9 @@ public class Cliente {
 	public void obtenerCategoria() {
 		this.categoria = repositorioCategorias
 				.encontrar(categoria -> categoria.getNombre().equals(this.nombreCategoria));
+		if(this.categoria == null) {
+			this.asignarCategoria();
+		}
 	}
 
 	public Categoria getCategoria() {
@@ -206,6 +209,7 @@ public class Cliente {
 	public void asignarCategoria() {
 		this.setCategoria(this.repositorioCategorias
 				.encontrar(categoria -> categoria.enRango(this.consumoTotal(DateTime.now().minusMonths(3), DateTime.now()))));
+		setNombreCategoria(this.categoria.getNombre());
 	}
 
 	public void registrarDispositivoInteligente(DispositivoInteligente nuevoDispositivo) {
