@@ -1,12 +1,15 @@
 package tp0.modelo;
 
-public class Categoria {
+import javax.persistence.Entity;
 
-	private String nombre;
-	private double cargoFijo;
-	private double cargoVariable;
-	private double consumoMinimo;
-	private double consumoMaximo;
+@Entity
+public class Categoria extends PersistentObject{
+
+	protected String nombre;
+	protected double cargoFijo;
+	protected double cargoVariable;
+	protected double consumoMinimo;
+	protected double consumoMaximo;
 
 	public Categoria(String id, double cargoFijo, double cargoVariable, double consumoMinimo, double consumoMaximo) {
 		setNombre(id);

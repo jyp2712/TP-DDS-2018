@@ -1,11 +1,16 @@
 package tp0.modelo.dispositivo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.joda.time.Hours;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
+@DiscriminatorValue("estandar")
 public class DispositivoEstandar extends Dispositivo {
 
 	@JsonProperty

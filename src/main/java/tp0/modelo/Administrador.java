@@ -1,14 +1,17 @@
 package tp0.modelo;
 
+import javax.persistence.Entity;
+
 import org.joda.time.*;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Administrador {
+@Entity
+public class Administrador extends PersistentObject{
 
 	@JsonProperty
-	protected Integer id;
+	protected Integer id_admin;
 
 	@JsonProperty
 	protected String nombre;
@@ -34,11 +37,11 @@ public class Administrador {
 	}
 
 	public Integer getId() {
-		return id;
+		return id_admin;
 	}
 
 	private void setId(Integer id) {
-		this.id = id;
+		this.id_admin = id;
 	}
 
 	public String getNombre() {

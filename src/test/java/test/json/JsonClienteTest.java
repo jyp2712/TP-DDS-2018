@@ -12,8 +12,7 @@ import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.estado.Apagado;
-import tp0.modelo.dispositivo.estado.Encendido;
+import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.json.DecodificadorJson;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 import tp0.modelo.repositorios.fuentes.FuenteArchivo;
@@ -54,11 +53,11 @@ public class JsonClienteTest {
 		clientes.stream().forEach(cliente -> cliente.obtenerCategoria());
 		
 		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
-		dispositivoInteligente1.setEstado(new Encendido());
+		dispositivoInteligente1.setEstado(Estado.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 		
 		dispositivoInteligente2 = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
-		dispositivoInteligente2.setEstado(new Apagado());
+		dispositivoInteligente2.setEstado(Estado.APAGADO);
 		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
 
 		dispositivoEstandar1 = new DispositivoEstandar("TELEVISOR_TUBO_21", 24, 1);

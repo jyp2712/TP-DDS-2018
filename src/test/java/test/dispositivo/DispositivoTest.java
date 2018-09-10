@@ -34,12 +34,12 @@ public class DispositivoTest {
 				new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
 		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
-		dispositivoInteligente1.setEstado(new Encendido());
+		dispositivoInteligente1.setEstado(Estado.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 
 		dispositivoInteligente2 = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
-		dispositivoInteligente2.setEstado(new Apagado());
+		dispositivoInteligente2.setEstado(Estado.APAGADO);
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
 		
@@ -57,19 +57,19 @@ public class DispositivoTest {
 	@Test
 	public void testDispositivoInteligente1SeLoEnciendeYNoHaceNada() {
 		dispositivoInteligente1.encenderse();
-		Assert.assertEquals(new Encendido().getClass(), dispositivoInteligente1.getEstado().getClass());
+		Assert.assertEquals(Estado.ENCENDIDO, dispositivoInteligente1.getEstado());
 	}
 
 	@Test
 	public void testDispositivoInteligente1SeLoApagaCorrectamente() {
 		dispositivoInteligente1.apagarse();
-		Assert.assertEquals(new Apagado().getClass(), dispositivoInteligente1.getEstado().getClass());
+		Assert.assertEquals(Estado.APAGADO, dispositivoInteligente1.getEstado());
 	}
 
 	@Test
 	public void testDispositivoInteligente1SeLoAhorraEnergiaCorrectamente() {
 		dispositivoInteligente1.ahorrarseEnergia();
-		Assert.assertEquals(new AhorroEnergia().getClass(), dispositivoInteligente1.getEstado().getClass());
+		Assert.assertEquals(Estado.AHORROENERGIA, dispositivoInteligente1.getEstado());
 	}
 
 	@Test
@@ -80,19 +80,19 @@ public class DispositivoTest {
 	@Test
 	public void testDispositivoInteligente2SeLoApagaYNoHaceNada() {
 		dispositivoInteligente2.apagarse();
-		Assert.assertEquals(new Apagado().getClass(), dispositivoInteligente2.getEstado().getClass());
+		Assert.assertEquals(Estado.APAGADO, dispositivoInteligente2.getEstado());
 	}
 
 	@Test
 	public void testDispositivoInteligente2SeLoEnciendeCorrectamente() {
 		dispositivoInteligente2.encenderse();
-		Assert.assertEquals(new Encendido().getClass(), dispositivoInteligente2.getEstado().getClass());
+		Assert.assertEquals(Estado.ENCENDIDO, dispositivoInteligente2.getEstado());
 	}
 
 	@Test
 	public void testDispositivoInteligente2SeLoAhorraEnergiaCorrectamente() {
 		dispositivoInteligente2.ahorrarseEnergia();
-		Assert.assertEquals(new AhorroEnergia().getClass(), dispositivoInteligente2.getEstado().getClass());
+		Assert.assertEquals(Estado.AHORROENERGIA, dispositivoInteligente2.getEstado());
 	}
 
 	@Test

@@ -4,6 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -14,22 +21,30 @@ import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.repositorios.Repositorio;
 
-public class Cliente {
+@Entity
+public class Cliente extends PersistentObject{
 
 	protected String nombre;
 	protected String apellido;
 	private enum DTD {
 		LE, DNI, CI, LC
 	}
+	@Enumerated
 	protected DTD tipoDoc;
 	protected Integer documento;
 	protected String tel;
 	protected String domicilioServicio;
-	protected DateTime fechaAltaServicio;
+	protected String fechaAltaServicio;
+	@Transient
 	protected Repositorio<Categoria> repositorioCategorias;
+	@ManyToOne
 	protected Categoria categoria;
 	protected String nombreCategoria;
+	@OneToMany
+	@JoinColumn(name = "cliente_id")
 	protected List<DispositivoEstandar> dispositivosEstandares;
+	@OneToMany
+	@JoinColumn(name = "cliente_id")
 	protected List<DispositivoInteligente> dispositivosInteligentes;
 	protected double puntos;	
 
@@ -48,7 +63,7 @@ public class Cliente {
 		setDocumento(documento);
 		setTel(tel);
 		setNombreCategoria(nombreCategoria);
-		setFechaAltaServicio(new DateTime(fechaAltaServicio));
+		setFechaAltaServicio(fechaAltaServicio);
 		setDispositivosEstandares(dispositivosEstandares);
 		setDispositivosInteligentes(dispositivosInteligentes);
 		setDomicilioServicio(domicilioServicio);
@@ -107,7 +122,7 @@ public class Cliente {
 		return new DateTime(fechaAltaServicio);
 	}
 
-	private void setFechaAltaServicio(DateTime fechaAltaServicio) {
+	private void setFechaAltaServicio(String fechaAltaServicio) {
 		this.fechaAltaServicio = fechaAltaServicio;
 	}
 

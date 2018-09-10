@@ -1,5 +1,11 @@
 package tp0.modelo.dispositivo;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,10 +15,15 @@ import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.dispositivo.regla.Accion;
 import tp0.modelo.dispositivo.regla.SensorAdapter;
 
+@Entity
+@DiscriminatorValue("inteligente")
 public class DispositivoInteligente extends Dispositivo {
 
-	private Estado estado;
-	private DispositivoFisicoAdapter dispositivoFisico;
+	@Enumerated
+	protected Estado estado;
+	@Transient
+	protected DispositivoFisicoAdapter dispositivoFisico;
+	@OneToOne
 	protected SensorAdapter sensor;
 
 	@JsonCreator
@@ -31,11 +42,11 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	public Boolean estaEncendido() {
-		return this.getEstado().estaEncendido();
+		return this.getEstado() == Estado.ENCENDIDO;
 	}
 
 	public Boolean estaApagado() {
-		return !this.getEstado().estaEncendido();
+		return this.getEstado() == Estado.APAGADO;
 	}
 
 	public void apagarse() {

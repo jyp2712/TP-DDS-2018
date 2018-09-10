@@ -12,8 +12,7 @@ import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.estado.Apagado;
-import tp0.modelo.dispositivo.estado.Encendido;
+import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
@@ -45,12 +44,12 @@ public class ClienteTest {
 				new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
 		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
-		dispositivoInteligente1.setEstado(new Encendido());
+		dispositivoInteligente1.setEstado(Estado.ENCENDIDO);
 		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
 		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
 		
 		dispositivoInteligente2 = new DispositivoInteligente("LAVARROPAS_AUTO_5KG", 150);
-		dispositivoInteligente2.setEstado(new Apagado());
+		dispositivoInteligente2.setEstado(Estado.APAGADO);
 		dispositivoInteligente2.setDispositivoFisico(lavarropasMock);
 		dispositivoInteligente2.setDispositivoGenerico(repositorioDeDispositivos);
 

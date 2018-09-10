@@ -1,20 +1,35 @@
 package tp0.modelo.dispositivo;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+
 import org.joda.time.DateTime;
 
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
-
-public abstract class Dispositivo {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_dispositivo")
+public abstract class Dispositivo{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected long id;
 	protected String nombreGenerico;
+	@ManyToOne
 	protected DispositivoConcreto dispositivoConcreto;
 	protected double kWXHora;
 
 	public abstract double consumoUltimas(int horas);
 	public abstract double consumoTotal(DateTime fechaInicial, DateTime fechaFinal);
 	
-	private DispositivoConcreto getDispositivoConcreto() {
+	public DispositivoConcreto getDispositivoConcreto() {
 		return this.dispositivoConcreto;
 	}
 

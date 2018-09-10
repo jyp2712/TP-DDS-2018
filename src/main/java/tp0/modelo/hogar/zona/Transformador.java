@@ -2,12 +2,20 @@ package tp0.modelo.hogar.zona;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import org.joda.time.DateTime;
 
 import tp0.modelo.Cliente;
+import tp0.modelo.PersistentObject;
 
-public class Transformador {
+@Entity
+public class Transformador extends PersistentObject{
 	
+	@OneToMany
+	@JoinColumn(name="transformador_id")
 	protected List<Cliente> clientes;
 	
 	public double energiaSuministrada(DateTime fechaInicial, DateTime fechaFinal) {

@@ -1,6 +1,11 @@
 package tp0.modelo.dispositivo;
 
-public class DispositivoConcreto {
+import javax.persistence.Entity;
+
+import tp0.modelo.PersistentObject;
+
+@Entity
+public class DispositivoConcreto extends PersistentObject{
 	
 	protected String nombreGenerico;
 	protected double coeficiente;

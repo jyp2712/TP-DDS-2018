@@ -1,10 +1,16 @@
 package tp0.modelo.dispositivo.regla;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+import tp0.modelo.PersistentObject;
 import tp0.modelo.dispositivo.*;
 
-public abstract class Accion {
+@Entity
+public abstract class Accion extends PersistentObject{
 	
-	private DispositivoInteligente dispositivo;
+	@ManyToOne
+	protected DispositivoInteligente dispositivo;
 	
 	public Accion(DispositivoInteligente dispositivo) {
 		this.setDispositivo(dispositivo);

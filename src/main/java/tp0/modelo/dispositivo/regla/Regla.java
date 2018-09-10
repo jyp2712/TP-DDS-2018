@@ -1,8 +1,16 @@
 package tp0.modelo.dispositivo.regla;
 
-public class Regla {
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
+import tp0.modelo.PersistentObject;
+
+@Entity
+public class Regla extends PersistentObject{
+
+	@OneToOne
 	private Condicion condicion;
+	@OneToOne
 	private Accion accion;
 
 	public Regla(Condicion condicion, Accion accion) {
