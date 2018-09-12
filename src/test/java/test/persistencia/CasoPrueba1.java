@@ -1,10 +1,15 @@
 package test.persistencia;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Parameter;
+import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +23,16 @@ import tp0.modelo.repositorios.RepositorioEnMemoria;
 
 public class CasoPrueba1{
 
-	Cliente nico;
+	Cliente nico, nicolas;
 	Categoria categoria1;
 	Categoria categoria2;
 	Repositorio<Categoria> categorias;
-	Transformador transformador1, transformador2;
+	Transformador transformador1, transformador2, transf1, transf2;
 	EntityManager entityManager;
 	EntityTransaction transaction;
-	
+	List<Cliente> clientes, clientes_aux;
+	List<Transformador> transformadores, transf_aux;
+		
 	@Before
 	public void setUp() throws Exception {
 		
@@ -49,8 +56,9 @@ public class CasoPrueba1{
 		transaction = entityManager.getTransaction();
 	}
 	
+
 	@Test
-	public void testNicoCambioZona() {
+	public void persistenciaNico(){
 		transaction.begin();
 		
 		entityManager.persist(categoria1);
@@ -61,14 +69,25 @@ public class CasoPrueba1{
 		entityManager.persist(transformador1);
 		entityManager.persist(transformador2);
 
-		transaction.commit();
-
-		List<Cliente> clientes = entityManager.createQuery("from Cliente").getResultList();
-		List<Transformador> transformadores = entityManager.createQuery("from Transformador").getResultList();
+		transaction.commit();	
 		
-		Cliente nicolas = clientes.get(0);
-		Transformador transf1 = transformadores.get(0);
-		Transformador transf2 = transformadores.get(1);
+		clientes = entityManager.createQuery("from Cliente").getResultList();
+		transformadores = entityManager.createQuery("from Transformador").getResultList();
+		
+		nicolas = clientes.get(0);
+		
+		assertTrue(transformador1.pertenece(nicolas));
+		assertFalse(transformador2.pertenece(nicolas));
+	};
+	
+	@Test
+	public void testNicoCambioZona() {
+		clientes = entityManager.createQuery("from Cliente").getResultList();
+		transformadores = entityManager.createQuery("from Transformador").getResultList();
+		
+		nicolas = clientes.get(0);
+		transf1 = transformadores.get(0);
+		transf2 = transformadores.get(1);
 
 		transf1.sacarCliente(nicolas);
 		transf2.agregarCliente(nicolas);
@@ -76,6 +95,16 @@ public class CasoPrueba1{
 		transaction.begin();		
 		entityManager.flush();
 		transaction.commit();
+		
+		clientes_aux = entityManager.createQuery("from Cliente").getResultList();
+		transf_aux = entityManager.createQuery("from Transformador").getResultList();
+		
+		Cliente cliente_aux = clientes.get(0);
+		Transformador transf_aux1 = transformadores.get(0);
+		Transformador transf_aux2 = transformadores.get(1);
+		
+		assertFalse(transf_aux1.pertenece(cliente_aux));
+		assertTrue(transf_aux2.pertenece(cliente_aux));
 		
 	}
 

@@ -28,6 +28,10 @@ public class Transformador extends PersistentObject{
 	public void agregarCliente(Cliente _cliente) {
 		clientes.add(_cliente);
 	}
+	
+	public boolean pertenece(Cliente cliente) {
+		return clientes.contains(cliente);
+	}
 
 	public double energiaSuministrada(DateTime fechaInicial, DateTime fechaFinal) {
 		return clientes.stream().mapToDouble(cliente -> cliente.consumoTotal(fechaInicial, fechaFinal)).sum();
