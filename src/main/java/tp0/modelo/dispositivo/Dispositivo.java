@@ -22,7 +22,7 @@ public abstract class Dispositivo{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
 	protected String nombreGenerico;
-	@ManyToOne
+	@ManyToOne(optional=false)
 	protected DispositivoConcreto dispositivoConcreto;
 	protected double kWXHora;
 

@@ -1,12 +1,10 @@
 package tp0.modelo.dispositivo.regla;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
 import org.joda.time.DateTime;
 
-import tp0.modelo.PersistentObject;
-
-@Entity
-public abstract class SensorAdapter extends PersistentObject{
+@Embeddable
+public abstract class SensorAdapter{
 	public abstract double medicion(DateTime fechaInicial, DateTime fechaFinal);
 }

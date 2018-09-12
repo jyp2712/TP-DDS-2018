@@ -48,6 +48,8 @@ public class Cliente extends PersistentObject{
 	protected List<DispositivoInteligente> dispositivosInteligentes;
 	protected double puntos;	
 
+	public Cliente() {}
+	
 	@JsonCreator
 	public Cliente(@JsonProperty("nombre") String nombre, @JsonProperty("apellido") String apellido,
 			@JsonProperty("tipo documento") String tipoDoc, @JsonProperty("N documento") Integer documento,

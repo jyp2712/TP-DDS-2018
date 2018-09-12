@@ -1,9 +1,9 @@
 package tp0.modelo.dispositivo;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
@@ -23,7 +23,7 @@ public class DispositivoInteligente extends Dispositivo {
 	protected Estado estado;
 	@Transient
 	protected DispositivoFisicoAdapter dispositivoFisico;
-	@OneToOne
+	@Embedded
 	protected SensorAdapter sensor;
 
 	@JsonCreator

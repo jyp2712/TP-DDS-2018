@@ -1,16 +1,14 @@
 package tp0.modelo.dispositivo.regla;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 
 import org.joda.time.DateTime;
 
-import tp0.modelo.PersistentObject;
+@Embeddable
+public abstract class Condicion{
 
-@Entity
-public abstract class Condicion extends PersistentObject{
-
-	@ManyToOne
+	@Embedded
 	protected SensorAdapter sensor;
 
 	public Condicion(SensorAdapter sensor) {

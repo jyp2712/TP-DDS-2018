@@ -11,6 +11,8 @@ public class Categoria extends PersistentObject{
 	protected double consumoMinimo;
 	protected double consumoMaximo;
 
+	public Categoria() {}
+	
 	public Categoria(String id, double cargoFijo, double cargoVariable, double consumoMinimo, double consumoMaximo) {
 		setNombre(id);
 		setCargoFijo(cargoFijo);

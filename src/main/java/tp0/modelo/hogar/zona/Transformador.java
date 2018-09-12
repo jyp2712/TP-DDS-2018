@@ -1,5 +1,6 @@
 package tp0.modelo.hogar.zona;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,8 +17,18 @@ public class Transformador extends PersistentObject{
 	
 	@OneToMany
 	@JoinColumn(name="transformador_id")
-	protected List<Cliente> clientes;
+	protected List<Cliente> clientes = new ArrayList<>();
 	
+	public Transformador() {}
+	
+	public void sacarCliente(Cliente _cliente) {
+		clientes.remove(_cliente);
+	}
+
+	public void agregarCliente(Cliente _cliente) {
+		clientes.add(_cliente);
+	}
+
 	public double energiaSuministrada(DateTime fechaInicial, DateTime fechaFinal) {
 		return clientes.stream().mapToDouble(cliente -> cliente.consumoTotal(fechaInicial, fechaFinal)).sum();
 	}
