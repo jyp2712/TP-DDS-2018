@@ -45,8 +45,8 @@ public class ReporteTest{
 	List<ReporteConsumo> reportes;
 	ReporteConsumo reporteDispositivoInteligente2;
 	ReporteConsumo reporteDispositivoInteligente2Persistido;
-	ReporteConsumoDispositivo reporteDispositivoEstandar1;
-	ReporteConsumoDispositivo reporteDispositivoEstandar1Persistido;
+	ReporteConsumo reporteDispositivoEstandar1;
+	ReporteConsumo reporteDispositivoEstandar1Persistido;
 	HeladeraMock heladeraMock = new HeladeraMock();
 	LavarropasMock lavarropasMock = new LavarropasMock();
 	List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
@@ -80,13 +80,19 @@ public class ReporteTest{
 		dispositivosInteligentes.addAll(Arrays.asList(dispositivoInteligente2));
 
 		nico = new Cliente("Nicolas", "Fonseca", "DNI", 39068888, "1141693939", "Calle Falsa 123", "2018-01-01", "R1",
-				null, dispositivosInteligentes, 0);
+				dispositivosEstandares, dispositivosInteligentes, 0);
 		
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
 	}
 	
+	@After
+	   public void tearDown() throws Exception {
+	    entityManager.clear();  
 
+	   }
+	
+	
 	@Test
 	public void persistoReporteConUnDispositivoInteligente(){
 		
@@ -111,14 +117,14 @@ public class ReporteTest{
 		
 		assertTrue(reporteDispositivoInteligente2Persistido.getClass() == reporteDispositivoInteligente2.getClass());
 	};
-
-/*	
+	
+	/*
 	@Test
 	public void persistoReporteConUnDispositivoEstandar(){
 		
 		dispositivoEstandar1.finalizarReporte(DateTime.now());
 		
-		reporteDispositivoEstandar1 = dispositivoEstandar1.getReporte();
+		reporteDispositivoEstandar1 = dispositivoEstandar1.getReporteConsumo();
 		
 		transaction.begin();
 		
@@ -126,11 +132,11 @@ public class ReporteTest{
 		
 		entityManager.persist(dispositivoEstandar1);
 		
-		entityManager.persist(dispositivoEstandar1.getReporte());
+		entityManager.persist(dispositivoEstandar1.getReporteConsumo());
 		
 		transaction.commit();	
 		
-		reportes = entityManager.createQuery("from Reporte").getResultList();
+		reportes = entityManager.createQuery("from ReporteConsumo").getResultList();
 		
 		reporteDispositivoEstandar1Persistido = reportes.get(0);
 		

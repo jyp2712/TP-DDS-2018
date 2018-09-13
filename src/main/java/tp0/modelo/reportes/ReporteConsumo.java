@@ -15,13 +15,8 @@ public abstract class ReporteConsumo{
 	protected String fechaFin;
 	protected double consumo;
 	
-	public ReporteConsumo (String fechaInicio){
-		
-		this.fechaInicio = fechaInicio;
-		
-	}
 	
-	public abstract void finalizarReporte(DateTime fechaFinal); 
+	public abstract void finalizarReporte(String fechaFinal); 
 	
 	
 	public void setFechaInicio(String fechaInicio) {

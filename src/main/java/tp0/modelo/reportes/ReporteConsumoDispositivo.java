@@ -14,13 +14,6 @@ public class ReporteConsumoDispositivo extends ReporteConsumo {
 	@Transient
 	protected Dispositivo dispositivo;
 	
-	public ReporteConsumoDispositivo(Dispositivo dispositivo, String fechaInicial) {
-		
-		super(fechaInicial);
-		this.nombreDispositivo = dispositivo.getNombreGenerico();
-		this.dispositivo = dispositivo;
-		
-	}
 	
 	public void setNombreDispositivo(String nombreDispositivo) {
 		this.nombreDispositivo = nombreDispositivo;
@@ -30,9 +23,14 @@ public class ReporteConsumoDispositivo extends ReporteConsumo {
 		return this.nombreDispositivo;
 	}
 	
-	public void finalizarReporte(DateTime fechaFinal){
-		this.setFechaFin(fechaFinal.toString());
-		this.setConsumo(dispositivo.consumoTotal(new DateTime(fechaInicio), fechaFinal));
+	public void comenzarReporte(Dispositivo dispositivo, String fechaInicial) {
+		this.fechaInicio = fechaInicial;
+		this.dispositivo = dispositivo;
+	}
+	
+	public void finalizarReporte(String fechaFinal){
+		this.setFechaFin(fechaFinal);
+		this.setConsumo(dispositivo.consumoTotal(new DateTime(fechaInicio), new DateTime(fechaFinal)));
 		
 	}
 	}

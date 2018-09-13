@@ -77,13 +77,14 @@ public abstract class Dispositivo{
 	
 	public void comenzarReporte() {
 		
-		this.reporteConsumo = new ReporteConsumoDispositivo(this,DateTime.now().toString());
+		this.reporteConsumo = new ReporteConsumoDispositivo();
+		this.reporteConsumo.comenzarReporte(this, DateTime.now().toString());
 		//this.reporte.setFechaInicioPeriodo(DateTime.now().toString());;
 	}
 	
 	public void finalizarReporte(DateTime fechaFinPeriodo) {
 		
-		this.reporteConsumo.finalizarReporte(fechaFinPeriodo);
+		this.reporteConsumo.finalizarReporte(fechaFinPeriodo.toString());
 		//this.reporte.setFechaFinPeriodo(fechaFinPeriodo.toString());
 		//this.reporte.setConsumoPeriodo(this.consumoTotal(new DateTime(this.reporte.getFechaInicioPeriodo()), fechaFinPeriodo));
 		//sthis.reportes.add(reporte);

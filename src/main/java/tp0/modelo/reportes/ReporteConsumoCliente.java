@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 import org.joda.time.DateTime;
 
 import tp0.modelo.Cliente;
+import tp0.modelo.dispositivo.Dispositivo;
 
 @Entity
 public class ReporteConsumoCliente extends ReporteConsumo{
@@ -15,17 +16,6 @@ public class ReporteConsumoCliente extends ReporteConsumo{
 	protected String apellidoCliente;
 	@Transient
 	protected Cliente cliente;
-	
-	public ReporteConsumoCliente(Cliente cliente, String fechaInicial) {
-		
-		super(fechaInicial);
-		this.dni = cliente.getDocumento();
-		this.nombreCliente = cliente.getNombre();
-		this.apellidoCliente = cliente.getApellido();
-		this.cliente = cliente;
-		
-		
-	}
 	
 	public String getApellidoCliente() {
 		return this.apellidoCliente;
@@ -39,9 +29,17 @@ public class ReporteConsumoCliente extends ReporteConsumo{
 		return this.dni;
 	}
 	
-	public void finalizarReporte(DateTime fechaFinal) {
-		this.setFechaFin(fechaFinal.toString());
-		this.setConsumo(cliente.consumoTotal(new DateTime(fechaInicio), fechaFinal));
+	public void comenzarReporte(Cliente cliente, String fechaInicial) {
+		this.fechaInicio = fechaInicial;
+		this.cliente = cliente;
+		this.dni = cliente.getDocumento();
+		this.nombreCliente = cliente.getNombre();
+		this.apellidoCliente = cliente.getApellido();
+	}
+	
+	public void finalizarReporte(String fechaFinal) {
+		this.setFechaFin(fechaFinal);
+		this.setConsumo(cliente.consumoTotal(new DateTime(fechaInicio), new DateTime(fechaFinal)));
 	}
 	
 	

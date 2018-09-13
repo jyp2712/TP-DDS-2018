@@ -13,12 +13,6 @@ public class ReporteConsumoTransformador extends ReporteConsumo {
 	@Transient
 	Transformador transformador;
 	
-	public ReporteConsumoTransformador(Transformador transformador, String fechaInicial) {
-		super(fechaInicial);
-		this.id_transformador = transformador.getId();
-		this.transformador = transformador;
-	}
-	
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -27,8 +21,14 @@ public class ReporteConsumoTransformador extends ReporteConsumo {
 		return this.id;
 	}
 	
-	public void finalizarReporte(DateTime fechaFinal) {
-		this.setFechaFin(fechaFinal.toString());
-		this.setConsumo(transformador.energiaSuministrada(new DateTime(fechaInicio), fechaFinal));
+	public void comenzarReporte(Transformador transformador, String fechaInicial) {
+		this.id_transformador = transformador.getId();
+		this.transformador = transformador;
+		this.fechaInicio = fechaInicial;
+	}
+	
+	public void finalizarReporte(String fechaFinal) {
+		this.setFechaFin(fechaFinal);
+		this.setConsumo(transformador.energiaSuministrada(new DateTime(fechaInicio), new DateTime(fechaFinal)));
 	}
 }
