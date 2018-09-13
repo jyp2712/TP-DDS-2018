@@ -24,6 +24,10 @@
     	<class>tp0.modelo.hogar.zona.Transformador</class>
     	<class>tp0.modelo.hogar.zona.ZonaGeografica</class>
     	
+    	<class>reportes.ReporteConsumoCliente</class>
+    	<class>reportes.ReporteConsumoTransformador</class>
+    	<class>reportes.ReporteConsumoDispositivo</class>
+    	
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

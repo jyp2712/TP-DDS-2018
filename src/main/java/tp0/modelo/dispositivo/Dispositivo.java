@@ -64,4 +64,6 @@ public abstract class Dispositivo{
 	public boolean optimizable() {
 		return this.getDispositivoConcreto().optimizable;
 	}
+
+
 }

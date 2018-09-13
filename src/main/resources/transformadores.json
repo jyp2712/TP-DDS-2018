@@ -1,0 +1,39 @@
+[
+{
+	"clientes": [
+		{	
+		"nombre": "Nicolas",
+		"apellido": "Fonseca",
+		"tipo documento": "DNI",
+		"N documento": 39068888,
+		"telefono": "1141693939",
+		"domicilio de servicio": "Calle Falsa 123",
+		"fecha de alta en el servicio": "2018-01-01",
+		"categoria": "R2",
+		"dispositivos inteligentes": [
+			{
+				"nombre generico": "HELADERA_CONFREEZER",
+				"KW/H": 150
+			},
+			{
+				"nombre generico": "LAVARROPAS_AUTO_5KG",
+				"KW/H": 150
+			}
+		],
+		"dispositivos estandar": [
+			{
+				"nombre generico": "TELEVISOR_TUBO_21",
+				"KW/H": 24,
+				"Horas de consumo": 1
+			},
+			{
+				"nombre generico": "VENTILADOR_PIE",
+				"KW/H": 24,
+				"Horas de consumo": 1
+			}
+		],
+		"puntos": 0
+		}
+	]
+}	
+]

@@ -1,16 +1,12 @@
 package test.persistencia;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Parameter;
-import javax.persistence.Query;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -57,6 +53,7 @@ public class CasoPrueba1{
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void persistenciaNico(){
 		transaction.begin();
@@ -76,10 +73,11 @@ public class CasoPrueba1{
 		
 		nicolas = clientes.get(0);
 		
-		assertTrue(transformador1.pertenece(nicolas));
-		assertFalse(transformador2.pertenece(nicolas));
+		Assert.assertTrue(transformador1.pertenece(nicolas));
+		Assert.assertFalse(transformador2.pertenece(nicolas));
 	};
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testNicoCambioZona() {
 		clientes = entityManager.createQuery("from Cliente").getResultList();
@@ -103,8 +101,8 @@ public class CasoPrueba1{
 		Transformador transf_aux1 = transformadores.get(0);
 		Transformador transf_aux2 = transformadores.get(1);
 		
-		assertFalse(transf_aux1.pertenece(cliente_aux));
-		assertTrue(transf_aux2.pertenece(cliente_aux));
+		Assert.assertFalse(transf_aux1.pertenece(cliente_aux));
+		Assert.assertTrue(transf_aux2.pertenece(cliente_aux));
 		
 	}
 

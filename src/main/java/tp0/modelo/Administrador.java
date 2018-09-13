@@ -7,22 +7,16 @@ import org.joda.time.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import tp0.modelo.dispositivo.DispositivoConcreto;
+import tp0.modelo.repositorios.Repositorio;
+
 @Entity
 public class Administrador extends PersistentObject{
 
-	@JsonProperty
 	protected Integer id_admin;
-
-	@JsonProperty
 	protected String nombre;
-
-	@JsonProperty
 	protected String apellido;
-
-	@JsonProperty
 	protected String domicilio;
-
-	@JsonProperty
 	protected DateTime fechaAltaSistema;
 
 	@JsonCreator
@@ -78,5 +72,20 @@ public class Administrador extends PersistentObject{
 
 	public Months antiguedadAdministrador() {
 		return Months.monthsBetween(fechaAltaSistema, DateTime.now());
+	}
+	
+	public void altaDispositivoConcreto(Repositorio<DispositivoConcreto> dispositivosConcretos, 
+			DispositivoConcreto dispositivo) {
+		dispositivosConcretos.agregar(dispositivo);
+	}
+	
+	public void bajaDispositivoConcreto(Repositorio<DispositivoConcreto> dispositivosConcretos, 
+			DispositivoConcreto dispositivo) {
+		dispositivosConcretos.remover(dispositivo);
+	}
+	
+	public DispositivoConcreto encontrarDispositivoConcreto(Repositorio<DispositivoConcreto> dispositivosConcretos, 
+			String nombre) {
+		return dispositivosConcretos.encontrar(disp -> disp.getNombreGenerico().equalsIgnoreCase(nombre));
 	}
 }
