@@ -1,5 +1,8 @@
 package tp0.modelo.dispositivo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -9,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -30,7 +35,9 @@ public abstract class Dispositivo{
 	@ManyToOne(optional=false)
 	protected DispositivoConcreto dispositivoConcreto;
 	protected double kWXHora;
-	@OneToOne(mappedBy = "dispositivo", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@OneToMany(mappedBy = "dispositivo",cascade = CascadeType.ALL, orphanRemoval = false)
+	protected List<Reporte> reportes = new ArrayList<Reporte>();
+	@Transient
 	protected Reporte reporte;
 
 	public abstract double consumoUltimas(int horas);
@@ -79,6 +86,7 @@ public abstract class Dispositivo{
 	public void finalizarReporte(DateTime fechaFinPeriodo) {
 		this.reporte.setFechaFinPeriodo(fechaFinPeriodo.toString());
 		this.reporte.setConsumoPeriodo(this.consumoTotal(new DateTime(this.reporte.getFechaInicioPeriodo()), fechaFinPeriodo));
+		this.reportes.add(reporte);
 	}
 	
 	public Reporte getReporte() {
