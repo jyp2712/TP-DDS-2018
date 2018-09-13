@@ -22,6 +22,8 @@ public class ZonaGeografica extends PersistentObject{
 	@Embedded
 	Coordenada coordenada;
 	
+	public ZonaGeografica() {}
+
 	public ZonaGeografica(Coordenada _coordenada) {
 		this.coordenada = _coordenada;
 	}

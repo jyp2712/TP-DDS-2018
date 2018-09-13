@@ -1,7 +1,6 @@
 package tp0.modelo.reportes;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
 
@@ -13,9 +12,8 @@ public class ReporteConsumoCliente extends ReporteConsumo{
 	protected Integer dni;
 	protected String nombreCliente;
 	protected String apellidoCliente;
-	@Transient
-	protected Cliente cliente;
-	
+	protected double consumo;	
+
 	public String getApellidoCliente() {
 		return this.apellidoCliente;
 	}
@@ -28,18 +26,32 @@ public class ReporteConsumoCliente extends ReporteConsumo{
 		return this.dni;
 	}
 	
-	public void comenzarReporte(Cliente cliente, String fechaInicial) {
-		this.fechaInicio = fechaInicial;
-		this.cliente = cliente;
+	public double getConsumo() {
+		return this.consumo;
+	}
+	
+	public void setApellidoCliente(String apellido) {
+		this.apellidoCliente = apellido;
+	}
+	
+	public void setNombreCliente(String nombre) {
+		this.nombreCliente = nombre;
+	}
+	
+	public void setDNI(int dni) {
+		this.dni = dni;
+	}
+	public ReporteConsumoCliente() {}
+	
+	public ReporteConsumoCliente(Cliente cliente, String fechaInicial, String fechaFinal) {
 		this.dni = cliente.getDocumento();
 		this.nombreCliente = cliente.getNombre();
 		this.apellidoCliente = cliente.getApellido();
+		this.consumo = cliente.consumoTotal(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
-	
-	public void finalizarReporte(String fechaFinal) {
-		this.setFechaFin(fechaFinal);
-		this.setConsumo(cliente.consumoTotal(new DateTime(fechaInicio), new DateTime(fechaFinal)));
+
+	public void setConsumo(int consumo) {
+		this.consumo = consumo;		
 	}
-	
 	
 }

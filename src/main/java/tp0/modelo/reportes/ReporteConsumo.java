@@ -11,11 +11,6 @@ public abstract class ReporteConsumo{
 	protected long id;
 	protected String fechaInicio;
 	protected String fechaFin;
-	protected double consumo;
-	
-	
-	public abstract void finalizarReporte(String fechaFinal); 
-	
 	
 	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
@@ -24,11 +19,7 @@ public abstract class ReporteConsumo{
 	public void setFechaFin(String fechaFin) {
 		this.fechaFin= fechaFin;
 	}
-	
-	public void setConsumo(double consumo) {
-		this.consumo = consumo;
-	}
-	
+		
 	public String getFechaInicio() {
 		return this.fechaInicio;
 	}
@@ -36,10 +27,5 @@ public abstract class ReporteConsumo{
 	public String getFechaFin() {
 		return this.fechaFin;
 	}
-	
-	public double getConsumo() {
-		return this.consumo;
-	}
-	
 	
 }

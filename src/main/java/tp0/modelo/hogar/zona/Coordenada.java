@@ -6,6 +6,8 @@ import javax.persistence.Embeddable;
 public class Coordenada {
 	protected double longitud;
 	protected double latitud;
+
+	public Coordenada() {}
 	
 	public Coordenada(double _long, double _lat) {
 		longitud = _long;

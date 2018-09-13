@@ -254,18 +254,4 @@ public class Cliente extends PersistentObject{
 				, this.getDispositivosInteligentes().stream())
 				.collect(Collectors.toList());
 	}
-	
-	public void comenzarReporte() {
-		this.reporteConsumo = new ReporteConsumoCliente();
-		this.reporteConsumo.comenzarReporte(this, DateTime.now().toString());
-	}
-	
-	public void finalizarReporte() {
-		this.reporteConsumo.finalizarReporte(DateTime.now().toString());
-	}
-	
-	public ReporteConsumoCliente getReporteConsumoCliente() {
-		return this.reporteConsumo;
-	}
-
 }

@@ -1,7 +1,6 @@
 package tp0.modelo.reportes;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
 
@@ -11,9 +10,7 @@ import tp0.modelo.dispositivo.Dispositivo;
 public class ReporteConsumoDispositivo extends ReporteConsumo {
 	
 	protected String nombreDispositivo;
-	@Transient
-	protected Dispositivo dispositivo;
-	
+	protected double consumo;
 	
 	public void setNombreDispositivo(String nombreDispositivo) {
 		this.nombreDispositivo = nombreDispositivo;
@@ -22,15 +19,14 @@ public class ReporteConsumoDispositivo extends ReporteConsumo {
 	public String getNombreDispositivo() {
 		return this.nombreDispositivo;
 	}
-	
-	public void comenzarReporte(Dispositivo dispositivo, String fechaInicial) {
+
+	public ReporteConsumoDispositivo(Dispositivo dispositivo, String fechaInicial, String fechaFinal) {
+		this.nombreDispositivo = dispositivo.getNombreGenerico();
 		this.fechaInicio = fechaInicial;
-		this.dispositivo = dispositivo;
+		this.fechaFin = fechaFinal;
+		this.consumo = dispositivo.consumoTotal(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
+
 	
-	public void finalizarReporte(String fechaFinal){
-		this.setFechaFin(fechaFinal);
-		this.setConsumo(dispositivo.consumoTotal(new DateTime(fechaInicio), new DateTime(fechaFinal)));
-		
-	}
-	}
+	
+}
