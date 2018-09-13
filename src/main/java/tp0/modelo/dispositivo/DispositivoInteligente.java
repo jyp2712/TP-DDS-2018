@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.dispositivo.regla.Accion;
 import tp0.modelo.dispositivo.regla.SensorAdapter;
+import tp0.modelo.reportes.Reporte;
 
 @Entity
 @DiscriminatorValue("inteligente")
@@ -31,6 +32,7 @@ public class DispositivoInteligente extends Dispositivo {
 			@JsonProperty("KW/H") double KwXHora) {
 		this.nombreGenerico = nombreGenerico;
 		setKwXHora(KwXHora);
+		this.reporte = new Reporte(this);
 	}
 	
 	public Estado getEstado() {
@@ -50,11 +52,13 @@ public class DispositivoInteligente extends Dispositivo {
 	}
 
 	public void apagarse() {
+		this.finalizarReporte(DateTime.now());
 		this.getEstado().apagar(this);
 	}
 
 	public void encenderse() {
 		this.getEstado().encender(this);
+		this.comenzarReporte();
 	}
 
 	public void ahorrarseEnergia() {
