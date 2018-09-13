@@ -9,7 +9,6 @@ import org.joda.time.Hours;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import tp0.modelo.reportes.Reporte;
 
 @Entity
 @DiscriminatorValue("estandar")
@@ -24,8 +23,7 @@ public class DispositivoEstandar extends Dispositivo {
 		this.nombreGenerico = nombreGenerico;
 		setKwXHora(KwXHora);
 		setHorasDeConsumo(horasDeConsumo);
-		this.reporte = new Reporte(this);
-		this.reporte.setFechaInicioPeriodo(DateTime.now().toString());
+		this.comenzarReporte();
 	}
 
 	private void setHorasDeConsumo(double horasDeConsumo) {

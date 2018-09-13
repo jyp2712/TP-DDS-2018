@@ -23,7 +23,6 @@
 
     	<class>tp0.modelo.hogar.zona.Transformador</class>
     	<class>tp0.modelo.hogar.zona.ZonaGeografica</class>
-    	<class>tp0.modelo.reportes.Reporte</class>
     	
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

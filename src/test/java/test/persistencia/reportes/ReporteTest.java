@@ -1,3 +1,4 @@
+
 package test.persistencia.reportes;
 
 import static org.junit.Assert.assertFalse;
@@ -27,7 +28,8 @@ import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.hogar.zona.Transformador;
-import tp0.modelo.reportes.Reporte;
+import tp0.modelo.reportes.ReporteConsumo;
+import tp0.modelo.reportes.ReporteConsumoDispositivo;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
@@ -40,11 +42,11 @@ public class ReporteTest{
 	DispositivoInteligente dispositivoInteligente2;
 	DispositivoEstandar dispositivoEstandar1;
 	DispositivoEstandar dispositivoEstandar2;
-	List<Reporte> reportes;
-	Reporte reporteDispositivoInteligente2;
-	Reporte reporteDispositivoInteligente2Persistido;
-	Reporte reporteDispositivoEstandar1;
-	Reporte reporteDispositivoEstandar1Persistido;
+	List<ReporteConsumo> reportes;
+	ReporteConsumo reporteDispositivoInteligente2;
+	ReporteConsumo reporteDispositivoInteligente2Persistido;
+	ReporteConsumoDispositivo reporteDispositivoEstandar1;
+	ReporteConsumoDispositivo reporteDispositivoEstandar1Persistido;
 	HeladeraMock heladeraMock = new HeladeraMock();
 	LavarropasMock lavarropasMock = new LavarropasMock();
 	List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
@@ -91,7 +93,7 @@ public class ReporteTest{
 		dispositivoInteligente2.encenderse();
 		dispositivoInteligente2.apagarse();
 		
-		reporteDispositivoInteligente2 = dispositivoInteligente2.getReporte();
+		reporteDispositivoInteligente2 = dispositivoInteligente2.getReporteConsumo();
 		
 		transaction.begin();
 		
@@ -99,11 +101,11 @@ public class ReporteTest{
 		
 		entityManager.persist(dispositivoInteligente2);
 		
-		entityManager.persist(dispositivoInteligente2.getReporte());
+		entityManager.persist(dispositivoInteligente2.getReporteConsumo());
 		
 		transaction.commit();
 		
-		reportes = entityManager.createQuery("from Reporte").getResultList();
+		reportes = entityManager.createQuery("from ReporteConsumo").getResultList();
 		
 		reporteDispositivoInteligente2Persistido = reportes.get(0);
 		
@@ -133,6 +135,6 @@ public class ReporteTest{
 		reporteDispositivoEstandar1Persistido = reportes.get(0);
 		
 		assertTrue(reporteDispositivoEstandar1Persistido.getClass() == reporteDispositivoEstandar1.getClass());
-	};
-*/
+	};*/
+
 }

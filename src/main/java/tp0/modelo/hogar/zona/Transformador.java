@@ -37,4 +37,10 @@ public class Transformador extends PersistentObject{
 		return clientes.stream().mapToDouble(cliente -> cliente.consumoTotal(fechaInicial, fechaFinal)).sum();
 	}
 
+	public long getId() {
+		
+		return this.id;
+		
+	}
+
 }
