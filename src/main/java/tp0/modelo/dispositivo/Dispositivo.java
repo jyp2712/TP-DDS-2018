@@ -1,6 +1,7 @@
 package tp0.modelo.dispositivo;
 
 import javax.persistence.DiscriminatorColumn;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tp0.modelo.dispositivo.Dispositivo;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
+import tp0.modelo.reportes.ReporteConsumoCliente;
 import tp0.modelo.repositorios.Repositorio;
 
 @Entity
@@ -37,6 +38,8 @@ public class Cliente extends PersistentObject{
 	protected String fechaAltaServicio;
 	@Transient
 	protected Repositorio<Categoria> repositorioCategorias;
+	@Transient
+	protected ReporteConsumoCliente reporteConsumo;
 	@ManyToOne
 	protected Categoria categoria;
 	protected String nombreCategoria;
@@ -250,6 +253,19 @@ public class Cliente extends PersistentObject{
 		return  Stream.concat(this.getDispositivosEstandar().stream()
 				, this.getDispositivosInteligentes().stream())
 				.collect(Collectors.toList());
+	}
+	
+	public void comenzarReporte() {
+		this.reporteConsumo = new ReporteConsumoCliente();
+		this.reporteConsumo.comenzarReporte(this, DateTime.now().toString());
+	}
+	
+	public void finalizarReporte() {
+		this.reporteConsumo.finalizarReporte(DateTime.now().toString());
+	}
+	
+	public ReporteConsumoCliente getReporteConsumoCliente() {
+		return this.reporteConsumo;
 	}
 
 }
