@@ -1,8 +1,10 @@
 package test.regla;
 
+import javax.persistence.Entity;
+
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.regla.Accion;
-
+@Entity
 public class AccionMock extends Accion {
 	
 	private int ejecuciones = 0;

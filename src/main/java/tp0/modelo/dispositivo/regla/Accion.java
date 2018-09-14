@@ -9,7 +9,7 @@ import tp0.modelo.dispositivo.*;
 @Entity
 public abstract class Accion extends PersistentObject{
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	protected DispositivoInteligente dispositivo;
 	
 	public Accion(DispositivoInteligente dispositivo) {
