@@ -7,10 +7,12 @@ import tp0.modelo.PersistentObject;
 import tp0.modelo.dispositivo.*;
 
 @Entity
-public abstract class Accion extends PersistentObject{
+public class Accion extends PersistentObject{
 	
 	@ManyToOne(optional = false)
 	protected DispositivoInteligente dispositivo;
+
+	public Accion() {}
 	
 	public Accion(DispositivoInteligente dispositivo) {
 		this.setDispositivo(dispositivo);
