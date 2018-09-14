@@ -31,25 +31,28 @@ public class CasoPrueba3 {
 	persistirla. Recuperarla y evaluar que la condición modificada posea la última
 	modificación.*/
 	
-	HeladeraMock heladeraMock = new HeladeraMock();
-	LavarropasMock lavarropasMock = new LavarropasMock();
-	SensorMock sensorMock1 = new SensorMock();
-	SensorMock sensorMock2 = new SensorMock();
-	CondicionMock condicionMock1 = new CondicionMock(sensorMock1);
-	CondicionMock condicionMock2 = new CondicionMock(sensorMock2);
+	HeladeraMock heladeraMock;
+	LavarropasMock lavarropasMock;
+	SensorAdapter sensorMock1;
+	SensorAdapter sensorMock2;
+	Condicion condicionMock1;
+	Condicion condicionMock2;
 	
-	List<Regla> reglas = new ArrayList();
+	List<Regla> reglas ;
+	
+	List<DispositivoInteligente> dispositivos ;
 
-	AccionMock accionMock1;
-	AccionMock accionMock2;
+	Accion accionMock1;
+	Accion accionMock2;
 		
 	Regla regla1;
 	Regla regla1Persistida;
 	Regla regla1Persistida2daVez;
 
 	DispositivoInteligente dispositivoInteligente1;
+	DispositivoInteligente dispositivoInteligente2;
 	
-	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
+	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos;
 	
 	EntityManager entityManager;
 	EntityTransaction transaction;
@@ -57,8 +60,23 @@ public class CasoPrueba3 {
 	
 	@Before
 	public void setUp() throws Exception {
+		
+		heladeraMock = new HeladeraMock();
+		lavarropasMock = new LavarropasMock();
+		sensorMock1 = new SensorMock();
+		sensorMock2 = new SensorMock();
+		condicionMock1 = new CondicionMock(sensorMock1);
+		condicionMock2 = new CondicionMock(sensorMock2);
+		reglas = new ArrayList();
+		dispositivos = new ArrayList();
+		repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
+		
+		
+		
 		repositorioDeDispositivos.agregar(Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),
-														new DispositivoConcreto("LAVARROPAS_AUTO_5KG", 0.175, 6, 30, true)));
+														new DispositivoConcreto("LAVARROPAS_AUTO_5KG", 0.175, 6, 30, true),
+														new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true),
+														new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
 		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
 		dispositivoInteligente1.setEstado(Estado.ENCENDIDO);
@@ -68,6 +86,9 @@ public class CasoPrueba3 {
 		accionMock1 = new AccionMock(dispositivoInteligente1);
 		
 		regla1 = new Regla(condicionMock1, accionMock1);
+		
+		regla1.setAccion(accionMock1);
+		regla1.setCondicion(condicionMock1);
 		
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		
@@ -82,6 +103,14 @@ public class CasoPrueba3 {
 		
 		transaction.begin();
 		
+		entityManager.persist(dispositivoInteligente1.getDispositivoConcreto());
+		
+		entityManager.persist(dispositivoInteligente1);
+		
+		entityManager.persist(regla1.getAccion());
+		
+		entityManager.persist(regla1.getCondicion());
+				
 		entityManager.persist(regla1);
 		
 		transaction.commit();
@@ -89,7 +118,7 @@ public class CasoPrueba3 {
 		reglas = entityManager.createQuery("from Regla").getResultList();
 		
 		regla1Persistida = reglas.get(0);
-		
+				
 		reglas.clear();
 		
 		regla1Persistida.ejecutar(0);
@@ -106,7 +135,7 @@ public class CasoPrueba3 {
 		
 		regla1Persistida2daVez = reglas.get(0);
 		
-		assertTrue(true);
+		assertTrue(regla1Persistida2daVez.getCondicion() == condicionMock2);
 		
 	}
 	

@@ -17,7 +17,9 @@
     	<class>tp0.modelo.dispositivo.DispositivoInteligente</class>
       	<class>tp0.modelo.dispositivo.DispositivoEstandar</class>
        	<class>tp0.modelo.dispositivo.regla.Accion</class>
+       	<class>tp0.modelo.dispositivo.regla.AccionMock</class>
       	<class>tp0.modelo.dispositivo.regla.Condicion</class>
+      	<class>tp0.modelo.dispositivo.regla.CondicionMock</class>
       	<class>tp0.modelo.dispositivo.regla.Regla</class>    	
      	<class>tp0.modelo.hogar.zona.Transformador</class>
     	<class>tp0.modelo.hogar.zona.ZonaGeografica</class>
