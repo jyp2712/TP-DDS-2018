@@ -1,5 +1,7 @@
 package tp0.modelo.dispositivo;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.regla.Accion;
@@ -16,4 +18,6 @@ public interface DispositivoFisicoAdapter {
 	public void ahorrarEnergia();
 
 	public void ejecutar(Accion accionInmediata);
+
+	public List<Intervalo> intervalosEncendido(DateTime fechaInicial, DateTime fechaFinal);
 }

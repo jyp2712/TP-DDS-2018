@@ -1,5 +1,7 @@
 package tp0.modelo.dispositivo;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -88,6 +90,10 @@ public class DispositivoInteligente extends Dispositivo {
 	
 	public SensorAdapter getSensor() {
 		return this.sensor;
+	}
+	
+	public List<Intervalo> intervalosEncendido(DateTime fechaInicial, DateTime fechaFinal){
+		return this.getDispositivoFisico().intervalosEncendido(fechaInicial, fechaFinal);
 	}
 	
 }

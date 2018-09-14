@@ -16,19 +16,17 @@
     	<class>tp0.modelo.dispositivo.DispositivoConcreto</class>
     	<class>tp0.modelo.dispositivo.DispositivoInteligente</class>
       	<class>tp0.modelo.dispositivo.DispositivoEstandar</class>
-
-      	<class>tp0.modelo.dispositivo.regla.Accion</class>
+       	<class>tp0.modelo.dispositivo.regla.Accion</class>
       	<class>tp0.modelo.dispositivo.regla.Condicion</class>
       	<class>tp0.modelo.dispositivo.regla.Regla</class>    	
-
-    	<class>tp0.modelo.hogar.zona.Transformador</class>
+     	<class>tp0.modelo.hogar.zona.Transformador</class>
     	<class>tp0.modelo.hogar.zona.ZonaGeografica</class>
-    	
-    	<class>tp0.modelo.reportes.ReporteConsumo</class>
+
+    	<class>tp0.modelo.reportes.Reporte</class>
+    	<class>tp0.modelo.reportes.ReporteConsumoCliente</class>
     	<class>tp0.modelo.reportes.ReporteConsumoDispositivo</class>
     	<class>tp0.modelo.reportes.ReporteConsumoTransformador</class>
-    	<class>tp0.modelo.reportes.ReporteConsumoCliente</class>
-    	
+    	<class>tp0.modelo.reportes.ReporteEncendidoDispositivo</class>
     	
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
@@ -43,8 +41,7 @@
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-
-            <property name="hibernate.show_sql" value="true" /> 
+             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
             <property name="hibernate.hbm2ddl.auto" value="update" /> 
@@ -52,4 +49,4 @@
           
     </persistence-unit> 
   
-</persistence> 
+</persistence>

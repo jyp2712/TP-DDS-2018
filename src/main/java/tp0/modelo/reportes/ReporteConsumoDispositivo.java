@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import tp0.modelo.dispositivo.Dispositivo;
 
 @Entity
-public class ReporteConsumoDispositivo extends ReporteConsumo {
+public class ReporteConsumoDispositivo extends Reporte {
 	
 	protected String nombreDispositivo;
 	protected double consumo;
@@ -22,8 +22,8 @@ public class ReporteConsumoDispositivo extends ReporteConsumo {
 
 	public ReporteConsumoDispositivo(Dispositivo dispositivo, String fechaInicial, String fechaFinal) {
 		this.nombreDispositivo = dispositivo.getNombreGenerico();
-		this.fechaInicio = fechaInicial;
-		this.fechaFin = fechaFinal;
+		this.setFechaInicio(fechaInicial);
+		this.setFechaFin(fechaFinal);
 		this.consumo = dispositivo.consumoTotal(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
 

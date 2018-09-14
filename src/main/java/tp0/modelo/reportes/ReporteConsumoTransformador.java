@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import tp0.modelo.hogar.zona.Transformador;
 
 @Entity
-public class ReporteConsumoTransformador extends ReporteConsumo {
+public class ReporteConsumoTransformador extends Reporte {
 	
 	protected long id_transformador;
 	protected double consumo;
@@ -22,8 +22,8 @@ public class ReporteConsumoTransformador extends ReporteConsumo {
 	
 	public ReporteConsumoTransformador(Transformador transformador, String fechaInicial, String fechaFinal) {
 		this.id_transformador = transformador.getId();
-		this.fechaInicio = fechaInicial;
-		this.fechaFin = fechaFinal;
+		this.setFechaInicio(fechaInicial);
+		this.setFechaFin(fechaFinal);
 		this.consumo = transformador.energiaSuministrada(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
 }

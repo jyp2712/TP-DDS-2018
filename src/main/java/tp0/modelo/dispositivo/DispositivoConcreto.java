@@ -41,4 +41,8 @@ public class DispositivoConcreto extends PersistentObject{
 	public boolean optimizable() {
 		return this.optimizable;
 	}
+
+	public void setNombre(String nombre) {
+		this.nombreGenerico = nombre;
+	}
 }

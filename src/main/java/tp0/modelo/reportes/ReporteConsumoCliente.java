@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import tp0.modelo.Cliente;
 
 @Entity
-public class ReporteConsumoCliente extends ReporteConsumo{
+public class ReporteConsumoCliente extends Reporte{
 	
 	protected Integer dni;
 	protected String nombreCliente;
@@ -47,6 +47,8 @@ public class ReporteConsumoCliente extends ReporteConsumo{
 		this.dni = cliente.getDocumento();
 		this.nombreCliente = cliente.getNombre();
 		this.apellidoCliente = cliente.getApellido();
+		this.setFechaInicio(fechaInicial);
+		this.setFechaFin(fechaFinal);
 		this.consumo = cliente.consumoTotal(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
 

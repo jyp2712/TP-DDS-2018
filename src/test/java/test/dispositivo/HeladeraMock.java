@@ -1,4 +1,7 @@
 package test.dispositivo;
+import java.util.Arrays;
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 import tp0.modelo.dispositivo.*;
@@ -41,6 +44,11 @@ public class HeladeraMock implements DispositivoFisicoAdapter {
 	public void ejecutar(Accion accionInmediata) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Intervalo> intervalosEncendido(DateTime fechaInicial, DateTime fechaFinal) {
+		return Arrays.asList(new Intervalo("2018-09-01", "2018-09-30"));
 	}
 	
 }
