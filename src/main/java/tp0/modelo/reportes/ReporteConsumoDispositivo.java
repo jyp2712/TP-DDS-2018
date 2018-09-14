@@ -12,12 +12,18 @@ public class ReporteConsumoDispositivo extends Reporte {
 	protected String nombreDispositivo;
 	protected double consumo;
 	
+	public ReporteConsumoDispositivo() {};
+	
 	public void setNombreDispositivo(String nombreDispositivo) {
 		this.nombreDispositivo = nombreDispositivo;
 	}
 	
 	public String getNombreDispositivo() {
 		return this.nombreDispositivo;
+	}
+	
+	public double getConsumo() {
+		return this.consumo;
 	}
 
 	public ReporteConsumoDispositivo(Dispositivo dispositivo, String fechaInicial, String fechaFinal) {
@@ -27,6 +33,8 @@ public class ReporteConsumoDispositivo extends Reporte {
 		this.consumo = dispositivo.consumoTotal(new DateTime(fechaInicial), new DateTime(fechaFinal));
 	}
 
-	
+	public void setConsumo(int consumo) {
+		this.consumo = consumo;		
+	}
 	
 }

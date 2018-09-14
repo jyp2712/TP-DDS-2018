@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.joda.time.DateTime;
 
@@ -65,6 +66,5 @@ public abstract class Dispositivo{
 	public boolean optimizable() {
 		return this.getDispositivoConcreto().optimizable;
 	}
-
 
 }

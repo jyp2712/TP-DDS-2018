@@ -51,5 +51,9 @@ public class Transformador extends PersistentObject{
 	public int getId() {
 		return this.id_transformador;
 	}
+	
+	public List<Cliente> getClientes(){
+		return this.clientes;
+	}
 
 }

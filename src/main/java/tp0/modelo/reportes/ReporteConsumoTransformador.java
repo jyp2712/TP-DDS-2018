@@ -20,10 +20,20 @@ public class ReporteConsumoTransformador extends Reporte {
 		return this.id;
 	}
 	
+	public ReporteConsumoTransformador() {};
+	
+	public double getConsumo() {
+		return this.consumo;
+	}
+	
 	public ReporteConsumoTransformador(Transformador transformador, String fechaInicial, String fechaFinal) {
 		this.id_transformador = transformador.getId();
 		this.setFechaInicio(fechaInicial);
 		this.setFechaFin(fechaFinal);
 		this.consumo = transformador.energiaSuministrada(new DateTime(fechaInicial), new DateTime(fechaFinal));
+	}
+	
+	public void setConsumo(int consumo) {
+		this.consumo = consumo;		
 	}
 }

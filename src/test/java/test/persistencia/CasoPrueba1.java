@@ -57,7 +57,6 @@ public class CasoPrueba1{
 	@Test
 	public void persistenciaNico(){
 		transaction.begin();
-		
 		entityManager.persist(categoria1);
 		entityManager.persist(categoria2);
 
@@ -93,6 +92,7 @@ public class CasoPrueba1{
 		transaction.begin();		
 		entityManager.flush();
 		transaction.commit();
+		
 		
 		clientes_aux = entityManager.createQuery("from Cliente").getResultList();
 		transf_aux = entityManager.createQuery("from Transformador").getResultList();
