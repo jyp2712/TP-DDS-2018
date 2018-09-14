@@ -23,7 +23,7 @@ public class Regla extends PersistentObject{
 		return condicion;
 	}
 
-	private void setCondicion(Condicion condicion) {
+	public void setCondicion(Condicion condicion) {
 		this.condicion = condicion;
 	}
 
@@ -31,7 +31,7 @@ public class Regla extends PersistentObject{
 		return accion;
 	}
 
-	private void setAccion(Accion accion) {
+	public void setAccion(Accion accion) {
 		this.accion = accion;
 	}
 
