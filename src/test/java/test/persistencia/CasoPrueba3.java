@@ -1,16 +1,13 @@
 package test.persistencia;
 
 import tp0.modelo.dispositivo.regla.Accion;
+
 import tp0.modelo.dispositivo.regla.Regla;
 import tp0.modelo.dispositivo.regla.Condicion;
-import tp0.modelo.dispositivo.regla.SensorAdapter;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 import tp0.modelo.dispositivo.*;
 import tp0.modelo.dispositivo.estado.Estado;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +17,6 @@ import javax.persistence.EntityTransaction;
 import org.junit.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import test.dispositivo.HeladeraMock;
-import test.dispositivo.LavarropasMock;
 import test.regla.*;
 
 public class CasoPrueba3 {
@@ -30,29 +25,13 @@ public class CasoPrueba3 {
 	acciones. Persistirla. Recuperarla y ejecutarla. Modificar alguna condición y
 	persistirla. Recuperarla y evaluar que la condición modificada posea la última
 	modificación.*/
-	
-	HeladeraMock heladeraMock;
-	LavarropasMock lavarropasMock;
-	SensorAdapter sensorMock1;
-	SensorAdapter sensorMock2;
-	Condicion condicionMock1;
-	Condicion condicionMock2;
-	
-	List<Regla> reglas ;
-	
-	List<DispositivoInteligente> dispositivos ;
 
-	Accion accionMock1;
-	Accion accionMock2;
-		
-	Regla regla1;
-	Regla regla1Persistida;
-	Regla regla1Persistida2daVez;
-
-	DispositivoInteligente dispositivoInteligente1;
-	DispositivoInteligente dispositivoInteligente2;
+	Regla regla;
+	Accion accion;
+	Condicion condicion;
+	DispositivoInteligente dispositivoInteligente;
 	
-	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos;
+	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();;
 	
 	EntityManager entityManager;
 	EntityTransaction transaction;
@@ -61,16 +40,6 @@ public class CasoPrueba3 {
 	@Before
 	public void setUp() throws Exception {
 		
-		heladeraMock = new HeladeraMock();
-		lavarropasMock = new LavarropasMock();
-		sensorMock1 = new SensorMock();
-		sensorMock2 = new SensorMock();
-		condicionMock1 = new CondicionMock(sensorMock1);
-		condicionMock2 = new CondicionMock(sensorMock2);
-		reglas = new ArrayList();
-		dispositivos = new ArrayList();
-		repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
-		
 		
 		
 		repositorioDeDispositivos.agregar(Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),
@@ -78,17 +47,22 @@ public class CasoPrueba3 {
 														new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true),
 														new DispositivoConcreto("VENTILADOR_PIE", 0.09, 120, 360, true)));
 		
-		dispositivoInteligente1 = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
-		dispositivoInteligente1.setEstado(Estado.ENCENDIDO);
-		dispositivoInteligente1.setDispositivoFisico(heladeraMock);
-		dispositivoInteligente1.setDispositivoGenerico(repositorioDeDispositivos);
+		dispositivoInteligente = new DispositivoInteligente("HELADERA_CONFREEZER", 150);
+		dispositivoInteligente.setEstado(Estado.ENCENDIDO);
+		dispositivoInteligente.setDispositivoGenerico(repositorioDeDispositivos);
 		
-		accionMock1 = new AccionMock(dispositivoInteligente1);
+		accion = new Accion(dispositivoInteligente);
+
+		condicion = new CondicionMock(null) {
+			@Override
+			public boolean cumplida(double resultado) {
+				return false;
+			}
+
+		};
 		
-		regla1 = new Regla(condicionMock1, accionMock1);
 		
-		regla1.setAccion(accionMock1);
-		regla1.setCondicion(condicionMock1);
+		regla = new Regla(condicion, accion);
 		
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		
@@ -101,46 +75,42 @@ public class CasoPrueba3 {
 	@Test
 	public void testCasoPrueba3() {
 		
+				
 		transaction.begin();
 		
-		entityManager.persist(dispositivoInteligente1.getDispositivoConcreto());
+		entityManager.persist(dispositivoInteligente.getDispositivoConcreto());
+		entityManager.persist(dispositivoInteligente);
+		entityManager.persist(accion);
+		entityManager.persist(regla);
 		
-		entityManager.persist(dispositivoInteligente1);
+		transaction.commit();
 		
-		entityManager.persist(regla1.getAccion());
+		List<Regla> reglas = entityManager.createQuery("from Regla").getResultList();
 		
-		entityManager.persist(regla1.getCondicion());
-				
-		entityManager.persist(regla1);
+		Regla regla1 = reglas.get(0);		
 		
+		regla.ejecutar(0);
+		
+		Condicion condicion2 = new CondicionMock(null) {
+			@Override
+			public boolean cumplida(double resultado) {
+				return true;
+			}
+
+		};
+		
+		regla1.setCondicion(condicion2);
+		
+		transaction.begin();
+		entityManager.flush();
 		transaction.commit();
 		
 		reglas = entityManager.createQuery("from Regla").getResultList();
 		
-		regla1Persistida = reglas.get(0);
-				
-		reglas.clear();
+		Regla regla2 = reglas.get(0);
 		
-		regla1Persistida.ejecutar(0);
-		
-		regla1Persistida.setCondicion(condicionMock2);
-		
-		transaction.begin();
-		
-		entityManager.persist(regla1Persistida);
-		
-		transaction.commit();
-		
-		reglas = entityManager.createQuery("from Regla").getResultList();
-		
-		regla1Persistida2daVez = reglas.get(0);
-		
-		assertTrue(regla1Persistida2daVez.getCondicion() == condicionMock2);
+		Assert.assertTrue(regla2.getCondicion() == condicion2);
 		
 	}
 	
 }
-
-
-
-

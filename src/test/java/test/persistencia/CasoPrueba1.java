@@ -57,6 +57,7 @@ public class CasoPrueba1{
 	@Test
 	public void persistenciaNico(){
 		transaction.begin();
+		
 		entityManager.persist(categoria1);
 		entityManager.persist(categoria2);
 
@@ -72,8 +73,8 @@ public class CasoPrueba1{
 		
 		nicolas = clientes.get(0);
 		
-		Assert.assertTrue(transformador1.pertenece(nicolas));
-		Assert.assertFalse(transformador2.pertenece(nicolas));
+		Assert.assertTrue(transformadores.get(0).pertenece(nicolas));
+		Assert.assertFalse(transformadores.get(1).pertenece(nicolas));
 	};
 	
 	@SuppressWarnings("unchecked")
@@ -92,7 +93,6 @@ public class CasoPrueba1{
 		transaction.begin();		
 		entityManager.flush();
 		transaction.commit();
-		
 		
 		clientes_aux = entityManager.createQuery("from Cliente").getResultList();
 		transf_aux = entityManager.createQuery("from Transformador").getResultList();
