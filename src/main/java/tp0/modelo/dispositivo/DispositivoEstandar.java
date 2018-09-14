@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @DiscriminatorValue("estandar")
 public class DispositivoEstandar extends Dispositivo {
-
+	
 	@JsonProperty
 	protected double horasDeConsumo;
 
+	public DispositivoEstandar() {};
+	
 	@JsonCreator
 	public DispositivoEstandar(@JsonProperty("nombre generico") String nombreGenerico,
 			@JsonProperty("KW/H") double KwXHora, @JsonProperty("Horas de consumo") double horasDeConsumo) {

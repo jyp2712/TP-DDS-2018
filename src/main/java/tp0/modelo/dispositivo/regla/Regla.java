@@ -14,6 +14,8 @@ public class Regla extends PersistentObject{
 	@OneToOne
 	private Accion accion;
 
+	public Regla() {};
+	
 	public Regla(Condicion condicion, Accion accion) {
 		this.setCondicion(condicion);
 		this.setAccion(accion);

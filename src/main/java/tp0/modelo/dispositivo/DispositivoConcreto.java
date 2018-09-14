@@ -13,6 +13,8 @@ public class DispositivoConcreto extends PersistentObject{
 	protected double usoMaximo;
 	protected boolean optimizable;
 	
+	public DispositivoConcreto() {};
+	
 	public DispositivoConcreto(String nombreGenerico, double coeficiente, double usoMinimo,
 			double usoMaximo, boolean optimizable) {
 		this.nombreGenerico = nombreGenerico;

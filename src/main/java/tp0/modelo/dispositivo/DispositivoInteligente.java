@@ -28,6 +28,8 @@ public class DispositivoInteligente extends Dispositivo {
 	protected DispositivoFisicoAdapter dispositivoFisico;
 	@Embedded
 	protected SensorAdapter sensor;
+	
+	public DispositivoInteligente() {};
 
 	@JsonCreator
 	public DispositivoInteligente(@JsonProperty("nombre generico") String nombreGenerico,

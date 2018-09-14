@@ -11,6 +11,8 @@ public abstract class Condicion{
 	@Embedded
 	protected SensorAdapter sensor;
 
+	public Condicion() {};
+	
 	public Condicion(SensorAdapter sensor) {
 		this.setSensor(sensor);
 	}

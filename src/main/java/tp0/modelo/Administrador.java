@@ -19,6 +19,8 @@ public class Administrador extends PersistentObject{
 	protected String domicilio;
 	protected DateTime fechaAltaSistema;
 
+	public Administrador() {};
+	
 	@JsonCreator
 	public Administrador(@JsonProperty("id") Integer id, @JsonProperty("nombre") String nombre,
 			@JsonProperty("apellido") String apellido, @JsonProperty("domicilio") String domicilio,
