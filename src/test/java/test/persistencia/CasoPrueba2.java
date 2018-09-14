@@ -21,7 +21,6 @@ import tp0.modelo.repositorios.RepositorioEnMemoria;
 
 public class CasoPrueba2 {
 
-	// Tests para probar el comportamiento de la CATEGORIA
 	RepositorioEnMemoria<DispositivoConcreto> repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
 	DispositivoInteligente dispositivoInteligente1;
 	DispositivoInteligente dispositivoInteligente2;
@@ -86,6 +85,11 @@ public class CasoPrueba2 {
 			System.out.println(report.getFechaInicio() + " hasta " + report.getFechaFin());
 		}
 		
+		Assert.assertTrue(reportes.get(0).getFechaInicio().equals("2018-09-01"));
+		Assert.assertTrue(reportes.get(0).getFechaFin().equals("2018-09-02"));
+		Assert.assertTrue(reportes.get(1).getFechaInicio().equals("2018-09-05"));
+		Assert.assertTrue(reportes.get(1).getFechaFin().equals("2018-09-20"));
+
 	}
 	
 	@SuppressWarnings("unchecked")
