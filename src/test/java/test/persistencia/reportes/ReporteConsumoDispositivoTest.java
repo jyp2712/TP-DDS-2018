@@ -15,17 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import test.dispositivo.HeladeraMock;
-import test.dispositivo.LavarropasMock;
-import tp0.modelo.Categoria;
-import tp0.modelo.Cliente;
-import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.reportes.ReporteConsumoDispositivo;
-import tp0.modelo.repositorios.Repositorio;
-import tp0.modelo.repositorios.RepositorioEnMemoria;
 
 public class ReporteConsumoDispositivoTest{
 	
@@ -111,6 +103,7 @@ public class ReporteConsumoDispositivoTest{
 	      transaction.rollback();
 	   }
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testReporteConsumoPorDispositivo() {
 		
@@ -126,6 +119,7 @@ public class ReporteConsumoDispositivoTest{
 		assertTrue(reportesConsumo.stream().count() == 5);				
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 		public void testReporteConsumoPromedioPorDispositivo() {
 		

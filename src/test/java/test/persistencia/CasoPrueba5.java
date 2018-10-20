@@ -1,7 +1,5 @@
 package test.persistencia;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.joda.time.DateTime;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -64,11 +61,11 @@ public class CasoPrueba5{
 		
 		heladeraMock = new HeladeraMock();
 		
-		dispositivos = new ArrayList();
+		dispositivos = new ArrayList<>();
 		
-		dispositivosInteligentesNico = new ArrayList();
+		dispositivosInteligentesNico = new ArrayList<>();
 		
-		dispositivosEstandaresNico = new ArrayList();
+		dispositivosEstandaresNico = new ArrayList<>();
 		
 		repositorioDeDispositivos = new RepositorioEnMemoria<DispositivoConcreto>();
 		repositorioDeDispositivos.agregar(Arrays.asList(new DispositivoConcreto("HELADERA_CONFREEZER", 0.09, 0, 0, false),new DispositivoConcreto("TELEVISOR_TUBO_21", 0.075, 90, 360, true)));

@@ -1,6 +1,7 @@
 package tp0.modelo;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tp0.modelo.dispositivo.Dispositivo;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
-import tp0.modelo.reportes.ReporteConsumoCliente;
 import tp0.modelo.repositorios.Repositorio;
 
 @Entity
@@ -38,8 +38,6 @@ public class Cliente extends PersistentObject{
 	protected String fechaAltaServicio;
 	@Transient
 	protected Repositorio<Categoria> repositorioCategorias;
-	@Transient
-	protected ReporteConsumoCliente reporteConsumo;
 	@ManyToOne
 	protected Categoria categoria;
 	protected String nombreCategoria;

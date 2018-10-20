@@ -70,6 +70,7 @@ public class ReporteConsumoTransformadorTest{
 	      transaction.rollback();
 	   }
 	
+	@SuppressWarnings("unchecked")
 	@Test
 		public void testReporteConsumoPorTransformador() {
 		transaction.begin();
@@ -84,6 +85,7 @@ public class ReporteConsumoTransformadorTest{
 				
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testReporteConsumoPromedioPorTransformador() {
 	transaction.begin();

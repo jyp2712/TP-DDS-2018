@@ -17,8 +17,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import tp0.modelo.Cliente;
 import tp0.modelo.reportes.ReporteConsumoCliente;
-import tp0.modelo.reportes.ReporteConsumoDispositivo;
-import tp0.modelo.reportes.ReporteConsumoTransformador;
+
 
 public class ReporteConsumoPorClienteTest{
 	
@@ -89,6 +88,7 @@ public class ReporteConsumoPorClienteTest{
 	      transaction.rollback();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 		public void testReporteConsumoPorCliente() {
 		transaction.begin();
@@ -103,6 +103,7 @@ public class ReporteConsumoPorClienteTest{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 		public void testReportePromedioPorCliente() {
 		transaction.begin();
