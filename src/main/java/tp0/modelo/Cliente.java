@@ -25,6 +25,25 @@ import tp0.modelo.repositorios.Repositorio;
 @Entity
 public class Cliente extends PersistentObject{
 
+	protected String user;
+	protected String pass;
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	protected String nombre;
 	protected String apellido;
 	private enum DTD {
@@ -73,6 +92,9 @@ public class Cliente extends PersistentObject{
 		setPuntos(puntos);
 	}
 
+	public long getId() {
+		return this.id;
+	}
 	private void setDomicilioServicio(String domicilioServicio) {
 		this.domicilioServicio = domicilioServicio;
 	}

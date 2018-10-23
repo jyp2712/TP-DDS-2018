@@ -19,17 +19,14 @@ public class Router {
 
 		Spark.staticFiles.location("/public");
 		
-		ProyectosController proyectosController = new ProyectosController();
-		
-		Spark.get("/", HomeController::home, engine);
 		Spark.get("/loginUser", LoginController::showUser, engine);
 		Spark.post("/loginUser", LoginController::loginUser, engine);
 		Spark.get("/logoutUser", LoginController::logoutUser, engine);
 		Spark.get("/loginAdmin", LoginController::showAdmin, engine);
 		Spark.post("/loginAdmin", LoginController::loginAdmin, engine);
 		Spark.get("/logoutAdmin", LoginController::logoutAdmin, engine);
-		Spark.get("/admin", HomeController::home, engine);
-		Spark.get("/user", HomeController::home, engine);
+//		Spark.get("/admin", HomeController::home, engine);
+		Spark.get("/user/:id", HomeController::homeUser, engine);
 	}
 
 }

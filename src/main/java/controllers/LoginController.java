@@ -3,35 +3,48 @@ package controllers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import tp0.modelo.Cliente;
+import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class LoginController {
 
 	private static final String SESSION_USER = "user";
 	private static final String SESSION_ADMIN = "admin";
+	private static final RepositoriosUsuarios repositoriosUsuarios = new RepositoriosUsuarios();
 	
-	public static ModelAndView show(Request req, Response res, String path, String usuario, String hbs){
-		if(req.session().attribute(usuario) != null) {
-			res.redirect("/"+path);
-			return null;			
-		}else {
-			return new ModelAndView(null, hbs);	
-		}
+	public static ModelAndView show(Request req, Response res, String usuario, String hbs){
+		return new ModelAndView(null, hbs);	
 	}
 
 	public static ModelAndView showUser(Request req, Response res){
-		return show(req, res, "User", SESSION_USER, "home/loginUser.hbs");
+		if(req.session().attribute(SESSION_USER) != null) {
+			Cliente cliente = repositoriosUsuarios.findCliente(req.session().attribute("user"));
+			res.redirect("/user/"+cliente.getId());
+			return null;			
+		}else {
+			return show(req, res, "user", "home/loginUser.hbs");
+		}
 	}
 	
 	public static ModelAndView showAdmin(Request req, Response res){
-		return show(req, res, "Admin", SESSION_ADMIN, "home/loginAdmin.hbs");
+		return show(req, res, SESSION_ADMIN, "home/loginAdmin.hbs");
 	}
 	
 	public static ModelAndView loginUser(Request req, Response res) {
 		String user = req.queryParams("user");
 		String pass = req.queryParams("password");
-		//buscar el usuario en el repo
+		repositoriosUsuarios.cargarClientes();
+		Cliente cliente = repositoriosUsuarios.findCliente(user);
+
+		if(cliente == null) {
+			return show(req, res, SESSION_USER, "home/loginUserErrorUser.hbs");	
+		}
+		if(!cliente.getPass().equals(pass)) {
+			return show(req, res, SESSION_USER, "home/loginUserErrorPass.hbs");
+		}
+		
 		req.session().attribute(SESSION_USER, user);
-		res.redirect("/");
+		res.redirect("/user/"+cliente.getId());
 		return null;
 	}
 
@@ -40,7 +53,7 @@ public class LoginController {
 		String pass = req.queryParams("password");
 		//buscar el usuario en el repo
 		req.session().attribute(SESSION_ADMIN, user);
-		res.redirect("/");
+		res.redirect("/admin");
 		return null;
 	}
 	

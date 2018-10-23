@@ -13,6 +13,25 @@ import tp0.modelo.repositorios.Repositorio;
 @Entity
 public class Administrador extends PersistentObject{
 
+	protected String admin;
+	protected String pass;
+	
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	protected Integer id_admin;
 	protected String nombre;
 	protected String apellido;

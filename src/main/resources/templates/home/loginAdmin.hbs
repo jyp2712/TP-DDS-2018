@@ -1,8 +1,4 @@
-<html>
-<head>
-	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  	<link rel="stylesheet"  href="signin.css">
-</head>
+{{#partial "contenido"}}
 
 <body class="text-center">
 	<form method="POST" action="/loginAdmin">
@@ -15,10 +11,6 @@
       	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 	</form>
 
-<footer class="footer">
-    <p class="text-center">
-      &copy; 2018 SGE
-    </p>
-</footer>
-</body>
-</html>
+{{/partial}}
+
+{{>layout.hbs}}
