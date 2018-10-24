@@ -10,8 +10,7 @@ import tp0.modelo.dispositivo.Dispositivo;
 
 public class CommandOptimizarHogar {
 	
-    public CommandOptimizarHogar(Hogar hogar, List<Dispositivo> dispositivos,
-    		Hours horas) {
+    public CommandOptimizarHogar(Hogar hogar, List<Dispositivo> dispositivos, Hours horas) {
     	Timer timer = new Timer(false);
     	TimerTask timerTask = new TimerTask() {
     		

@@ -27,6 +27,8 @@ public class Router {
 		Spark.get("/logoutAdmin", LoginController::logoutAdmin, engine);
 //		Spark.get("/admin", HomeController::home, engine);
 		Spark.get("/user/:id", HomeController::homeUser, engine);
+		Spark.get("/user/:id/consumos", HomeController::consumosUser, engine);
+		Spark.get("/user/:id/optimizador", HomeController::optimizadorUser, engine);
 	}
 
 }

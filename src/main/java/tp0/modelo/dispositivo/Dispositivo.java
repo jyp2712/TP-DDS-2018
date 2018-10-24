@@ -1,7 +1,5 @@
 package tp0.modelo.dispositivo;
 
-import javax.persistence.DiscriminatorColumn;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +13,11 @@ import org.joda.time.DateTime;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_dispositivo")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected long id;
 	protected String nombreGenerico;
 	@ManyToOne(optional=false)

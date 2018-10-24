@@ -18,6 +18,7 @@ import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.hogar.zona.Transformador;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
+import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class App {
 

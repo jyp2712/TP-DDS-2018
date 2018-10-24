@@ -1,0 +1,20 @@
+{{#partial "contenido"}}
+<h2>Dispositivos</h2>
+
+<table class="table table-stripped">
+		<tr>
+			<th>Nombre Generico</th>
+			<th>Resultado</th>
+		</tr>
+
+		{{#each resultados}}
+			<tr>
+				<td>{{dispositivo.nombreGenerico}}</td>
+				<td>{{resultado}} Kw</td>
+			</tr>
+		{{/each}}
+						
+</table>
+
+{{/partial}}
+{{>layoutUser.hbs}}

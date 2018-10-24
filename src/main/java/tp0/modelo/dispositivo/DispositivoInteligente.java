@@ -19,7 +19,6 @@ import tp0.modelo.dispositivo.regla.SensorAdapter;
 
 
 @Entity
-@DiscriminatorValue("inteligente")
 public class DispositivoInteligente extends Dispositivo {
 
 	@Enumerated

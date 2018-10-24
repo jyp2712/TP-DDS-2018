@@ -8,26 +8,15 @@
 			<th>Consumo</th>
 		</tr>
 
-		{{#each cliente.dispositivosInteligentes}}
+		{{#each dispositivos}}
 			<tr>
 				<td>{{nombreGenerico}}</td>
 				<td>{{estado}}</td>
 				<td>{{KwXHora}} Kw</td>
 			</tr>
 		{{/each}}
-				
-		{{#each cliente.dispositivosEstandar}}
-			<tr>
-				<td>{{nombreGenerico}}</td>
-				<td>-</td>
-				<td>{{KwXHora}} Kw</td>
-			</tr>
-		{{/each}}
-		
+						
 </table>
-<br></br>
-<div class="container">
-<h2>Consumo Ultimo Periodo {{reporte.consumo}}</h2>
-</div>
+
 {{/partial}}
 {{>layoutUser.hbs}}

@@ -16,6 +16,7 @@ public class Hogar {
 	
 	protected List<Regla> reglas = new ArrayList<>();
 	protected boolean accionAutomatica = false;
+	protected List<ResultadoOptimizador> resultados = new ArrayList<>();
 	
 	public Hogar() {}
 	
@@ -26,11 +27,18 @@ public class Hogar {
 		
 		double[] resultado = optimizador.optimizar(disp);
 		
+		this.guardarResultados(disp, resultado);
+		
 		if(this.accionAutomatica) {
 			this.reglas.stream().forEach(regla -> 
 			accionar(regla.getAccion().getDispositivo(), resultado, regla, disp));
 		}
+		
 		return resultado;
+	}
+
+	private void guardarResultados(List<Dispositivo> disp, double[] resultado) {
+		disp.forEach(d -> resultados.add(new ResultadoOptimizador(d, resultado[disp.indexOf(d)])));
 	}
 
 	private void accionar(DispositivoInteligente dispositivoInteligente, double[] resultado,
@@ -63,6 +71,10 @@ public class Hogar {
 	
 	public void desactivarAccionesAuto() {
 		this.accionAutomatica = false;
+	}
+
+	public List<ResultadoOptimizador> getResultados() {
+		return resultados;
 	}
 
 }
