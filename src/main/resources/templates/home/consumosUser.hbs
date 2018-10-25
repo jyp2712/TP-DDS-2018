@@ -20,14 +20,9 @@
 			<th>Consumo</th>
 		</tr>
 
-		{{#each reportes}}
-			<tr>
-				<td>{{fechaInicio}}</td>
-				<td>{{fechaFin}}</td>
-				<td>{{consumo}} Kw</td>
-			</tr>
-		{{/each}}
-		
+		{{#block "contenidoConsumo"}}
+		{{/block}}
+
 </table>
 {{/partial}}
 

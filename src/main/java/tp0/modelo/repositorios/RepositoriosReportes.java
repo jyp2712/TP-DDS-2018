@@ -23,7 +23,7 @@ public class RepositoriosReportes {
 				entityManager
 				.createQuery("from ReporteConsumoCliente ORDER BY id DESC")
 				.getResultList();	
-		repositorioReporteConsumoCliente.agregar(reportesConsumoCliente);
+		repositorioReporteConsumoCliente.setRepositorio(reportesConsumoCliente);
 	}
 	
 	public static ReporteConsumoCliente findReporteConsumoCliente(Integer documento){

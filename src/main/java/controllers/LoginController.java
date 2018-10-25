@@ -24,6 +24,7 @@ public class LoginController {
 		
 		RepositoriosUsuarios.cargarClientes();
 		RepositoriosReportes.cargarReportes();
+
 		return show(req, res, "user", "home/loginUser.hbs");
 		
 	}

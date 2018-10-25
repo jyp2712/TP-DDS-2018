@@ -1,32 +1,11 @@
-{{#partial "contenido"}}
-<h2>Historial de Consumos</h2>
-<br></br>
-		<div>
-			<!-- Combo para seleccionar periodo -->
-			<select class="custom-select" onchange="location = this.value" id="viewSelector">
-				<option selected="selected">Periodo</option>
-				<option value="/user/{{cliente.Id}}/consumos">Todos</option>
-				{{#each reportes}}
-					<option value="/user/{{cliente.Id}}/consumos?fecha={{fechaInicio}}">{{fechaInicio}}</option>
-				{{/each}}
-			</select>
-		</div>
-<br></br>
-
-<table class="table table-stripped">
-		<tr>
-			<th>Desde</th>
-			<th>Hasta</th>
-			<th>Consumo</th>
-		</tr>
+{{#partial "contenidoConsumo"}}
 
 			<tr>
 				<td>{{reporte.fechaInicio}}</td>
 				<td>{{reporte.fechaFin}}</td>
 				<td>{{reporte.consumo}} Kw</td>
 			</tr>
-		
-</table>
+
 {{/partial}}
 
-{{>layoutUser.hbs}}
+{{>home/consumosUser.hbs}}

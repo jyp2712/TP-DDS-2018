@@ -1,0 +1,13 @@
+{{#partial "contenidoConsumo"}}
+
+		{{#each reportes}}
+			<tr>
+				<td>{{fechaInicio}}</td>
+				<td>{{fechaFin}}</td>
+				<td>{{consumo}} Kw</td>
+			</tr>
+		{{/each}}
+
+{{/partial}}
+
+{{>home/consumosUser.hbs}}

@@ -23,7 +23,7 @@ public class RepositoriosUsuarios {
 		transaction = entityManager.getTransaction();
 
 		List<Cliente> clientes = entityManager.createQuery("from Cliente").getResultList();
-		repositorioClientes.agregar(clientes);
+		repositorioClientes.setRepositorio(clientes);
 
 	}
 	
@@ -33,7 +33,7 @@ public class RepositoriosUsuarios {
 		transaction = entityManager.getTransaction();
 
 		List<Administrador> administradores = entityManager.createQuery("from Administrador").getResultList();
-		repositorioAdmin.agregar(administradores);
+		repositorioAdmin.setRepositorio(administradores);
 
 	}
 	

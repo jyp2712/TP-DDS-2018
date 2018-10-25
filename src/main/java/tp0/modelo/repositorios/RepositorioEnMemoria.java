@@ -20,4 +20,8 @@ public class RepositorioEnMemoria<T> extends Repositorio<T> {
 	public void remover(T objeto) {
 		objetos.remove(objeto);
 	}
+	
+	public void setRepositorio(List<T> objetos) {
+		this.objetos = objetos;
+	}
 }
