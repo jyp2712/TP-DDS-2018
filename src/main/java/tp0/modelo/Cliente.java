@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -60,10 +61,10 @@ public class Cliente extends PersistentObject{
 	@ManyToOne
 	protected Categoria categoria;
 	protected String nombreCategoria;
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "cliente_id")
 	protected List<DispositivoEstandar> dispositivosEstandares;
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "cliente_id")
 	protected List<DispositivoInteligente> dispositivosInteligentes;
 	protected double puntos;	

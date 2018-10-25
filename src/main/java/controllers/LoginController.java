@@ -4,7 +4,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import tp0.modelo.Cliente;
-import tp0.modelo.reportes.ReporteConsumoCliente;
 import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
 
@@ -21,12 +20,12 @@ public class LoginController {
 		if(req.session().attribute(SESSION_USER) != null) {
 			Cliente cliente = RepositoriosUsuarios.findCliente(req.session().attribute("user"));
 			res.redirect("/user/"+cliente.getId());
-			return null;			
-		}else {
-			RepositoriosUsuarios.cargarClientes();
-			RepositoriosReportes.cargarReportes();
-			return show(req, res, "user", "home/loginUser.hbs");
 		}
+		
+		RepositoriosUsuarios.cargarClientes();
+		RepositoriosReportes.cargarReportes();
+		return show(req, res, "user", "home/loginUser.hbs");
+		
 	}
 	
 	public static ModelAndView showAdmin(Request req, Response res){
