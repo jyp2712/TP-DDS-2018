@@ -1,11 +1,9 @@
-<html lang="en">
-	<head>
-    	<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<html>
 
-	    <!-- Custom styles for this template -->
-    	<link href="navbar-top.css" rel="stylesheet">
-  	</head>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  	<link rel="stylesheet"  href="sticky-footer.css">
+</head>
 
   <body>
 
@@ -22,7 +20,7 @@
             <a class="nav-link" href="/user/{{cliente.id}}/consumos">Consumos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user/{{cliente.id}}/optimizador">Ejecutar Optimizador</a>
+            <a class="nav-link" href="/user/{{cliente.id}}/optimizador">Optimizacion</a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -30,16 +28,16 @@
         </form>
       </div>
     </nav>
-
+    
 <div class="container">
 	{{#block "contenido"}}
 	{{/block}}
 </div>
 
 <footer class="footer">
-    <p class="text-center">
-      &copy; 2018 SGE
-    </p>
+    <div class="text-center">
+    	&copy; 2018 SGE
+    </div>
 </footer>
 </body>
 </html>

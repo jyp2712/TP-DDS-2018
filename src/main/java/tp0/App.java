@@ -1,6 +1,7 @@
 package tp0;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.hogar.zona.Transformador;
 import tp0.modelo.repositorios.Repositorio;
 import tp0.modelo.repositorios.RepositorioEnMemoria;
-import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class App {
 

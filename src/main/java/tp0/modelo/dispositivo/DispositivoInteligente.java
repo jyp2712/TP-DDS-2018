@@ -2,7 +2,6 @@ package tp0.modelo.dispositivo;
 
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -16,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import tp0.modelo.dispositivo.estado.Estado;
 import tp0.modelo.dispositivo.regla.Accion;
 import tp0.modelo.dispositivo.regla.SensorAdapter;
-
 
 @Entity
 public class DispositivoInteligente extends Dispositivo {

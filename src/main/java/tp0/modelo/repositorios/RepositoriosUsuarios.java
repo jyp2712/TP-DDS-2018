@@ -14,11 +14,11 @@ public class RepositoriosUsuarios {
 
 	public static final RepositorioEnMemoria<Cliente> repositorioClientes = new RepositorioEnMemoria<Cliente>();
 	public static final RepositorioEnMemoria<Administrador> repositorioAdmin = new RepositorioEnMemoria<Administrador>();
-	EntityManager entityManager;
-	EntityTransaction transaction;
+	static EntityManager entityManager;
+	static EntityTransaction transaction;
 
 	@SuppressWarnings("unchecked")
-	public void cargarClientes() {
+	public static void cargarClientes() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
 
@@ -37,7 +37,7 @@ public class RepositoriosUsuarios {
 
 	}
 	
-	public Cliente findCliente(String user){
+	public static Cliente findCliente(String user){
 		return repositorioClientes.encontrar(c -> c.getUser().equals(user));
 	}
 	

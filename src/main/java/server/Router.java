@@ -1,8 +1,8 @@
 package server;
 
+
 import controllers.HomeController;
 import controllers.LoginController;
-import controllers.ProyectosController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -25,7 +25,6 @@ public class Router {
 		Spark.get("/loginAdmin", LoginController::showAdmin, engine);
 		Spark.post("/loginAdmin", LoginController::loginAdmin, engine);
 		Spark.get("/logoutAdmin", LoginController::logoutAdmin, engine);
-//		Spark.get("/admin", HomeController::home, engine);
 		Spark.get("/user/:id", HomeController::homeUser, engine);
 		Spark.get("/user/:id/consumos", HomeController::consumosUser, engine);
 		Spark.get("/user/:id/optimizador", HomeController::optimizadorUser, engine);

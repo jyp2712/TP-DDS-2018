@@ -3,7 +3,7 @@
 <br></br>
 		<div>
 			<!-- Combo para seleccionar periodo -->
-			<select class="custom-select" onchange="location = this.value">
+			<select class="custom-select" onchange="location = this.value" id="viewSelector">
 				<option selected="selected">Periodo</option>
 				<option value="/user/{{cliente.Id}}/consumos">Todos</option>
 				{{#each reportes}}
@@ -20,13 +20,11 @@
 			<th>Consumo</th>
 		</tr>
 
-		{{#each reportes}}
 			<tr>
-				<td>{{fechaInicio}}</td>
-				<td>{{fechaFin}}</td>
-				<td>{{consumo}} Kw</td>
+				<td>{{reporte.fechaInicio}}</td>
+				<td>{{reporte.fechaFin}}</td>
+				<td>{{reporte.consumo}} Kw</td>
 			</tr>
-		{{/each}}
 		
 </table>
 {{/partial}}

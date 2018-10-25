@@ -4,13 +4,14 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import tp0.modelo.Cliente;
+import tp0.modelo.reportes.ReporteConsumoCliente;
+import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class LoginController {
 
 	private static final String SESSION_USER = "user";
 	private static final String SESSION_ADMIN = "admin";
-	private static final RepositoriosUsuarios repositoriosUsuarios = new RepositoriosUsuarios();
 	
 	public static ModelAndView show(Request req, Response res, String usuario, String hbs){
 		return new ModelAndView(null, hbs);	
@@ -18,10 +19,12 @@ public class LoginController {
 
 	public static ModelAndView showUser(Request req, Response res){
 		if(req.session().attribute(SESSION_USER) != null) {
-			Cliente cliente = repositoriosUsuarios.findCliente(req.session().attribute("user"));
+			Cliente cliente = RepositoriosUsuarios.findCliente(req.session().attribute("user"));
 			res.redirect("/user/"+cliente.getId());
 			return null;			
 		}else {
+			RepositoriosUsuarios.cargarClientes();
+			RepositoriosReportes.cargarReportes();
 			return show(req, res, "user", "home/loginUser.hbs");
 		}
 	}
@@ -33,8 +36,7 @@ public class LoginController {
 	public static ModelAndView loginUser(Request req, Response res) {
 		String user = req.queryParams("user");
 		String pass = req.queryParams("password");
-		repositoriosUsuarios.cargarClientes();
-		Cliente cliente = repositoriosUsuarios.findCliente(user);
+		Cliente cliente = RepositoriosUsuarios.findCliente(user);
 
 		if(cliente == null) {
 			return show(req, res, SESSION_USER, "home/loginUserErrorUser.hbs");	

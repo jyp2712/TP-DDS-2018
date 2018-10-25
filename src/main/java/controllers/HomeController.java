@@ -1,67 +1,57 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import javax.persistence.EntityManager;
-
-import org.apache.commons.lang3.ArrayUtils;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import tp0.modelo.Cliente;
 import tp0.modelo.dispositivo.Dispositivo;
-import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.hogar.Hogar;
 import tp0.modelo.reportes.ReporteConsumoCliente;
-import tp0.modelo.repositorios.RepositoriosDispositivos;
+import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class HomeController {
 	
-	private static final RepositoriosUsuarios repositorioUsuarios = new RepositoriosUsuarios();
-	
+	protected static Cliente cliente;
+
 	public static ModelAndView homeUser(Request req, Response res){
 		Map<String, Object> model = new HashMap<>();
 
-		repositorioUsuarios.cargarClientes();
-		Cliente cliente = repositorioUsuarios.findCliente(req.session().attribute("user"));
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-;
+		cliente = RepositoriosUsuarios.findCliente(req.session().attribute("user"));
 		
-		@SuppressWarnings("unchecked")
-		List<ReporteConsumoCliente> reportes = entityManager
-					.createQuery("from ReporteConsumoCliente where dni="+cliente.getDocumento()+"ORDER BY id DESC")
-					.getResultList();
+		ReporteConsumoCliente reporte = RepositoriosReportes.findReporteConsumoCliente(cliente.getDocumento());
 		
-		ReporteConsumoCliente reporte = null;
-		
-		if(!reportes.isEmpty()) reporte = reportes.get(0);
-		
-		model.put("cliente", cliente);
 		model.put("reporte", reporte);
+		model.put("cliente", cliente);
 		return new ModelAndView(model, "home/homeUser.hbs");
 	}
 
 	public static ModelAndView consumosUser(Request req, Response res){
 		Map<String, Object> model = new HashMap<>();
+		
+		List<ReporteConsumoCliente> reportes = RepositoriosReportes.repositorioReporteConsumoCliente.todos();
+		
+		model.put("cliente", cliente);
+		model.put("reportes", reportes);
 
-		List<Dispositivo> dispositivos = RepositoriosDispositivos.instancia.listar(req.params("id"));
-
-		model.put("dispositivos", dispositivos);
+		if (req.queryParams("fecha") != null) {
+			ReporteConsumoCliente reporte = reportes.stream().filter(rep -> rep.getFechaInicio().equals(req.queryParams("fecha"))).findFirst().get();
+			model.put("reporte", reporte);
+			return new ModelAndView(model, "home/consumosUserIndividual.hbs");
+		}
+		
 		return new ModelAndView(model, "home/consumosUser.hbs");
 	}
 	
 	public static ModelAndView optimizadorUser(Request req, Response res){
 		Map<String, Object> model = new HashMap<>();
 
-		List<Dispositivo> dispositivos = RepositoriosDispositivos.instancia.listar(req.params("id"))
+		List<Dispositivo> dispositivos = cliente.getDispositivos()
 				.stream().filter(d -> d.optimizable()).collect(Collectors.toList());
 		
 		Hogar hogar = new Hogar();

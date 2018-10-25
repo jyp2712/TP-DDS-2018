@@ -27,7 +27,25 @@
 </table>
 <br></br>
 <div class="container">
-<h2>Consumo Ultimo Periodo {{reporte.consumo}}</h2>
+    <div class="card-deck mb-3 text-center">
+        <div class="card invisible">
+        </div>
+		<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Consumo Ultimo Periodo</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <h1>{{reporte.consumo}} Kw</h1>
+            </ul>
+          </div>
+        </div>
+        <div class="card invisible">
+        </div>
+      </div>
+
 </div>
+
 {{/partial}}
+
 {{>layoutUser.hbs}}

@@ -4,14 +4,24 @@
 <table class="table table-stripped">
 		<tr>
 			<th>Nombre Generico</th>
+			<th>Consumo Maximo</th>
 			<th>Resultado</th>
 		</tr>
 
 		{{#each resultados}}
-			<tr>
-				<td>{{dispositivo.nombreGenerico}}</td>
-				<td>{{resultado}} Kw</td>
-			</tr>
+			{{#if superoConsumo}}
+				<tr>	
+					<td class="table-danger">{{dispositivo.nombreGenerico}}</td>
+					<td class="table-danger">{{dispositivo.usoMaximo}} Kw</td>
+					<td class="table-danger">{{resultado}} Kw</td>
+					</tr>
+			{{else}}
+				<tr>
+					<td class="table-success">{{dispositivo.nombreGenerico}}</td>
+					<td class="table-success">{{dispositivo.usoMaximo}} Kw</td>
+					<td class="table-success">{{resultado}} Kw</td>
+				</tr>
+			{{/if}}
 		{{/each}}
 						
 </table>
