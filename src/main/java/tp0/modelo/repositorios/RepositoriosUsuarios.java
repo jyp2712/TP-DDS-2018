@@ -37,5 +37,6 @@ public class RepositoriosUsuarios {
 
 	public static Administrador findAdmin(String admin){
 		return repositorioAdmin.encontrar(a -> a.getAdmin().equals(admin));
+	
 	}
 }

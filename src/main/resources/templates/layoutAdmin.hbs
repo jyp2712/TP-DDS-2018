@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 <html>
 
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   	<link rel="stylesheet"  href="sticky-footer.css">
 </head>
+=======
+<html lang="en">
+	<head>
+    	<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	    <!-- Custom styles for this template -->
+    	<link href="navbar-top.css" rel="stylesheet">
+    	<link href="main.css" rel="stylesheet">
+  	</head>
+>>>>>>> 4a1ed123da91f4de439c121a9ed0f4f3f28b2dc6
 
   <body>
 
@@ -14,6 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
+<<<<<<< HEAD
             <a class="nav-link" href="/admin/{{administrador.id}}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -29,10 +42,35 @@
       </div>
     </nav>
     
+=======
+            <a class="nav-link" href="/admin/{{admin.Id}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/{{admin.Id}}/reporte">Reporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/{{admin.Id}}/dispositivos/new">Alta dispositivos</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+  			<a class="navbar-brand" href="/logoutUser">Logout</a>
+        </form>
+      </div>
+    </nav>
+
+>>>>>>> 4a1ed123da91f4de439c121a9ed0f4f3f28b2dc6
 <div class="container">
 	{{#block "contenido"}}
 	{{/block}}
 </div>
 
+<<<<<<< HEAD
+=======
+<footer class="footer">
+    <p class="text-center">
+      &copy; 2018 SGE
+    </p>
+</footer>
+>>>>>>> 4a1ed123da91f4de439c121a9ed0f4f3f28b2dc6
 </body>
 </html>

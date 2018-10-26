@@ -72,6 +72,7 @@ public class LoginController {
 
 		req.session().attribute(SESSION_ADMIN, user);
 		res.redirect("/admin/"+admin.getId());
+
 		return null;
 	}
 	

@@ -41,12 +41,12 @@ public class DispositivoConcretoTest {
 	
 	@Test
 	public void testAireAcondicionadoSoyOptimizable() {
-		Assert.assertTrue(aireAcondicionado.optimizable());
+		Assert.assertTrue(aireAcondicionado.isOptimizable());
 	}
 	
 	@Test
 	public void testHeladeraSoyOptimizable() {
-		Assert.assertFalse(heladera.optimizable());
+		Assert.assertFalse(heladera.isOptimizable());
 	}
 	
 }

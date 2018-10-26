@@ -30,7 +30,7 @@ public class Router {
 		Spark.get("/admin/:id/reportes", HomeController::reportesAdmin, engine);		
 		Spark.get("/admin/:id/dispositivos", HomeController::listarDispositivosAdmin, engine);
 		Spark.post("/admin/:id/dispositivos", HomeController::crearDispositivoAdmin);
-		
+
 		Spark.get("/user/:id", HomeController::homeUser, engine);
 		Spark.get("/user/:id/consumos", HomeController::consumosUser, engine);
 		Spark.get("/user/:id/optimizador", HomeController::optimizadorUser, engine);
