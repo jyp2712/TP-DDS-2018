@@ -25,12 +25,12 @@ public class LoginController {
 		RepositoriosUsuarios.cargarClientes();
 		RepositoriosReportes.cargarReportes();
 
-		return show(req, res, "user", "home/loginUser.hbs");
+		return show(req, res, "user", "login/loginUser.hbs");
 		
 	}
 	
 	public static ModelAndView showAdmin(Request req, Response res){
-		return show(req, res, SESSION_ADMIN, "home/loginAdmin.hbs");
+		return show(req, res, SESSION_ADMIN, "login/loginAdmin.hbs");
 	}
 	
 	public static ModelAndView loginUser(Request req, Response res) {
@@ -39,10 +39,10 @@ public class LoginController {
 		Cliente cliente = RepositoriosUsuarios.findCliente(user);
 
 		if(cliente == null) {
-			return show(req, res, SESSION_USER, "home/loginUserErrorUser.hbs");	
+			return show(req, res, SESSION_USER, "login/loginUserErrorUser.hbs");	
 		}
 		if(!cliente.getPass().equals(pass)) {
-			return show(req, res, SESSION_USER, "home/loginUserErrorPass.hbs");
+			return show(req, res, SESSION_USER, "login/loginUserErrorPass.hbs");
 		}
 		
 		req.session().attribute(SESSION_USER, user);

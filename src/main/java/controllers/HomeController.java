@@ -27,7 +27,7 @@ public class HomeController {
 		
 		model.put("reporte", RepositoriosReportes.findReporteConsumoCliente(cliente.getDocumento()));
 		model.put("cliente", cliente);
-		return new ModelAndView(model, "home/homeUser.hbs");
+		return new ModelAndView(model, "user/homeUser.hbs");
 	}
 
 	public static ModelAndView consumosUser(Request req, Response res){
@@ -43,10 +43,10 @@ public class HomeController {
 			ReporteConsumoCliente reporte = RepositoriosReportes.repositorioReporteConsumoCliente
 					.encontrar(rep -> rep.getFechaInicio().equals(req.queryParams("fecha")));			
 			model.put("reporte", reporte);
-			return new ModelAndView(model, "home/consumosUserIndividual.hbs");
+			return new ModelAndView(model, "user/consumosUserIndividual.hbs");
 		}
 		
-		return new ModelAndView(model, "home/consumosUserTodos.hbs");
+		return new ModelAndView(model, "user/consumosUserTodos.hbs");
 	}
 	
 	public static ModelAndView optimizadorUser(Request req, Response res){
@@ -61,7 +61,7 @@ public class HomeController {
 		
 		model.put("cliente", cliente);
 		model.put("resultados", hogar.getResultados());
-		return new ModelAndView(model, "home/optimizadorUser.hbs");
+		return new ModelAndView(model, "user/optimizadorUser.hbs");
 	}
 
 }
