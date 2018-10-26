@@ -11,7 +11,7 @@ public class ResultadoOptimizador {
 	public ResultadoOptimizador(Dispositivo dispositivo, double resultado) {
 		this.dispositivo = dispositivo;
 		this.resultado = resultado;
-		this.superoConsumo = dispositivo.getUsoMaximo() <= resultado;
+		this.superoConsumo = dispositivo.getKwXHora() >= resultado;
 	}
 	
 	public Dispositivo getDispositivo() {

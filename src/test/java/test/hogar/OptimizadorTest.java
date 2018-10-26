@@ -62,6 +62,5 @@ public class OptimizadorTest {
 		Assert.assertEquals(lavarropas.getUsoMaximo(), resultado[posLavarropas], 0);
 		Assert.assertEquals(televisor.getUsoMaximo(), resultado[posTele], 0);
 	}
-
 	
 }

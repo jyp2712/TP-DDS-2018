@@ -1,7 +1,5 @@
 package tp0.modelo.repositorios;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -22,23 +20,22 @@ public class RepositoriosUsuarios {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
 
-		List<Cliente> clientes = entityManager.createQuery("from Cliente").getResultList();
-		repositorioClientes.setRepositorio(clientes);
-
+		repositorioClientes.setRepositorio(entityManager.createQuery("from Cliente").getResultList());
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public void cargarAdministradores() {
+	public static void cargarAdministradores() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
-
-		List<Administrador> administradores = entityManager.createQuery("from Administrador").getResultList();
-		repositorioAdmin.setRepositorio(administradores);
-
+	
+		repositorioAdmin.setRepositorio(entityManager.createQuery("from Administrador").getResultList());
 	}
 	
 	public static Cliente findCliente(String user){
 		return repositorioClientes.encontrar(c -> c.getUser().equals(user));
 	}
-	
+
+	public static Administrador findAdmin(String admin){
+		return repositorioAdmin.encontrar(a -> a.getAdmin().equals(admin));
+	}
 }

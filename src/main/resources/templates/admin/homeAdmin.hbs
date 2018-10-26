@@ -1,0 +1,23 @@
+{{#partial "contenido"}}
+<h2>Bienvenido {{administrador.nombre}} {{administrador.apellido}}</h2>
+<br></br>
+<table class="table table-stripped">
+		<tr>
+			<th>Nombre Cliente</th>
+			<th>DNI</th>
+			<th>Consumo</th>
+		</tr>
+
+		{{#each clientes}}
+			<tr>
+				<td>{{nombre}} {{apellido}}</td>
+				<td>{{documento}}</td>				
+				<td>{{categoria.consumoMaximo}} Kw</td>
+			</tr>
+		{{/each}}
+		
+</table>
+
+{{/partial}}
+
+{{>layoutAdmin.hbs}}

@@ -3,6 +3,7 @@ package controllers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import tp0.modelo.Administrador;
 import tp0.modelo.Cliente;
 import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
@@ -25,11 +26,17 @@ public class LoginController {
 		RepositoriosUsuarios.cargarClientes();
 		RepositoriosReportes.cargarReportes();
 
-		return show(req, res, "user", "login/loginUser.hbs");
-		
+		return show(req, res, "user", "login/loginUser.hbs");	
 	}
 	
 	public static ModelAndView showAdmin(Request req, Response res){
+		if(req.session().attribute(SESSION_ADMIN) != null) {
+			Administrador admin = RepositoriosUsuarios.findAdmin(req.session().attribute("admin"));
+			res.redirect("/admin/"+admin.getId());
+		}
+		
+		RepositoriosUsuarios.cargarAdministradores();
+		
 		return show(req, res, SESSION_ADMIN, "login/loginAdmin.hbs");
 	}
 	
@@ -53,9 +60,18 @@ public class LoginController {
 	public static ModelAndView loginAdmin(Request req, Response res) {
 		String user = req.queryParams("user");
 		String pass = req.queryParams("password");
-		//buscar el usuario en el repo
+
+		Administrador admin = RepositoriosUsuarios.findAdmin(user);
+
+		if(admin == null) {
+			return show(req, res, SESSION_ADMIN, "login/loginAdminErrorUser.hbs");	
+		}
+		if(!admin.getPass().equals(pass)) {
+			return show(req, res, SESSION_ADMIN, "login/loginAdminErrorPass.hbs");
+		}
+
 		req.session().attribute(SESSION_ADMIN, user);
-		res.redirect("/admin");
+		res.redirect("/admin/"+admin.getId());
 		return null;
 	}
 	

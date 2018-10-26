@@ -36,7 +36,7 @@ public class Administrador extends PersistentObject{
 	protected String nombre;
 	protected String apellido;
 	protected String domicilio;
-	protected DateTime fechaAltaSistema;
+	protected String fechaAltaSistema;
 
 	public Administrador() {};
 	
@@ -48,7 +48,7 @@ public class Administrador extends PersistentObject{
 		setNombre(nombre);
 		setApellido(apellido);
 		setDomicilio(domicilio);
-		setFechaAltaSistema(new DateTime(fechaAltaSistema));
+		this.fechaAltaSistema = fechaAltaSistema;
 	}
 
 	public Integer getId() {
@@ -83,16 +83,12 @@ public class Administrador extends PersistentObject{
 		this.domicilio = domicilio;
 	}
 
-	public DateTime getFechaAltaSistema() {
+	public String getFechaAltaSistema() {
 		return fechaAltaSistema;
 	}
 
-	private void setFechaAltaSistema(DateTime fechaAltaSistema) {
-		this.fechaAltaSistema = fechaAltaSistema;
-	}
-
 	public Months antiguedadAdministrador() {
-		return Months.monthsBetween(fechaAltaSistema, DateTime.now());
+		return Months.monthsBetween(new DateTime(fechaAltaSistema), DateTime.now());
 	}
 	
 	public void altaDispositivoConcreto(Repositorio<DispositivoConcreto> dispositivosConcretos, 

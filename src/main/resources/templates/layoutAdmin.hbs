@@ -1,0 +1,38 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  	<link rel="stylesheet"  href="sticky-footer.css">
+</head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/admin/{{administrador.id}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/{{administrador.id}}/reportes">Consumos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/{{administrador.id}}/dispositivos">Alta de Dispositivo</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+  			<a class="navbar-brand" href="/logoutAdmin">Logout</a>
+        </form>
+      </div>
+    </nav>
+    
+<div class="container">
+	{{#block "contenido"}}
+	{{/block}}
+</div>
+
+</body>
+</html>

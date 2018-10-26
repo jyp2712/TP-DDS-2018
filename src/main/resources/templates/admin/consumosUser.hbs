@@ -1,0 +1,27 @@
+{{#partial "contenido"}}
+<h2>Historial de Consumos</h2>
+<br></br>
+
+<table class="table table-stripped">
+		<tr>
+			<th>Cliente</th>
+			<th>DNI</th>
+			<th>Desde</th>
+			<th>Hasta</th>
+			<th>Consumo</th>
+		</tr>
+
+		{{#each reportes}}
+			<tr>
+				<td>{{nombreCliente}} {{apellidoCliente}}</td>
+				<td>{{DNI}}</td>
+				<td>{{fechaInicio}}</td>
+				<td>{{fechaFin}}</td>
+				<td>{{consumo}} Kw</td>
+			</tr>
+		{{/each}}
+
+</table>
+{{/partial}}
+
+{{>layoutAdmin.hbs}}

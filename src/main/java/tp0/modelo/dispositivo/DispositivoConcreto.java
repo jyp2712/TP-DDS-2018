@@ -40,7 +40,7 @@ public class DispositivoConcreto extends PersistentObject{
 		return this.usoMaximo;
 	}
 
-	public boolean optimizable() {
+	public boolean isOptimizable() {
 		return this.optimizable;
 	}
 

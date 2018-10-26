@@ -7,15 +7,19 @@ import java.util.Map;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import tp0.modelo.Administrador;
 import tp0.modelo.Cliente;
+import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.hogar.Hogar;
 import tp0.modelo.reportes.ReporteConsumoCliente;
+import tp0.modelo.repositorios.RepositoriosDispositivosGenericos;
 import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class HomeController {
 	
 	protected static Cliente cliente;
+	protected static Administrador admin;
 
 	public static ModelAndView homeUser(Request req, Response res){
 		if(req.session().attribute("user") == null) {
@@ -30,6 +34,37 @@ public class HomeController {
 		return new ModelAndView(model, "user/homeUser.hbs");
 	}
 
+	public static ModelAndView homeAdmin(Request req, Response res){
+		if(req.session().attribute("admin") == null) {
+			res.redirect("/loginAdmin");
+		}
+
+		Map<String, Object> model = new HashMap<>();
+
+		RepositoriosUsuarios.cargarClientes();
+
+		admin = RepositoriosUsuarios.findAdmin(req.session().attribute("admin"));
+		
+		model.put("clientes", RepositoriosUsuarios.repositorioClientes.todos());
+		model.put("administrador", admin);
+		return new ModelAndView(model, "admin/homeAdmin.hbs");
+	}
+
+	public static ModelAndView reportesAdmin(Request req, Response res){
+		if(req.session().attribute("admin") == null) {
+			res.redirect("/loginAdmin");
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+
+		RepositoriosReportes.cargarReportes();
+
+		model.put("administrador", admin);
+		model.put("reportes", RepositoriosReportes.repositorioReporteConsumoCliente.todos());
+		
+		return new ModelAndView(model, "admin/consumosUser.hbs");
+	}
+	
 	public static ModelAndView consumosUser(Request req, Response res){
 		if(req.session().attribute("user") == null) {
 			res.redirect("/loginUser");
@@ -37,7 +72,9 @@ public class HomeController {
 		Map<String, Object> model = new HashMap<>();
 		
 		model.put("cliente", cliente);
-		model.put("reportes", RepositoriosReportes.repositorioReporteConsumoCliente.todos());
+		model.put("reportes", 
+				RepositoriosReportes.repositorioReporteConsumoCliente.todos()
+				.stream().filter(r -> r.getDNI().equals(cliente.getDocumento())));
 
 		if (req.queryParams("fecha") != null) {
 			ReporteConsumoCliente reporte = RepositoriosReportes.repositorioReporteConsumoCliente
@@ -62,6 +99,40 @@ public class HomeController {
 		model.put("cliente", cliente);
 		model.put("resultados", hogar.getResultados());
 		return new ModelAndView(model, "user/optimizadorUser.hbs");
+	}
+
+	public static ModelAndView listarDispositivosAdmin(Request req, Response res){
+		if(req.session().attribute("admin") == null) {
+			res.redirect("/loginAdmin");
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+
+		RepositoriosDispositivosGenericos.cargarDispositivos();
+		
+		model.put("administrador", admin);
+		model.put("dispositivos", RepositoriosDispositivosGenericos.repositorioDispositivos.todos());
+		return new ModelAndView(model, "admin/newDispositivo.hbs");
+	}
+
+	public static Void crearDispositivoAdmin(Request req, Response res){
+		if(req.session().attribute("admin") == null) {
+			res.redirect("/loginAdmin");
+		}
+		
+		DispositivoConcreto dispositivoNuevo = new DispositivoConcreto(
+				req.queryParams("nombreGenerico"), 
+				Double.parseDouble(req.queryParams("coeficiente")), 
+				Double.parseDouble(req.queryParams("usoMinimo")), 
+				Double.parseDouble(req.queryParams("usoMaximo")), 
+				Boolean.parseBoolean(req.queryParams("optimizable")));
+		
+		if(RepositoriosDispositivosGenericos.findDispositivo(dispositivoNuevo.getNombreGenerico()) == null){
+			RepositoriosDispositivosGenericos.agregar(dispositivoNuevo);
+		}
+		
+		res.redirect(req.url());
+		return null;
 	}
 
 }

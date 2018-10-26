@@ -1,6 +1,5 @@
 package tp0.modelo.repositorios;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -19,11 +18,9 @@ public class RepositoriosReportes {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
 
-		List<ReporteConsumoCliente> reportesConsumoCliente = 
-				entityManager
+		repositorioReporteConsumoCliente.setRepositorio(entityManager
 				.createQuery("from ReporteConsumoCliente ORDER BY id DESC")
-				.getResultList();	
-		repositorioReporteConsumoCliente.setRepositorio(reportesConsumoCliente);
+				.getResultList());
 	}
 	
 	public static ReporteConsumoCliente findReporteConsumoCliente(Integer documento){

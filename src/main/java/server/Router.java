@@ -1,6 +1,5 @@
 package server;
 
-
 import controllers.HomeController;
 import controllers.LoginController;
 import spark.Spark;
@@ -25,6 +24,10 @@ public class Router {
 		Spark.get("/loginAdmin", LoginController::showAdmin, engine);
 		Spark.post("/loginAdmin", LoginController::loginAdmin, engine);
 		Spark.get("/logoutAdmin", LoginController::logoutAdmin, engine);
+		Spark.get("/admin/:id", HomeController::homeAdmin, engine);		
+		Spark.get("/admin/:id/reportes", HomeController::reportesAdmin, engine);		
+		Spark.get("/admin/:id/dispositivos", HomeController::listarDispositivosAdmin, engine);
+		Spark.post("/admin/:id/dispositivos", HomeController::crearDispositivoAdmin);
 		Spark.get("/user/:id", HomeController::homeUser, engine);
 		Spark.get("/user/:id/consumos", HomeController::consumosUser, engine);
 		Spark.get("/user/:id/optimizador", HomeController::optimizadorUser, engine);
