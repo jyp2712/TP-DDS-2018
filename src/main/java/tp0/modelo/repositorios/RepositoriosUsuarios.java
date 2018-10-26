@@ -28,7 +28,7 @@ public class RepositoriosUsuarios {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void cargarAdministradores() {
+	public static void cargarAdministradores() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		transaction = entityManager.getTransaction();
 

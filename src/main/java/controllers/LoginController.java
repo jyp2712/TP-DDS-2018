@@ -59,8 +59,8 @@ public class LoginController {
 	public static ModelAndView loginAdmin(Request req, Response res) {
 		String user = req.queryParams("user");
 		String pass = req.queryParams("password");
-		repositoriosUsuarios.cargarAdministradores();
-		Administrador admin = repositoriosUsuarios.findAdmin(user);
+		RepositoriosUsuarios.cargarAdministradores();
+		Administrador admin = RepositoriosUsuarios.findAdmin(user);
 		
 		if(admin == null) {
 			return show(req, res, SESSION_ADMIN, "home/loginUserErrorUser.hbs");	

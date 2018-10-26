@@ -20,7 +20,6 @@ import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.reportes.ReporteConsumoCliente;
 import tp0.modelo.repositorios.RepositorioDispositivosConcretos;
 import tp0.modelo.repositorios.RepositorioReporteClientes;
-import tp0.modelo.repositorios.RepositoriosDispositivos;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
 
 public class AdminHomeController implements WithGlobalEntityManager, TransactionalOps {
