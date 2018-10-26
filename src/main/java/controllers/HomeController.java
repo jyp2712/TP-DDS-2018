@@ -3,6 +3,7 @@ package controllers;
 import java.util.HashMap;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import spark.ModelAndView;
 import spark.Request;
@@ -74,7 +75,7 @@ public class HomeController {
 		model.put("cliente", cliente);
 		model.put("reportes", 
 				RepositoriosReportes.repositorioReporteConsumoCliente.todos()
-				.stream().filter(r -> r.getDNI().equals(cliente.getDocumento())));
+				.stream().filter(r -> r.getDNI().equals(cliente.getDocumento())).collect(Collectors.toList()));
 
 		if (req.queryParams("fecha") != null) {
 			ReporteConsumoCliente reporte = RepositoriosReportes.repositorioReporteConsumoCliente
