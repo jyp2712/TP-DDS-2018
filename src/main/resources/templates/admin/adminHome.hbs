@@ -1,0 +1,19 @@
+{{#partial "contenido"}}
+<h2>Dispositivos</h2>
+
+<table class="table table-stripped">
+		<tr>
+			<th>Cliente</th>
+			<th>Consumo</th>
+		</tr>
+		
+		{{#each clientes}}
+			<tr>
+				<td>{{Apellido}}, {{getNombre}}</td>
+				<td>{{consumoTotal}} KW</td>
+			</tr>
+		{{/each}}
+</table>
+{{/partial}}
+
+{{>layoutAdmin.hbs}}

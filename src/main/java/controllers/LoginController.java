@@ -3,6 +3,7 @@ package controllers;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import tp0.modelo.Administrador;
 import tp0.modelo.Cliente;
 import tp0.modelo.repositorios.RepositoriosReportes;
 import tp0.modelo.repositorios.RepositoriosUsuarios;
@@ -30,7 +31,12 @@ public class LoginController {
 	}
 	
 	public static ModelAndView showAdmin(Request req, Response res){
-		return show(req, res, SESSION_ADMIN, "login/loginAdmin.hbs");
+		if(req.session().attribute(SESSION_ADMIN) != null) {
+			res.redirect("/admin/");
+			return null;			
+		}else {
+			return show(req, res, SESSION_ADMIN, "home/loginUser.hbs");
+		}
 	}
 	
 	public static ModelAndView loginUser(Request req, Response res) {
@@ -53,8 +59,17 @@ public class LoginController {
 	public static ModelAndView loginAdmin(Request req, Response res) {
 		String user = req.queryParams("user");
 		String pass = req.queryParams("password");
-		//buscar el usuario en el repo
-		req.session().attribute(SESSION_ADMIN, user);
+		repositoriosUsuarios.cargarAdministradores();
+		Administrador admin = repositoriosUsuarios.findAdmin(user);
+		
+		if(admin == null) {
+			return show(req, res, SESSION_ADMIN, "home/loginUserErrorUser.hbs");	
+		}
+		if(!admin.getPass().equals(pass)) {
+			return show(req, res, SESSION_ADMIN, "home/loginUserErrorPass.hbs");
+		}
+		
+		req.session().attribute(SESSION_USER, user);
 		res.redirect("/admin");
 		return null;
 	}

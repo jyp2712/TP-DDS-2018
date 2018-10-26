@@ -12,8 +12,8 @@ import tp0.modelo.Cliente;
 
 public class RepositoriosUsuarios {
 
-	public static final RepositorioEnMemoria<Cliente> repositorioClientes = new RepositorioEnMemoria<Cliente>();
-	public static final RepositorioEnMemoria<Administrador> repositorioAdmin = new RepositorioEnMemoria<Administrador>();
+	private static final RepositorioEnMemoria<Cliente> repositorioClientes = new RepositorioEnMemoria<Cliente>();
+	private static final RepositorioEnMemoria<Administrador> repositorioAdmin = new RepositorioEnMemoria<Administrador>();
 	static EntityManager entityManager;
 	static EntityTransaction transaction;
 
@@ -41,4 +41,11 @@ public class RepositoriosUsuarios {
 		return repositorioClientes.encontrar(c -> c.getUser().equals(user));
 	}
 	
+	public static Administrador findAdmin(String user) {
+		return repositorioAdmin.encontrar(c -> c.getAdmin().equals(user));
+	}
+	
+	public static List<Cliente> listarClientes() {
+		return repositorioClientes.todos();
+	}
 }
