@@ -1,0 +1,19 @@
+{{#partial "contenidoLoginUser"}}
+
+	<form method="POST" action="/loginAdmin">
+		<img src="http://www.cndc.org.ni/Jquery/datatable/images/monigotes%203d/694052.jpg" alt="" width="300" height="222">
+		<br></br>
+      	<input type="admin" id="inputAdmin" class="form-control" placeholder="Admin" required="" autofocus="" name="user">
+      	<label for="inputPassword" class="sr-only">Password</label>
+      	<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
+      	
+		{{#block "contenido"}}
+		{{/block}}
+			
+		<br></br>
+      	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+	</form>
+
+{{/partial}}
+
+{{>login/login.hbs}}
