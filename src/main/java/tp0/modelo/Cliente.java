@@ -26,15 +26,15 @@ import tp0.modelo.repositorios.Repositorio;
 @Entity
 public class Cliente extends PersistentObject{
 
-	protected String user;
+	protected String usuario;
 	protected String pass;
 	
 	public String getUser() {
-		return user;
+		return usuario;
 	}
 
 	public void setUser(String user) {
-		this.user = user;
+		this.usuario = user;
 	}
 
 	public String getPass() {
