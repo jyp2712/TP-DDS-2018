@@ -18,6 +18,7 @@ public class CommandOptimizarHogar {
     		@Override
     		public void run() {
     			hogar.optimizar(dispositivos);
+    			System.out.println("Optimizando");
     		}
 
     	};
