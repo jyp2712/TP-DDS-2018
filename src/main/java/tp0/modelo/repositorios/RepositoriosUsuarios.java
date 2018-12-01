@@ -1,7 +1,6 @@
 package tp0.modelo.repositorios;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
@@ -13,12 +12,10 @@ public class RepositoriosUsuarios {
 	public static final RepositorioEnMemoria<Cliente> repositorioClientes = new RepositorioEnMemoria<Cliente>();
 	public static final RepositorioEnMemoria<Administrador> repositorioAdmin = new RepositorioEnMemoria<Administrador>();
 	static EntityManager entityManager;
-	static EntityTransaction transaction;
 
 	@SuppressWarnings("unchecked")
 	public static void cargarClientes() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
-		transaction = entityManager.getTransaction();
 
 		repositorioClientes.setRepositorio(entityManager.createQuery("from Cliente").getResultList());
 	}
@@ -26,7 +23,6 @@ public class RepositoriosUsuarios {
 	@SuppressWarnings("unchecked")
 	public static void cargarAdministradores() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
-		transaction = entityManager.getTransaction();
 	
 		repositorioAdmin.setRepositorio(entityManager.createQuery("from Administrador").getResultList());
 	}

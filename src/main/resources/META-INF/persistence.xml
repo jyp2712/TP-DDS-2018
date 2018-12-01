@@ -26,7 +26,8 @@
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
-<!--             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+<!--        
+		    <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/grupo04?serverTimezone=UTC" /> 
             <property name="hibernate.connection.username" value="root" /> 
             <property name="hibernate.connection.password" value="mysql" /> 
@@ -35,10 +36,8 @@
             <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-23-21-65-173.compute-1.amazonaws.com:5432/d5297d5ogiogmj"/>
             <property name="hibernate.connection.username" value="bxsaxxzezcuyyg" /> 
             <property name="hibernate.connection.password" value="f8bb5c79ca28e858bd145742f9bc9ec36bed33011ae1d141649169966c7cda60" /> 
-            
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-             
-<!--             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
+                     
+<!--        <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
