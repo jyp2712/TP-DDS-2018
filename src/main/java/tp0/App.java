@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.joda.time.Seconds;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import server.Server;
@@ -17,6 +18,8 @@ import tp0.modelo.dispositivo.DispositivoConcreto;
 import tp0.modelo.dispositivo.DispositivoEstandar;
 import tp0.modelo.dispositivo.DispositivoInteligente;
 import tp0.modelo.dispositivo.estado.Estado;
+import tp0.modelo.hogar.CommandOptimizarHogar;
+import tp0.modelo.hogar.Hogar;
 import tp0.modelo.hogar.zona.Transformador;
 import tp0.modelo.reportes.ReporteConsumoCliente;
 import tp0.modelo.repositorios.Repositorio;
@@ -107,6 +110,8 @@ public class App {
 			
 			EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 			EntityTransaction transaction = entityManager.getTransaction();
+
+			new CommandOptimizarHogar(new Hogar(), nico.getDispositivos(), Seconds.THREE);
 
 			transaction.begin();
 
