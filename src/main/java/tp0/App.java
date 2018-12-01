@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.joda.time.Seconds;
+import org.joda.time.Minutes;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import server.Server;
@@ -111,7 +111,7 @@ public class App {
 			EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 			EntityTransaction transaction = entityManager.getTransaction();
 
-			new CommandOptimizarHogar(new Hogar(), nico.getDispositivos(), Seconds.seconds(60));
+			new CommandOptimizarHogar(new Hogar(), nico.getDispositivos(), Minutes.ONE);
 
 			transaction.begin();
 
