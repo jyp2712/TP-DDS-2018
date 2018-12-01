@@ -111,7 +111,7 @@ public class App {
 			EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 			EntityTransaction transaction = entityManager.getTransaction();
 
-			new CommandOptimizarHogar(new Hogar(), nico.getDispositivos(), Seconds.THREE);
+			new CommandOptimizarHogar(new Hogar(), nico.getDispositivos(), Seconds.parseSeconds("30"));
 
 			transaction.begin();
 
