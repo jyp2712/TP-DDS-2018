@@ -3,6 +3,7 @@ package tp0.modelo.hogar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.Collectors;
 
 import org.joda.time.Minutes;
 
@@ -18,7 +19,9 @@ public class CommandOptimizarHogar {
     		public void run() {
     			double[] resultado = hogar.optimizar(dispositivos);
     			System.out.println("Job Simplex ejecutado");
-    			dispositivos.forEach(disp -> imprimirResultadoOptimizador(resultado, disp));
+    			List<Dispositivo> disp = dispositivos.stream()
+    					.filter(d -> d.optimizable()).collect(Collectors.toList());
+    			disp.forEach(d -> imprimirResultadoOptimizador(resultado, d));
     		}
 
 			private void imprimirResultadoOptimizador(double[] resultado, Dispositivo disp) {
