@@ -27,7 +27,7 @@ public class CommandOptimizarHogar {
 			private void imprimirResultadoOptimizador(double[] resultado, Dispositivo disp, int i) {
 				if(disp.optimizable()) {
 					System.out.println("Dispositivo: " + disp.getNombreGenerico() +
-							" Consumo: " + resultado[i]);
+							" - Resultado: " + resultado[i]);
 				}
 			}
 
