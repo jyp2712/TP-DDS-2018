@@ -18,9 +18,15 @@ public class CommandOptimizarHogar {
     		public void run() {
     			double[] resultado = hogar.optimizar(dispositivos);
     			System.out.println("Job Simplex ejecutado");
-    			dispositivos.forEach(disp -> System.out.println("Dispositivo: " + disp.getNombreGenerico() +
-    					" Consumo: " + resultado[dispositivos.indexOf(disp)]));
+    			dispositivos.forEach(disp -> imprimirResultadoOptimizador(resultado, disp));
     		}
+
+			private void imprimirResultadoOptimizador(double[] resultado, Dispositivo disp) {
+				if(disp.optimizable()) {
+					System.out.println("Dispositivo: " + disp.getNombreGenerico() +
+							" Consumo: " + resultado[dispositivos.indexOf(disp)]);
+				}
+			}
 
     	};
         timer.scheduleAtFixedRate(timerTask, 0, horas.toStandardDuration().getMillis());	
