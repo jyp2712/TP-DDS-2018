@@ -21,13 +21,13 @@ public class CommandOptimizarHogar {
     			System.out.println("Job Simplex ejecutado");
     			List<Dispositivo> disp = dispositivos.stream()
     					.filter(d -> d.optimizable()).collect(Collectors.toList());
-    			disp.forEach(d -> imprimirResultadoOptimizador(resultado, d));
+    			disp.forEach(d -> imprimirResultadoOptimizador(resultado, d, disp.indexOf(d)));
     		}
 
-			private void imprimirResultadoOptimizador(double[] resultado, Dispositivo disp) {
+			private void imprimirResultadoOptimizador(double[] resultado, Dispositivo disp, int i) {
 				if(disp.optimizable()) {
 					System.out.println("Dispositivo: " + disp.getNombreGenerico() +
-							" Consumo: " + resultado[dispositivos.indexOf(disp)]);
+							" Consumo: " + resultado[i]);
 				}
 			}
 
