@@ -20,16 +20,16 @@ public class App {
 		new Server().init();
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	private void startJob() {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		List<Cliente> clientes = entityManager.createQuery("from Cliente").getResultList();
-		
+
 		if(!clientes.isEmpty()) {
 			Cliente cliente = clientes.get(0);
 			new CommandOptimizarHogar(new Hogar(), cliente.getDispositivos(), Minutes.ONE);
 		}
+
 	}
 
 }

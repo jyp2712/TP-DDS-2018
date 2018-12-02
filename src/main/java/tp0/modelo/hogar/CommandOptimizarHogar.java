@@ -16,8 +16,10 @@ public class CommandOptimizarHogar {
     		
     		@Override
     		public void run() {
-    			hogar.optimizar(dispositivos);
+    			double[] resultado = hogar.optimizar(dispositivos);
     			System.out.println("Job Simplex ejecutado");
+    			dispositivos.forEach(disp -> System.out.println("Dispositivo: " + disp.getNombreGenerico() +
+    					" Consumo: " + resultado[dispositivos.indexOf(disp)]));
     		}
 
     	};
