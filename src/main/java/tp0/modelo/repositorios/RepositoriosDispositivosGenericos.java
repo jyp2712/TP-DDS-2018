@@ -15,7 +15,8 @@ public class RepositoriosDispositivosGenericos {
 	@SuppressWarnings("unchecked")
 	public static void cargarDispositivos() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
-
+		transaction = entityManager.getTransaction();
+				
 		repositorioDispositivos.setRepositorio(entityManager.createQuery("from DispositivoConcreto").getResultList());
 	}
 
